@@ -1,0 +1,6 @@
+@PANDA.Api_HostAddress = http://localhost:5216
+
+GET {{PANDA.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
