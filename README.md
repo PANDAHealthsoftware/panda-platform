@@ -99,12 +99,19 @@ The application uses FluentValidation for all DTOs, ensuring the input data is v
 The SQLite database is seeded with realistic patient and appointment data on startup. You can review or modify this data in the `seed.sql` file.
 
 ## Running Tests
-To run unit tests, use the following command:
+Navigate to the tests folder: Use the terminal to go to the PANDA.Api.Tests folder where the test project is located.:
+```bash
+cd PANDA.Api.Tests
+```
+Run the tests: Once you're in the PANDA.Api.Tests directory, run the tests using the following command:
+The tests cover the CRUD operations, validation logic, and edge case scenarios.
 ```bash
 dotnet test
 ```
-The tests cover the CRUD operations, validation logic, and edge case scenarios.
-
+Ensure Dependencies: Make sure you have all the necessary dependencies installed. If you're missing any, you can restore them with:
+```bash
+dotnet restore
+```
 ## Contributing
 This project was created for the Aire Logic tech test. However, contributions to improve the application are welcome. Please fork the repository, make changes, and submit a pull request.
 
