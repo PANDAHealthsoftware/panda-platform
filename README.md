@@ -99,7 +99,8 @@ The application uses FluentValidation for all DTOs, ensuring the input data is v
 The SQLite database is seeded with realistic patient and appointment data on startup. You can review or modify this data in the `seed.sql` file.
 
 ## Running Tests
-Navigate to the tests folder: Use the terminal to go to the PANDA.Api.Tests folder where the test project is located.:
+Navigate to the tests folder: Use the terminal to go to the PANDA.Api.Tests folder where the test project is located.
+Integration tests would be added at a later date / when time permits.
 ```bash
 cd PANDA.Api.Tests
 ```
