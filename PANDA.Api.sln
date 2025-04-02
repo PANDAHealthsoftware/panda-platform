@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PANDA.Api", "PANDA.Api\PANDA.Api.csproj", "{53CB6DF7-157A-4137-8AEC-13F389A17739}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PANDA.Api.Tests", "PANDA.Api.Tests\PANDA.Api.Tests.csproj", "{DC3244F9-2DBF-47A4-9AEE-46121F75BA93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{53CB6DF7-157A-4137-8AEC-13F389A17739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53CB6DF7-157A-4137-8AEC-13F389A17739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53CB6DF7-157A-4137-8AEC-13F389A17739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC3244F9-2DBF-47A4-9AEE-46121F75BA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC3244F9-2DBF-47A4-9AEE-46121F75BA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC3244F9-2DBF-47A4-9AEE-46121F75BA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC3244F9-2DBF-47A4-9AEE-46121F75BA93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

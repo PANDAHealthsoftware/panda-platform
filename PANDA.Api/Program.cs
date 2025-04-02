@@ -1,13 +1,75 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
+using Panda.Api.Converters;
+using PANDA.Api.Infrastructure;
+using PANDA.Api.Services;
+using PANDA.Api.Validation;
+using PANDA.Api.Mapping;
+using AutoMapper;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// ----------------------------
+// Logging
+// ----------------------------
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+// ----------------------------
+// JSON + FluentValidation
+// ----------------------------
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+});
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<PatientDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<AppointmentDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateAppointmentDtoValidator>();
+
+// ----------------------------
+// Swagger & Localization
+// ----------------------------
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddLocalization();
+
+// ----------------------------
+// Entity Framework Core (SQLite)
+// ----------------------------
+builder.Services.AddDbContext<PandaDbContext>(options =>
+    options.UseSqlite("Data Source=panda.db"));
+
+// ----------------------------
+// AutoMapper (Manual Setup)
+// ----------------------------
+var mapperConfig = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new MappingProfile());
+});
+var mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+// Optional: Validate mappings at startup
+mapper.ConfigurationProvider.AssertConfigurationIsValid();
+
+// ----------------------------
+// App Services
+// ----------------------------
+builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ----------------------------
+// Middleware
+// ----------------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -15,30 +77,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+app.MapControllers();
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

@@ -1,98 +1,112 @@
-# PANDA - Patient Appointment Network Data Application
 
-PANDA is a lightweight .NET API built to manage patients and their appointments with high reliability and test coverage. Designed for rapid deployment and extensibility.
+# PANDA - Patient Appointment Network Data Application (Tech Test)
 
----
+## Overview
+PANDA is a production-quality API designed for managing patient demographics and appointments. This application implements a CRUD backend with the ability to store patient data and appointments, while ensuring high-quality code, effective validation, and integration with external systems.
 
-## 🚀 Getting Started
+This solution is developed as part of the Aire Logic tech test, showcasing technical knowledge, best practices, and design decisions.
+
+## Features
+- **Patient CRUD Operations**: Create, read, update, and delete patient records.
+- **Appointment CRUD Operations**: Schedule, update, view, and cancel patient appointments.
+- **Validation**: FluentValidation for both `PatientDto` and `CreateAppointmentDto`.
+- **Automated Testing**: Unit tests for all CRUD operations, including validation and edge case scenarios.
+- **AutoMapper Integration**: Simplified data mapping between entities and DTOs.
+
+## Tech Stack
+- **.NET 8**: The application is built using .NET 8 for the backend API.
+- **Dapper**: A lightweight ORM for SQL data access.
+- **SQLite**: Persistent SQLite database for data storage.
+- **FluentValidation**: Ensures data validity for DTOs.
+- **NSubstitute**: Used for mocking dependencies in unit tests.
+- **EF Core InMemory**: For in-memory testing of CRUD operations.
+- **AutoMapper**: For efficient mapping between entities and DTOs.
+
+## Getting Started
 
 ### Prerequisites
+To run the project locally, ensure you have the following installed:
+- .NET 8 SDK
+- SQLite (if not using the default SQLite file)
+- Visual Studio or JetBrains Rider for development
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-- SQLite (optional: used by default for persistence)
-
-### Run the API
-
+### Clone the Repository
 ```bash
-cd PANDA.Api
+git clone https://github.com/your-repository/panda.git
+cd panda
+```
 
+### Set up the Database
+The SQLite database is automatically seeded with sample data for patients and appointments. No additional setup is needed.
+
+### Running the Application
+You can run the application using the following command:
+```bash
 dotnet run
 ```
 
-The API will be available at:
+The API will start on `http://localhost:5000`. You can use any API client (e.g., Postman or cURL) to test the endpoints.
 
-```
-https://localhost:5001
-http://localhost:5000
-```
+### Available Endpoints
+- **POST /patients**: Create a new patient.
+- **GET /patients/{id}**: Get details of a specific patient.
+- **PUT /patients/{id}**: Update an existing patient.
+- **DELETE /patients/{id}**: Delete a patient record.
+- **POST /appointments**: Create a new appointment.
+- **GET /appointments/{id}**: View an appointment.
+- **PUT /appointments/{id}**: Update an appointment.
+- **DELETE /appointments/{id}**: Cancel an appointment.
 
----
+### Testing with API Client (Postman, cURL, etc.)
+To interact with the API using your preferred client (Postman, cURL, or similar), follow these steps:
 
-## 🔮 Run the Tests
+1. **Postman Setup**:
+    - Open Postman and create a new **GET** request for `http://localhost:5000/api/patients` to retrieve all patients.
+    - For creating a new patient, use **POST** and set the body type to `application/json`, then send a JSON payload like this:
+      ```json
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "dateOfBirth": "1985-10-10",
+        "nhsNumber": "1234567890",
+        "postcode": "AB1 2CD",
+        "gender": "Male"
+      }
+      ```
+    - For updating a patient, send a **PUT** request to `http://localhost:5000/api/patients/{id}` with the patient's updated details in the body.
 
+2. **cURL Setup**:
+    - Use cURL to send requests from the command line. For example, to retrieve all patients:
+      ```bash
+      curl -X GET http://localhost:5000/api/patients
+      ```
+    - To create a new patient, use:
+      ```bash
+      curl -X POST http://localhost:5000/api/patients         -H "Content-Type: application/json"         -d '{"firstName": "John", "lastName": "Doe", "dateOfBirth": "1985-10-10", "nhsNumber": "1234567890", "postcode": "AB1 2CD", "gender": "Male"}'
+      ```
+
+3. **Expected Responses**:
+    - For **GET /patients**: Returns a list of all patients, with the `Gender` property showing the enum value (e.g., "Male", "Female").
+    - For **GET /patients/{id}**: Returns a single patient with the `Gender` as an enum value.
+    - For **POST /patients**: Returns a success message and the ID of the newly created patient.
+    - For **PUT /patients/{id}**: Updates the patient data and returns a `204 No Content` status upon success.
+    - For **DELETE /patients/{id}**: Deletes the patient and returns a `204 No Content` status upon success.
+
+### Validation and Error Handling
+The application uses FluentValidation for all DTOs, ensuring the input data is valid. API responses provide clear messages for validation errors.
+
+### Seeding Data
+The SQLite database is seeded with realistic patient and appointment data on startup. You can review or modify this data in the `seed.sql` file.
+
+## Running Tests
+To run unit tests, use the following command:
 ```bash
-cd PANDA.Api.Tests
-
 dotnet test
 ```
+The tests cover the CRUD operations, validation logic, and edge case scenarios.
 
----
+## Contributing
+This project was created for the Aire Logic tech test. However, contributions to improve the application are welcome. Please fork the repository, make changes, and submit a pull request.
 
-## 📖 API Overview
-
-### Patient Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET    | `/api/patient/{id}` | Get a patient by ID |
-| POST   | `/api/patient` | Create a new patient |
-| PUT    | `/api/patient/{id}` | Update patient info |
-| DELETE | `/api/patient/{id}` | Delete a patient |
-
-### Appointment Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET    | `/api/appointment/{id}` | Get an appointment |
-| POST   | `/api/appointment` | Create an appointment |
-| PUT    | `/api/appointment/{id}` | Update an appointment |
-| DELETE | `/api/appointment/{id}` | Cancel an appointment |
-| POST   | `/api/appointment/track-missed-appointment?appointmentId=123` | Mark missed appointments |
-
----
-
-## ✅ Features
-
-- Full CRUD support for Patients and Appointments
-- Entity validation using FluentValidation
-- NHS number checksum validation
-- Postcode format validation
-- Timezone-aware timestamps (`DateTimeOffset`)
-- Appointments cannot be reinstated once cancelled
-- Missed appointment tracking logic
-- Detailed logging using Serilog
-- Fully tested with EF Core InMemory + FluentValidation TestHelper
-
----
-
-## 🧩 Tech Stack
-
-- ASP.NET Core Web API
-- Entity Framework Core (SQLite/InMemory)
-- FluentValidation
-- Serilog
-- xUnit + FluentAssertions + NSubstitute
-
----
-
-## 🔒 Assumptions
-
-- The API is used in a trusted internal environment (no authentication).
-- Frontend developers rely on server-side validation and JSON error responses.
-- Future localisation and clinician tracking are planned but not implemented in MVP.
-
----
-
-## 📫 Contact
-
-For questions or feedback, feel free to open an issue or contact the maintainer.
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

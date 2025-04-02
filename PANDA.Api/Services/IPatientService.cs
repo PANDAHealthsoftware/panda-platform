@@ -1,10 +1,13 @@
-﻿namespace PANDA.Api.Services;
+﻿using PANDA.Api.Dto;
+using PANDA.Api.Models;
+
+namespace PANDA.Api.Services;
 
 public interface IPatientService
-{
-    Task<int> AddPatientAsync(Patient patient);
-    Task<Patient?> GetPatientByIdAsync(int id);
-    Task<IEnumerable<Patient>> GetAllPatientsAsync();
-    Task<bool> UpdatePatientAsync(Patient patient);
+{ 
+    Task<Patient> GetPatientByIdAsync(int id);
+    Task<List<PatientDto>> GetAllPatientsAsync();
+    Task<Patient> AddPatientAsync(CreatePatientDto patientDto);
+    Task<bool> UpdatePatientAsync(int id, PatientDto patientDto);
     Task<bool> DeletePatientAsync(int id);
 }
