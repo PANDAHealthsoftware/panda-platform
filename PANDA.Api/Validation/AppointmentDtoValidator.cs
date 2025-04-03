@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Runtime.InteropServices.JavaScript;
+using FluentValidation;
 using PANDA.Api.Common;
 using PANDA.Api.Dto;
 
@@ -18,15 +19,15 @@ public class AppointmentDtoValidator : AbstractValidator<AppointmentDto>
 
         RuleFor(x => x.Status)
             .IsInEnum()
-            .WithMessage("Invalid appointment status.");
+            .WithMessage(ErrorMessages.InvalidAppointmentStatus);
 
         RuleFor(x => x.Clinician)
             .NotEmpty()
             .MaximumLength(100)
-            .WithMessage("Clinician name is required and must be 100 characters or fewer.");
+            .WithMessage(ErrorMessages.ClinicianRequired);
 
         RuleFor(x => x.Department)
             .IsInEnum()
-            .WithMessage("Department must be a valid value.");
+            .WithMessage(ErrorMessages.InvalidDepartment);
     }
 }
