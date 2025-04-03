@@ -1,111 +1,93 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PANDA.Api.Common;
 using PANDA.Api.Dto;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Models;
+using AutoMapper;
 using Serilog;
 
-namespace PANDA.Api.Services
+namespace PANDA.Api.Services;
+
+public class AppointmentService : IAppointmentService
 {
-    public class AppointmentService : IAppointmentService
+    private readonly PandaDbContext _context;
+    private readonly IMapper _mapper;
+
+    public AppointmentService(PandaDbContext context, IMapper mapper)
     {
-        private readonly PandaDbContext _context;
-        private readonly IMapper _mapper;
+        _context = context;
+        _mapper = mapper;
+    }
 
-        public AppointmentService(PandaDbContext context, IMapper mapper)
+    public async Task<AppointmentDto> CreateAsync(CreateAppointmentDto dto)
+    {
+        var appointment = _mapper.Map<Appointment>(dto);
+        _context.Appointments.Add(appointment);
+        await _context.SaveChangesAsync();
+        return _mapper.Map<AppointmentDto>(appointment);
+    }
+
+    public async Task<AppointmentDto?> GetByIdAsync(int id)
+    {
+        var appointment = await _context.Appointments.FindAsync(id);
+        return appointment == null ? null : _mapper.Map<AppointmentDto>(appointment);
+    }
+
+    public async Task<IEnumerable<AppointmentDto>> GetAllAsync()
+    {
+        var appointments = await _context.Appointments.ToListAsync();
+        return _mapper.Map<List<AppointmentDto>>(appointments);
+    }
+
+    public async Task<bool> UpdateAsync(int id, AppointmentDto dto)
+    {
+        var appointment = await _context.Appointments.FindAsync(id);
+        if (appointment == null || appointment.Status == AppointmentStatus.Cancelled)
         {
-            _context = context;
-            _mapper = mapper;
+            Log.Warning(LogMessages.UpdateCancelledBlocked, id);
+            return false;
         }
 
-        public async Task<AppointmentDto> GetByIdAsync(int id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
-            if (appointment == null) throw new InvalidOperationException("Appointment not found");
+        appointment.PatientId = dto.PatientId;
+        appointment.AppointmentDate = dto.AppointmentDate;
+        appointment.Status = dto.Status;
+        appointment.Clinician = dto.Clinician;
+        appointment.Department = dto.Department;
 
-            return _mapper.Map<AppointmentDto>(appointment);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        var appointment = await _context.Appointments.FindAsync(id);
+        if (appointment == null)
+        {
+            Log.Warning(LogMessages.AppointmentNotFoundForDelete, id);
+            return false;
         }
 
-        public async Task<IEnumerable<AppointmentDto>> GetAllAsync()
+        Log.Information(LogMessages.AppointmentCancelling, id);
+        appointment.Status = AppointmentStatus.Cancelled;
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task TrackMissedAppointmentsAsync(int appointmentId)
+    {
+        var appointment = await _context.Appointments.FindAsync(appointmentId);
+        if (appointment == null || appointment.Status == AppointmentStatus.Cancelled)
         {
-            var appointments = await _context.Appointments.ToListAsync();
-            return _mapper.Map<IEnumerable<AppointmentDto>>(appointments);
+            Log.Information(LogMessages.SkipMissedTrackingCancelled, appointmentId);
+            return;
         }
 
-        public async Task<AppointmentDto> CreateAsync(CreateAppointmentDto dto)
+        if (appointment.AppointmentDate < DateTimeOffset.UtcNow)
         {
-            var appointment = _mapper.Map<Appointment>(dto);
-
-            _context.Appointments.Add(appointment);
+            appointment.Status = AppointmentStatus.Missed;
+            appointment.MissedTimestamp = DateTimeOffset.UtcNow;
             await _context.SaveChangesAsync();
-
-            var appointmentDto = _mapper.Map<AppointmentDto>(appointment); 
-            return appointmentDto;
-        }
-        
-        public async Task<bool> UpdateAsync(int id, AppointmentDto appointmentDto)
-        {
-            var existing = await _context.Appointments.FindAsync(id);
-            if (existing == null)
-                return false;
-
-            if (existing.Status == AppointmentStatus.Cancelled)
-            {
-                Log.Warning("Attempted to update a cancelled appointment with ID {AppointmentId}", id);
-                return false;
-            }
-
-            if (existing.Status != AppointmentStatus.Cancelled && appointmentDto.Status == AppointmentStatus.Cancelled)
-            {
-                Log.Information("Marking appointment {AppointmentId} as cancelled", id);
-            }
-
-            // Use AutoMapper to map AppointmentDto to Appointment
-            var updatedAppointment = _mapper.Map<Appointment>(appointmentDto);
-            updatedAppointment.Id = existing.Id; // Keep the existing ID
-
-            _context.Entry(existing).CurrentValues.SetValues(updatedAppointment);
-            await _context.SaveChangesAsync();
-
-            return true;
-        }
-
-
-        public async Task<bool> DeleteAsync(int id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
-            if (appointment == null)
-            {
-                Log.Warning("Attempted to delete non-existent appointment {AppointmentId}", id);
-                return false;
-            }
-
-            _context.Appointments.Remove(appointment);
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task TrackMissedAppointmentsAsync(int appointmentId)
-        {
-            var appointment = await _context.Appointments.FindAsync(appointmentId);
-            if (appointment == null)
-                throw new KeyNotFoundException("Appointment not found");
-
-            if (appointment.Status == AppointmentStatus.Cancelled)
-            {
-                Log.Information("Skipping missed tracking for cancelled appointment {AppointmentId}", appointmentId);
-                return;
-            }
-
-            if (appointment.AppointmentDate < DateTimeOffset.UtcNow && appointment.Status == AppointmentStatus.Scheduled)
-            {
-                appointment.Status = AppointmentStatus.Missed;
-                appointment.MissedTimestamp = DateTimeOffset.UtcNow;
-
-                Log.Information("Marked appointment {AppointmentId} as missed", appointmentId);
-                await _context.SaveChangesAsync();
-            }
+            Log.Information(LogMessages.AppointmentMarkedMissed, appointmentId);
         }
     }
 }
