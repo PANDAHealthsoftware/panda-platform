@@ -9,6 +9,6 @@ namespace PANDA.Api.Dto
         public DateTimeOffset AppointmentDate { get; init; }
         public AppointmentStatus Status { get; init; }
         public string Clinician { get; init; } = string.Empty;
-        public string Department { get; init; } = string.Empty;
+        public Department Department { get; set; }
     }
 }

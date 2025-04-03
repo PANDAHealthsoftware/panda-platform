@@ -50,7 +50,7 @@ public class AppointmentServiceTests
         result.Id.Should().BeGreaterThan(0);
         result.PatientId.Should().Be(1);
         result.Clinician.Should().Be("Dr. Who");
-        result.Department.Should().Be("Cardiology");
+        result.Department.Should().Be(Department.Cardiology);
         context.Appointments.Count().Should().Be(1);
     }
 
@@ -64,7 +64,7 @@ public class AppointmentServiceTests
             AppointmentDate = DateTimeOffset.UtcNow.AddDays(2),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Strange",
-            Department = "Neurology"
+            Department = Department.Cardiology
         };
         context.Appointments.Add(appointment);
         await context.SaveChangesAsync();
@@ -88,7 +88,7 @@ public class AppointmentServiceTests
             AppointmentDate = DateTimeOffset.UtcNow.AddDays(3),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. House",
-            Department = "Diagnostics"
+            Department = Department.Cardiology
         };
 
         context.Appointments.Add(appointment);
@@ -100,7 +100,7 @@ public class AppointmentServiceTests
             AppointmentDate = DateTimeOffset.UtcNow.AddDays(4),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. House",
-            Department = "Diagnostics"
+            Department = Department.Cardiology
         };
 
         var result = await service.UpdateAsync(appointment.Id, updated);
@@ -122,7 +122,7 @@ public class AppointmentServiceTests
             AppointmentDate = DateTimeOffset.UtcNow.AddDays(5),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. McCoy",
-            Department = "General"
+            Department = Department.Cardiology
         };
 
         context.Appointments.Add(appointment);
@@ -147,7 +147,7 @@ public class AppointmentServiceTests
             AppointmentDate = DateTimeOffset.UtcNow.AddDays(-1),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Smith",
-            Department = "Oncology"
+            Department = Department.Cardiology
         };
 
         context.Appointments.Add(appointment);

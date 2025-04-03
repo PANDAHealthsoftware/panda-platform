@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using PANDA.Api.Common;
 using PANDA.Api.Dto;
 
 namespace PANDA.Api.Validation;
@@ -25,8 +26,7 @@ public class AppointmentDtoValidator : AbstractValidator<AppointmentDto>
             .WithMessage("Clinician name is required and must be 100 characters or fewer.");
 
         RuleFor(x => x.Department)
-            .NotEmpty()
-            .MaximumLength(100)
-            .WithMessage("Department is required and must be 100 characters or fewer.");
+            .IsInEnum()
+            .NotEqual(Department.Unknown).WithMessage("Department must be specified.");
     }
 }
