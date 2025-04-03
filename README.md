@@ -1,4 +1,3 @@
-
 # PANDA - Patient Appointment Network Data Application (Tech Test)
 
 ## Overview
@@ -226,3 +225,27 @@ This project was created for the Aire Logic tech test. However, contributions to
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Enums
+
+The application uses enums for several fields to maintain consistency and enforce domain constraints.
+
+### AppointmentStatus Enum
+
+| Value | Name      | Description                         |
+|-------|-----------|-------------------------------------|
+| 0     | Scheduled | The appointment is scheduled.       |
+| 1     | Completed | The appointment has occurred.       |
+| 2     | Missed    | The patient missed the appointment. |
+| 3     | Cancelled | The appointment was cancelled.      |
+
+### Department Enum
+
+| Value | Name         | Description               |
+|-------|--------------|---------------------------|
+| 0     | General      | General practice/medicine |
+| 1     | Cardiology   | Heart-related medicine    |
+| 2     | Neurology    | Nervous system medicine   |
+| 3     | Oncology     | Cancer-related medicine   |
+| 4     | Paediatrics  | Children’s medicine       |
+| 5     | Dermatology  | Skin-related medicine     |
