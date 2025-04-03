@@ -8,26 +8,41 @@ public class PatientDtoValidator : AbstractValidator<PatientDto>
 {
     public PatientDtoValidator()
     {
-        RuleFor(x => x.FirstName).NotEmpty().MaximumLength(50);
-        RuleFor(x => x.LastName).NotEmpty().MaximumLength(50);
+        RuleFor(x => x.FirstName)
+            .NotEmpty()
+            .MaximumLength(50)
+            .WithMessage(ErrorMessages.NameRequired);
+
+        RuleFor(x => x.LastName)
+            .NotEmpty()
+            .MaximumLength(50)
+            .WithMessage(ErrorMessages.NameRequired);
+
         RuleFor(x => x.DateOfBirth)
             .Must(date => date > DateTime.MinValue)
-            .WithMessage("Date of birth is required.")
+            .WithMessage(ErrorMessages.DateOfBirthRequired)
             .LessThan(DateTime.Today)
-            .WithMessage("Date of birth must be in the past.");
+            .WithMessage(ErrorMessages.InvalidDateOfBirth);
+
         RuleFor(x => x.NHSNumber)
             .NotEmpty()
             .Length(10)
+            .WithMessage(ErrorMessages.InvalidNhsNumber)
             .Must(IsValidNhsNumber)
-            .WithMessage("NHS number is invalid.");
-        RuleFor(x => x.Postcode).NotEmpty().Matches(@"^[A-Z]{1,2}\d{1,2} ?\d[A-Z]{2}$").WithMessage("Invalid postcode format");
+            .WithMessage(ErrorMessages.InvalidNhsChecksum);
+
+        RuleFor(x => x.Postcode)
+            .NotEmpty()
+            .Matches(@"^[A-Z]{1,2}\d{1,2} ?\d[A-Z]{2}$")
+            .WithMessage(ErrorMessages.InvalidPostcodeFormat);
+
         RuleFor(x => x.Gender)
             .NotNull()
             .WithMessage("Gender is required.")
             .IsInEnum()
-            .WithMessage("Gender must be a valid value.");
+            .WithMessage(ErrorMessages.InvalidGender);
     }
-    
+
     private bool IsValidNhsNumber(string nhsNumber)
     {
         if (!long.TryParse(nhsNumber, out _) || nhsNumber.Length != 10)

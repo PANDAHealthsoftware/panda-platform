@@ -21,4 +21,7 @@ public static class ErrorMessages
     public const string InvalidNhsChecksum = "NHS number checksum is invalid.";
     public const string NameRequired = "First and last name are required and must be 100 characters or fewer.";
     public const string InvalidDateOfBirth = "Date of birth must be in the past.";
+    public const string DateOfBirthRequired = "Date of birth is required.";
+    public const string InvalidPostcodeFormat = "Invalid postcode format.";
+    
 }
