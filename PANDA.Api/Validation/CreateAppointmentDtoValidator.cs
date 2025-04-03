@@ -10,11 +10,11 @@ public class CreateAppointmentDtoValidator : AbstractValidator<CreateAppointment
     {
         RuleFor(x => x.PatientId)
             .GreaterThan(0)
-            .WithMessage("PatientId is required.");
+            .WithMessage(ErrorMessages.InvalidPatientId);
 
         RuleFor(x => x.AppointmentDate)
             .GreaterThan(DateTimeOffset.UtcNow)
-            .WithMessage("Appointment must be scheduled in the future.");
+            .WithMessage(ErrorMessages.FutureAppointmentRequired);
 
         RuleFor(x => x.Status)
             .IsInEnum()
@@ -23,10 +23,10 @@ public class CreateAppointmentDtoValidator : AbstractValidator<CreateAppointment
         RuleFor(x => x.Clinician)
             .NotEmpty()
             .MaximumLength(100)
-            .WithMessage("Clinician name is required and must be 100 characters or fewer.");
+            .WithMessage(ErrorMessages.ClinicianRequired);
 
         RuleFor(x => x.Department)
             .IsInEnum()
-            .WithMessage("Invalid department.");
+            .WithMessage(ErrorMessages.InvalidDepartment);
     }
 }
