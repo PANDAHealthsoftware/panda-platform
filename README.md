@@ -249,3 +249,13 @@ The application uses enums for several fields to maintain consistency and enforc
 | 3     | Oncology     | Cancer-related medicine   |
 | 4     | Paediatrics  | Children’s medicine       |
 | 5     | Dermatology  | Skin-related medicine     |
+
+### Patient Enum
+
+| Value | Name        | Description                |
+|-------|-------------|----------------------------|
+| 0     | Unknown     | 	Gender not specified    |
+| 1     | Male        | 	Male patient            |
+| 2     | Female      | 	Female patient          |
+| 3     | Other       | 	Other/non-binary option |
+
