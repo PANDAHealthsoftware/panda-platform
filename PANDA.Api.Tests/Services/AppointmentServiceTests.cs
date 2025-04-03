@@ -158,4 +158,60 @@ public class AppointmentServiceTests
         var updated = await context.Appointments.FindAsync(appointment.Id);
         updated.Status.Should().Be(AppointmentStatus.Missed);
     }
+    
+    [Fact]
+    public async Task TrackMissedAppointmentsAsync_Should_Not_Override_Cancelled()
+    {
+        using var context = new PandaDbContext(_options);
+        var service = new AppointmentService(context, _mapper);
+
+        var appointment = new Appointment
+        {
+            PatientId = 7,
+            AppointmentDate = DateTimeOffset.UtcNow.AddDays(-2),
+            Status = AppointmentStatus.Cancelled,
+            Clinician = "Dr. Banner",
+            Department = Department.Neurology
+        };
+
+        context.Appointments.Add(appointment);
+        await context.SaveChangesAsync();
+
+        await service.TrackMissedAppointmentsAsync(appointment.Id);
+
+        var updated = await context.Appointments.FindAsync(appointment.Id);
+        updated.Status.Should().Be(AppointmentStatus.Cancelled);
+    }
+    
+    [Fact]
+    public async Task UpdateAsync_Should_Fail_For_Cancelled_Appointment()
+    {
+        using var context = new PandaDbContext(_options);
+        var service = new AppointmentService(context, _mapper);
+
+        var appointment = new Appointment
+        {
+            PatientId = 6,
+            AppointmentDate = DateTimeOffset.UtcNow.AddDays(1),
+            Status = AppointmentStatus.Cancelled,
+            Clinician = "Dr. Watson",
+            Department = Department.Neurology
+        };
+
+        context.Appointments.Add(appointment);
+        await context.SaveChangesAsync();
+
+        var updated = new AppointmentDto
+        {
+            PatientId = 6,
+            AppointmentDate = DateTimeOffset.UtcNow.AddDays(2),
+            Status = AppointmentStatus.Scheduled,
+            Clinician = "Dr. Watson",
+            Department = Department.Pediatrics
+        };
+
+        var result = await service.UpdateAsync(appointment.Id, updated);
+        result.Should().BeFalse();
+    }
+    
 }
