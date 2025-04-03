@@ -134,7 +134,8 @@ public class AppointmentServiceTests
         result.Should().BeTrue();
 
         var exists = await context.Appointments.FindAsync(appointment.Id);
-        exists.Should().BeNull();
+        exists.Should().NotBeNull();
+        exists!.Status.Should().Be(AppointmentStatus.Cancelled);
     }
 
     [Fact]

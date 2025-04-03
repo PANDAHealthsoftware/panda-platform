@@ -9,88 +9,70 @@ namespace PANDA.Api.Tests.Validation;
 public class PatientDtoValidatorTests
 {
     private readonly PatientDtoValidator _validator = new();
-    private const string ValidNhsNumber = "9434765919";
+    private readonly CreatePatientDtoValidator _createValidator = new();
 
     [Fact]
-    public void Should_Pass_Validation_With_Valid_Data()
+    public void Should_Have_Error_When_FirstName_Is_Empty()
     {
-        var dto = new PatientDto
-        {
-            FirstName = "Alice",
-            LastName = "Smith",
-            DateOfBirth = new DateTime(1990, 1, 1),
-            NHSNumber = ValidNhsNumber,
-            Postcode = "AB12 3CD",
-            Gender = Gender.Female
-        };
-
-        var result = _validator.TestValidate(dto);
-        result.IsValid.Should().BeTrue();
+        var model = new PatientDto { FirstName = "" };
+        var result = _validator.TestValidate(model);
+        result.ShouldHaveValidationErrorFor(x => x.FirstName);
     }
 
     [Fact]
-    public void Should_Fail_If_Required_Fields_Are_Missing()
+    public void Should_Have_Error_When_LastName_Is_Empty()
     {
-        var dto = new PatientDto();
-
-        var result = _validator.TestValidate(dto);
-
-        result.ShouldHaveValidationErrorFor(x => x.FirstName);
+        var model = new PatientDto { LastName = "" };
+        var result = _validator.TestValidate(model);
         result.ShouldHaveValidationErrorFor(x => x.LastName);
+    }
+
+    [Fact]
+    public void Should_Have_Error_When_DateOfBirth_Is_Invalid()
+    {
+        var model = new PatientDto { DateOfBirth = DateTime.Today.AddDays(1) };
+        var result = _validator.TestValidate(model);
         result.ShouldHaveValidationErrorFor(x => x.DateOfBirth);
+    }
+
+    [Fact]
+    public void Should_Have_Error_When_NHSNumber_Is_Invalid()
+    {
+        var model = new PatientDto { NHSNumber = "123" };
+        var result = _validator.TestValidate(model);
         result.ShouldHaveValidationErrorFor(x => x.NHSNumber);
+    }
+
+    [Fact]
+    public void Should_Have_Error_When_Postcode_Is_Invalid()
+    {
+        var model = new PatientDto { Postcode = "XYZ123" };
+        var result = _validator.TestValidate(model);
         result.ShouldHaveValidationErrorFor(x => x.Postcode);
+    }
+
+    [Fact]
+    public void Should_Have_Error_When_Gender_Is_Null()
+    {
+        var model = new PatientDto { Gender = null };
+        var result = _validator.TestValidate(model);
         result.ShouldHaveValidationErrorFor(x => x.Gender);
     }
 
     [Fact]
-    public void Should_Fail_If_DateOfBirth_Is_In_The_Future()
+    public void Should_Have_No_Errors_For_Valid_CreatePatientDto()
     {
-        var dto = new PatientDto
+        var model = new CreatePatientDto
         {
-            FirstName = "Bob",
-            LastName = "Brown",
-            DateOfBirth = DateTime.Today.AddDays(1),
-            NHSNumber = ValidNhsNumber,
-            Postcode = "CD34 5EF",
+            FirstName = "John",
+            LastName = "Doe",
+            DateOfBirth = new DateTime(1990, 1, 1),
+            NHSNumber = "9434765919", // valid checksum
+            Postcode = "LS12 3AB",
             Gender = Gender.Male
         };
 
-        var result = _validator.TestValidate(dto);
-        result.ShouldHaveValidationErrorFor(x => x.DateOfBirth);
-    }
-
-    [Fact]
-    public void Should_Fail_If_NHSNumber_Is_Too_Short()
-    {
-        var dto = new PatientDto
-        {
-            FirstName = "Clara",
-            LastName = "Jones",
-            DateOfBirth = new DateTime(1980, 1, 1),
-            NHSNumber = "12345",
-            Postcode = "GH56 7IJ",
-            Gender = Gender.Other
-        };
-
-        var result = _validator.TestValidate(dto);
-        result.ShouldHaveValidationErrorFor(x => x.NHSNumber);
-    }
-
-    [Fact]
-    public void Should_Fail_If_Postcode_Is_Invalid()
-    {
-        var dto = new PatientDto
-        {
-            FirstName = "Donna",
-            LastName = "Noble",
-            DateOfBirth = new DateTime(1970, 1, 1),
-            NHSNumber = ValidNhsNumber,
-            Postcode = "BADPOST", // invalid
-            Gender = Gender.Female
-        };
-
-        var result = _validator.TestValidate(dto);
-        result.ShouldHaveValidationErrorFor(x => x.Postcode);
+        var result = _createValidator.TestValidate(model);
+        result.ShouldNotHaveAnyValidationErrors();
     }
 }
