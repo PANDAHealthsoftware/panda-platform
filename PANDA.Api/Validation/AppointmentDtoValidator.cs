@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using FluentValidation;
+﻿using FluentValidation;
 using PANDA.Api.Common;
 using PANDA.Api.Dto;
 
@@ -11,11 +10,11 @@ public class AppointmentDtoValidator : AbstractValidator<AppointmentDto>
     {
         RuleFor(x => x.PatientId)
             .GreaterThan(0)
-            .WithMessage("A valid patient ID is required.");
+            .WithMessage(ErrorMessages.InvalidPatientId);
 
         RuleFor(x => x.AppointmentDate)
             .GreaterThan(DateTimeOffset.UtcNow)
-            .WithMessage("Appointment date must be in the future.");
+            .WithMessage(ErrorMessages.FutureAppointmentRequired);
 
         RuleFor(x => x.Status)
             .IsInEnum()
