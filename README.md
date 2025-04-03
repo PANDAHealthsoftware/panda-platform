@@ -47,7 +47,6 @@ dotnet run
 
 The API will start on `http://localhost:5000`. You can use any API client (e.g., Postman or cURL) to test the endpoints.
 
-### Available Endpoints
 
 ### Available Endpoints with Examples
 
