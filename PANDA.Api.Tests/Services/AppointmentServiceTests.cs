@@ -113,7 +113,7 @@ public class AppointmentServiceTests
     }
 
     [Fact]
-    public async Task DeleteAsync_Should_Remove_Appointment()
+    public async Task DeleteAsync_Should_Mark_Appointment_As_Cancelled()
     {
         using var context = new PandaDbContext(_options);
         var service = new AppointmentService(context, _mapper);
