@@ -73,9 +73,8 @@ public class AppointmentController : ControllerBase
             //Log.Warning("Appointment with ID {AppointmentId} not found", id);
             return NotFound();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            //Log.Error(ex, "An error occurred while retrieving appointment with ID: {AppointmentId}", id);
             return StatusCode(500, "An unexpected error occurred. Please try again later.");
         }
     }
