@@ -48,6 +48,114 @@ dotnet run
 The API will start on `http://localhost:5000`. You can use any API client (e.g., Postman or cURL) to test the endpoints.
 
 ### Available Endpoints
+
+### Available Endpoints with Examples
+
+#### **POST /patients**
+
+**Request Body**
+```json
+{
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "dateOfBirth": "1990-05-20",
+  "nhsNumber": "9876543210",
+  "postcode": "XY1 2AB",
+  "gender": "Female"
+}
+```
+
+**Response**
+```json
+{
+  "id": 1,
+  "message": "Patient created successfully"
+}
+```
+
+#### **GET /patients/{id}**
+
+**Example Response**
+```json
+{
+  "id": 1,
+  "firstName": "Alice",
+  "lastName": "Smith",
+  "dateOfBirth": "1990-05-20",
+  "nhsNumber": "9876543210",
+  "postcode": "XY1 2AB",
+  "gender": "Female"
+}
+```
+
+#### **PUT /patients/{id}**
+
+**Request Body**
+```json
+{
+  "firstName": "Alice",
+  "lastName": "Johnson",
+  "dateOfBirth": "1990-05-20",
+  "nhsNumber": "9876543210",
+  "postcode": "XY1 2AB",
+  "gender": "Female"
+}
+```
+
+**Response**: `204 No Content`
+
+#### **POST /appointments**
+
+**Request Body**
+```json
+{
+  "patientId": 1,
+  "startTime": "2025-04-05T10:00:00Z",
+  "endTime": "2025-04-05T10:30:00Z",
+  "location": "Clinic Room 3"
+}
+```
+
+**Response**
+```json
+{
+  "id": 1,
+  "message": "Appointment created successfully"
+}
+```
+
+#### **GET /appointments/{id}**
+
+**Example Response**
+```json
+{
+  "id": 1,
+  "patientId": 1,
+  "startTime": "2025-04-05T10:00:00Z",
+  "endTime": "2025-04-05T10:30:00Z",
+  "location": "Clinic Room 3",
+  "isCancelled": false
+}
+```
+
+#### **PUT /appointments/{id}**
+
+**Request Body**
+```json
+{
+  "startTime": "2025-04-05T11:00:00Z",
+  "endTime": "2025-04-05T11:30:00Z",
+  "location": "Clinic Room 4"
+}
+```
+
+**Response**: `204 No Content`
+
+#### **DELETE /appointments/{id}**
+
+**Response**: `204 No Content`
+
+
 - **POST /patients**: Create a new patient.
 - **GET /patients/{id}**: Get details of a specific patient.
 - **PUT /patients/{id}**: Update an existing patient.
