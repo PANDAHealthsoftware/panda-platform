@@ -47,6 +47,7 @@ dotnet run
 
 The API will start on `http://localhost:5000`. You can use any API client (e.g., Postman or cURL) to test the endpoints.
 
+### Available Endpoints
 
 ### Available Endpoints with Examples
 
@@ -60,7 +61,7 @@ The API will start on `http://localhost:5000`. You can use any API client (e.g.,
   "dateOfBirth": "1990-05-20",
   "nhsNumber": "9876543210",
   "postcode": "XY1 2AB",
-  "gender": "Female"
+  "gender": 2
 }
 ```
 
@@ -83,7 +84,7 @@ The API will start on `http://localhost:5000`. You can use any API client (e.g.,
   "dateOfBirth": "1990-05-20",
   "nhsNumber": "9876543210",
   "postcode": "XY1 2AB",
-  "gender": "Female"
+  "gender": 2
 }
 ```
 
@@ -97,7 +98,7 @@ The API will start on `http://localhost:5000`. You can use any API client (e.g.,
   "dateOfBirth": "1990-05-20",
   "nhsNumber": "9876543210",
   "postcode": "XY1 2AB",
-  "gender": "Female"
+  "gender": 2
 }
 ```
 
@@ -177,7 +178,7 @@ To interact with the API using your preferred client (Postman, cURL, or similar)
         "dateOfBirth": "1985-10-10",
         "nhsNumber": "1234567890",
         "postcode": "AB1 2CD",
-        "gender": "Male"
+        "gender": 1
       }
       ```
     - For updating a patient, send a **PUT** request to `http://localhost:5000/api/patients/{id}` with the patient's updated details in the body.
@@ -189,7 +190,7 @@ To interact with the API using your preferred client (Postman, cURL, or similar)
       ```
     - To create a new patient, use:
       ```bash
-      curl -X POST http://localhost:5000/api/patients         -H "Content-Type: application/json"         -d '{"firstName": "John", "lastName": "Doe", "dateOfBirth": "1985-10-10", "nhsNumber": "1234567890", "postcode": "AB1 2CD", "gender": "Male"}'
+      curl -X POST http://localhost:5000/api/patients         -H "Content-Type: application/json"         -d '{"firstName": "John", "lastName": "Doe", "dateOfBirth": "1985-10-10", "nhsNumber": "1234567890", "postcode": "AB1 2CD", "gender": 1}'
       ```
 
 3. **Expected Responses**:
