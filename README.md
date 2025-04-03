@@ -252,10 +252,10 @@ The application uses enums for several fields to maintain consistency and enforc
 
 ### Patient Enum
 
-| Value | Name        | Description                |
-|-------|-------------|----------------------------|
-| 0     | Unknown     | 	Gender not specified    |
-| 1     | Male        | 	Male patient            |
-| 2     | Female      | 	Female patient          |
-| 3     | Other       | 	Other/non-binary option |
+| Value | Name   | Description             |
+|-------|--------|-------------------------|
+| 0     | Male   | Male patient            |
+| 1     | Female | Female patient          |
+| 2     | Other  | Other/non-binary option |
+| 3     | Unknown| Gender not specified    |
 
