@@ -10,12 +10,12 @@ This solution is developed as part of the Aire Logic tech test, showcasing techn
 - **Patient CRUD Operations**: Create, read, update, and delete patient records.
 - **Appointment CRUD Operations**: Schedule, update, view, and cancel patient appointments.
 - **Validation**: FluentValidation for both `PatientDto` and `CreateAppointmentDto`.
-- **Automated Testing**: Unit tests for all CRUD operations, including validation and edge case scenarios.
+- **Automated Testing**: Unit tests for all CRUD operations and helper methods, including validation and edge case scenarios.
 - **AutoMapper Integration**: Simplified data mapping between entities and DTOs.
 
 ## Tech Stack
 - **.NET 8**: The application is built using .NET 8 for the backend API.
-- **Dapper**: A lightweight ORM for SQL data access.
+- **Entity Framework**: ORM for SQL data access.
 - **SQLite**: Persistent SQLite database for data storage.
 - **FluentValidation**: Ensures data validity for DTOs.
 - **NSubstitute**: Used for mocking dependencies in unit tests.
