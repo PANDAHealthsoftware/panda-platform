@@ -4,9 +4,9 @@ using PANDA.Api.Dto;
 
 namespace PANDA.Api.Validation;
 
-public class PatientDtoValidator : AbstractValidator<PatientDto>
+public class CreatePatientDtoValidator : AbstractValidator<CreatePatientDto>
 {
-    public PatientDtoValidator()
+    public CreatePatientDtoValidator()
     {
         RuleFor(x => x.FirstName)
             .NotEmpty()
