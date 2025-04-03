@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using PANDA.Api.Common;
@@ -73,7 +74,7 @@ public class AppointmentServiceTests
         var result = await service.GetByIdAsync(appointment.Id);
 
         result.Should().NotBeNull();
-        result.PatientId.Should().Be(2);
+        result!.PatientId.Should().Be(2);
     }
 
     [Fact]
@@ -107,7 +108,8 @@ public class AppointmentServiceTests
         result.Should().BeTrue();
 
         var updatedEntry = await context.Appointments.FindAsync(appointment.Id);
-        updatedEntry.AppointmentDate.Should().BeCloseTo(updated.AppointmentDate, TimeSpan.FromSeconds(1));
+        updatedEntry.Should().NotBeNull();
+        updatedEntry!.AppointmentDate.Should().BeCloseTo(updated.AppointmentDate, TimeSpan.FromSeconds(1));
     }
 
     [Fact]
@@ -156,9 +158,10 @@ public class AppointmentServiceTests
         await service.TrackMissedAppointmentsAsync(appointment.Id);
 
         var updated = await context.Appointments.FindAsync(appointment.Id);
-        updated.Status.Should().Be(AppointmentStatus.Missed);
+        updated.Should().NotBeNull();
+        updated!.Status.Should().Be(AppointmentStatus.Missed);
     }
-    
+
     [Fact]
     public async Task TrackMissedAppointmentsAsync_Should_Not_Override_Cancelled()
     {
@@ -180,9 +183,10 @@ public class AppointmentServiceTests
         await service.TrackMissedAppointmentsAsync(appointment.Id);
 
         var updated = await context.Appointments.FindAsync(appointment.Id);
-        updated.Status.Should().Be(AppointmentStatus.Cancelled);
+        updated.Should().NotBeNull();
+        updated!.Status.Should().Be(AppointmentStatus.Cancelled);
     }
-    
+
     [Fact]
     public async Task UpdateAsync_Should_Fail_For_Cancelled_Appointment()
     {
@@ -213,5 +217,4 @@ public class AppointmentServiceTests
         var result = await service.UpdateAsync(appointment.Id, updated);
         result.Should().BeFalse();
     }
-    
 }
