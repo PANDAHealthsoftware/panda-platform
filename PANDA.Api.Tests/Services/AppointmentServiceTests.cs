@@ -207,7 +207,7 @@ public class AppointmentServiceTests
             AppointmentDate = DateTimeOffset.UtcNow.AddDays(2),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Watson",
-            Department = Department.Pediatrics
+            Department = Department.Paediatrics
         };
 
         var result = await service.UpdateAsync(appointment.Id, updated);

@@ -27,6 +27,6 @@ public class AppointmentDtoValidator : AbstractValidator<AppointmentDto>
 
         RuleFor(x => x.Department)
             .IsInEnum()
-            .NotEqual(Department.Unknown).WithMessage("Department must be specified.");
+            .WithMessage("Department must be a valid value.");
     }
 }
