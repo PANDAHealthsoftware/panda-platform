@@ -2,9 +2,10 @@
 
 public enum Department
 {
-    Unknown = 0,
+    General = 0,
     Cardiology = 1,
     Neurology = 2,
-    Pediatrics = 3,
-    GeneralPractice = 4
+    Oncology = 3,
+    Paediatrics = 4,
+    Dermatology = 5
 }
