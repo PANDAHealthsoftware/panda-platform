@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
 using PANDA.Api.Common;
 using PANDA.Api.Dto;
+using PANDA.Shared.DTOs;
 
 namespace PANDA.Api.Validation;
 
-public class AppointmentDtoValidator : AbstractValidator<AppointmentDto>
+public class AppointmentDtoValidator : AbstractValidator<UpdateAppointmentDto>
 {
     public AppointmentDtoValidator()
     {
@@ -13,7 +14,7 @@ public class AppointmentDtoValidator : AbstractValidator<AppointmentDto>
             .WithMessage(ErrorMessages.InvalidPatientId);
 
         RuleFor(x => x.AppointmentDate)
-            .GreaterThan(DateTimeOffset.UtcNow)
+            .GreaterThan(DateTime.UtcNow)
             .WithMessage(ErrorMessages.FutureAppointmentRequired);
 
         RuleFor(x => x.Status)

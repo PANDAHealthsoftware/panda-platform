@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PANDA.Api.Dto;
 using PANDA.Api.Models;
+using PANDA.Shared.DTOs;
 
 namespace PANDA.Api.Mapping;
 
@@ -17,9 +18,10 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForMember(dest => dest.MissedTimestamp, opt => opt.Ignore());
 
-        CreateMap<Appointment, AppointmentDto>();  // Make sure this line is here
-        CreateMap<AppointmentDto, Appointment>()
-            .ForMember(dest => dest.Id, opt => opt.Ignore())  // Avoid changing the ID
-            .ForMember(dest => dest.MissedTimestamp, opt => opt.Ignore());  // Ignore MissedTimestamp
+        CreateMap<Appointment, UpdateAppointmentDto>()
+            .ForMember(dest => dest.AppointmentDate, opt => opt.MapFrom(src => src.AppointmentDate)); 
+        CreateMap<UpdateAppointmentDto, Appointment>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.MissedTimestamp, opt => opt.Ignore());
     }
 }

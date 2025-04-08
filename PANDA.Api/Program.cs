@@ -7,6 +7,7 @@ using PANDA.Api.Services;
 using PANDA.Api.Validation;
 using PANDA.Api.Mapping;
 using AutoMapper;
+using PANDA.Shared.Converters;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,11 +23,25 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 // ----------------------------
+// CORS
+// ----------------------------
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowPANDAview", policy =>
+    {
+        policy.WithOrigins("http://localhost:5000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// ----------------------------
 // JSON + FluentValidation
 // ----------------------------
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+    options.JsonSerializerOptions.Converters.Add(new DateTimeOffsetJsonConverter());
 });
 
 builder.Services.AddFluentValidationAutoValidation();
@@ -56,7 +71,6 @@ var mapperConfig = new MapperConfiguration(cfg =>
 });
 var mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
-// Optional: Validate mappings at startup
 mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
 // ----------------------------
@@ -77,5 +91,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// ✅ CORS must go **before** controllers
+app.UseCors("AllowPANDAview");
+
 app.MapControllers();
 app.Run();

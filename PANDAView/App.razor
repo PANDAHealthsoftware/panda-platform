@@ -1,0 +1,13 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Shared.NHSLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(Shared.NHSLayout)">
+            <p class="nhs-error">Page not found.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+<!-- Add Radzen JS script -->
+<script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>

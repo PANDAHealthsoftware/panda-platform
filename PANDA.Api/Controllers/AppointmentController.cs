@@ -1,24 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PANDA.Api.Dto;
-using PANDA.Api.Models;
 using PANDA.Api.Services;
 using PANDA.Api.Common;
+using PANDA.Shared.DTOs;
 using Serilog;
 
 namespace PANDA.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-public class AppointmentController : ControllerBase
+[Route("api/[controller]")] // Resolves to: api/appointments
+public class AppointmentsController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;
 
-    public AppointmentController(IAppointmentService appointmentService)
+    public AppointmentsController(IAppointmentService appointmentService)
     {
         _appointmentService = appointmentService;
     }
 
-    // Create Appointment
+    // POST: api/appointments
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateAppointmentDto createDto)
     {
@@ -29,7 +29,7 @@ public class AppointmentController : ControllerBase
             var createdAppointment = await _appointmentService.CreateAsync(createDto);
             Log.Information(LogMessages.AppointmentCreated, createdAppointment.Id);
 
-            return CreatedAtAction(nameof(Get), new { id = createdAppointment.Id }, createdAppointment);
+            return CreatedAtAction(nameof(GetById), new { id = createdAppointment.Id }, createdAppointment);
         }
         catch (Exception ex)
         {
@@ -38,9 +38,9 @@ public class AppointmentController : ControllerBase
         }
     }
 
-    // Get Appointment by ID
+    // GET: api/appointments/{id}
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
+    public async Task<IActionResult> GetById(int id)
     {
         Log.Information(LogMessages.RetrievingAppointment, id);
 
@@ -62,7 +62,7 @@ public class AppointmentController : ControllerBase
         }
     }
 
-    // Get All Appointments
+    // GET: api/appointments
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -80,15 +80,15 @@ public class AppointmentController : ControllerBase
         }
     }
 
-    // Update Appointment
+    // PUT: api/appointments/{id}
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] AppointmentDto appointmentDto)
+    public async Task<IActionResult> Update(int id, [FromBody] UpdateAppointmentDto dto)
     {
-        Log.Information(LogMessages.UpdatingAppointment, id, appointmentDto);
+        Log.Information(LogMessages.UpdatingAppointment, id, dto);
 
         try
         {
-            var result = await _appointmentService.UpdateAsync(id, appointmentDto);
+            var result = await _appointmentService.UpdateAsync(id, dto);
             if (!result)
             {
                 Log.Warning(LogMessages.AppointmentNotFound, id);
@@ -105,7 +105,7 @@ public class AppointmentController : ControllerBase
         }
     }
 
-    // Cancel Appointment
+    // DELETE: api/appointments/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> Cancel(int id)
     {
@@ -130,8 +130,8 @@ public class AppointmentController : ControllerBase
         }
     }
 
-    // Track missed appointment
-    [HttpPost("track-missed-appointment")]
+    // POST: api/appointments/track-missed
+    [HttpPost("track-missed")]
     public async Task<IActionResult> TrackMissedAppointment([FromQuery] int appointmentId)
     {
         Log.Information(LogMessages.TrackingMissed, appointmentId);

@@ -13,7 +13,7 @@ public class CreateAppointmentDtoValidator : AbstractValidator<CreateAppointment
             .WithMessage(ErrorMessages.InvalidPatientId);
 
         RuleFor(x => x.AppointmentDate)
-            .GreaterThan(DateTimeOffset.UtcNow)
+            .GreaterThan(DateTime.UtcNow)
             .WithMessage(ErrorMessages.FutureAppointmentRequired);
 
         RuleFor(x => x.Status)

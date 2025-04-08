@@ -1,0 +1,148 @@
+﻿@page "/appointments"
+@using PANDA.Shared.DTOs
+@using PANDAView.Models
+@using PANDAview.Services
+@inject IAppointmentService AppointmentService
+@inject NotificationService NotificationService
+@inject DialogService DialogService
+
+<ErrorBoundary>
+    <ChildContent>
+        @if (_ready)
+        {
+            @if (!_appointments.Any())
+            {
+                <p class="nhs-info">No appointments loaded</p>
+            }
+            else
+            {
+                <RadzenScheduler TItem="AppointmentViewModel"
+                                 Data="@_appointments"
+                                 StartProperty="AppointmentDate"
+                                 EndProperty="AppointmentEnd"
+                                 TextProperty="Clinician"
+                                 Duration="30"
+                                 View="SchedulerView.Day"
+                                 SlotDuration="30"
+                                 Date="@DateTime.Today"
+                                 AppointmentMove="@OnAppointmentMove"
+                                 AppointmentSelect="@OnAppointmentSelect"
+                                 @ref="_scheduler"
+                                 Style="height: 720px">
+                    <RadzenDayView />
+                    <RadzenWeekView />
+                    <RadzenMonthView />
+                </RadzenScheduler>
+            }
+        }
+        else
+        {
+            <p class="nhs-loading">Loading appointments...</p>
+        }
+    </ChildContent>
+    <ErrorContent>
+        <p class="nhs-error">Sorry, something went wrong while loading the appointments. Please try again or contact support.</p>
+    </ErrorContent>
+</ErrorBoundary>
+
+@code {
+    private List<AppointmentViewModel> _appointments = new();
+    private bool _ready;
+    private RadzenScheduler<AppointmentViewModel> _scheduler = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var raw = await AppointmentService.GetAppointmentsAsync();
+
+            if (raw != null)
+            {
+                _appointments = raw.Select(a => new AppointmentViewModel
+                {
+                    Id = a.Id,
+                    PatientId = a.PatientId,
+                    AppointmentDate = a.AppointmentDate,
+                    Status = a.Status,
+                    Clinician = a.Clinician,
+                    Department = a.Department
+                }).ToList();
+            }
+
+            _ready = true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading appointments: {ex}");
+            _ready = true;
+        }
+    }
+
+    private async Task OnAppointmentMove(SchedulerAppointmentMoveEventArgs args)
+    {
+        if (args.Appointment.Data is AppointmentViewModel appointment)
+        {
+            appointment.AppointmentDate = args.Appointment.Start;
+
+            var updated = new UpdateAppointmentDto
+            {
+                Id = appointment.Id,
+                PatientId = appointment.PatientId,
+                AppointmentDate = appointment.AppointmentDate,
+                Status = appointment.Status,
+                Clinician = appointment.Clinician,
+                Department = appointment.Department
+            };
+
+            try
+            {
+                await AppointmentService.UpdateAppointmentAsync(updated);
+
+                NotificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Success,
+                    Summary = "Appointment Moved",
+                    Detail = $"New time: {appointment.AppointmentDate:t}",
+                    Duration = 4000
+                });
+
+                await _scheduler.Reload();
+            }
+            catch (Exception ex)
+            {
+                NotificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Update Failed",
+                    Detail = ex.Message,
+                    Duration = 5000
+                });
+            }
+        }
+    }
+
+    private async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<AppointmentViewModel> args)
+    {
+        var result = await DialogService.OpenAsync<EditAppointmentDialog>("Edit Appointment",
+            new Dictionary<string, object> { { "Appointment", args.Data } });
+
+        if (result is true)
+        {
+            var raw = await AppointmentService.GetAppointmentsAsync();
+            if (raw != null)
+            {
+                _appointments = raw.Select(a => new AppointmentViewModel
+                {
+                    Id = a.Id,
+                    PatientId = a.PatientId,
+                    AppointmentDate = a.AppointmentDate,
+                    Status = a.Status,
+                    Clinician = a.Clinician,
+                    Department = a.Department
+                }).ToList();
+            }
+
+            await _scheduler.Reload();
+        }
+    }
+}

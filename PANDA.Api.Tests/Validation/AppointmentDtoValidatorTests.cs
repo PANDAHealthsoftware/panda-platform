@@ -1,7 +1,7 @@
 ﻿using FluentValidation.TestHelper;
-using PANDA.Api.Common;
 using PANDA.Api.Dto;
 using PANDA.Api.Validation;
+using PANDA.Shared.Enums;
 
 namespace PANDA.Api.Tests.Validation;
 
@@ -12,7 +12,7 @@ public class CreateAppointmentDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_Required_Fields_Are_Missing()
     {
-        var dto = new CreateAppointmentDto(); // everything missing
+        var dto = new CreateAppointmentDto();
 
         var result = _validator.TestValidate(dto);
 
@@ -28,7 +28,7 @@ public class CreateAppointmentDtoValidatorTests
         var dto = new CreateAppointmentDto
         {
             PatientId = 1,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(1),
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Valid",
             Department = "ValidDept"
