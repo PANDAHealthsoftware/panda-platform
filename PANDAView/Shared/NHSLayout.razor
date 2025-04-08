@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+<RadzenNotification />
+<RadzenDialog />
+
+<div class="nhs-shell">
+    <header class="nhs-header">
+        <div class="nhs-header-inner">
+            <img src="https://assets.nhs.uk/images/nhs-logo.png" alt="NHS" class="nhs-logo" />
+            <h1 class="nhs-title">PANDA Clinical App</h1>
+        </div>
+    </header>
+
+    <main class="nhs-content">
+        @Body
+    </main>
+
+    <footer class="nhs-footer">
+        &copy; @DateTime.Now.Year NHS Foundation Trust
+    </footer>
+</div>

@@ -7,7 +7,6 @@ using PANDA.Api.Models;
 using PANDA.Api.Services;
 
 namespace PANDA.Api.Tests.Services;
-
 public class PatientServiceTests
 {
     private readonly DbContextOptions<PandaDbContext> _options;
@@ -23,7 +22,7 @@ public class PatientServiceTests
     [Fact]
     public async Task AddPatientAsync_Should_Add_And_Return_Patient()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
         var dto = new CreatePatientDto()
@@ -46,7 +45,7 @@ public class PatientServiceTests
     [Fact]
     public async Task GetPatientByIdAsync_Should_Return_Correct_Patient()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
         var patient = new Patient
@@ -64,13 +63,13 @@ public class PatientServiceTests
 
         var result = await service.GetPatientByIdAsync(patient.Id);
         result.Should().NotBeNull();
-        result!.FirstName.Should().Be("Bob");
+        result.FirstName.Should().Be("Bob");
     }
 
     [Fact]
     public async Task UpdatePatientAsync_Should_Update_And_Return_True()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
         var patient = new Patient
@@ -106,7 +105,7 @@ public class PatientServiceTests
     [Fact]
     public async Task UpdatePatientAsync_Should_Return_False_When_Not_Found()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
         var result = await service.UpdatePatientAsync(999, new PatientDto
@@ -125,7 +124,7 @@ public class PatientServiceTests
     [Fact]
     public async Task DeletePatientAsync_Should_Remove_Entity()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
         var patient = new Patient
@@ -151,7 +150,7 @@ public class PatientServiceTests
     [Fact]
     public async Task DeletePatientAsync_Should_Return_False_When_Not_Found()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
         var result = await service.DeletePatientAsync(999);

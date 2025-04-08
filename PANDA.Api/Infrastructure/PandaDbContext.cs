@@ -15,12 +15,12 @@ namespace PANDA.Api.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var dateTimeOffsetConverter = new ValueConverter<DateTimeOffset, string>(
-                v => v.ToString("o"), // ISO 8601 string for SQLite
+                v => v.ToString("o"),
                 v => DateTimeOffset.Parse(v));
 
             modelBuilder.Entity<Appointment>()
                 .Property(a => a.AppointmentDate)
-                .HasConversion(dateTimeOffsetConverter);
+                ;
 
             // Optional: enforce enum-to-int conversion
             modelBuilder.Entity<Appointment>()

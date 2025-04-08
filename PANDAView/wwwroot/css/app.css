@@ -1,0 +1,169 @@
+.nhs-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f8f8;
+}
+
+.nhs-header {
+    background-color: #005eb8;
+    padding: 1rem;
+    color: white;
+}
+
+.nhs-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nhs-logo {
+    height: 40px;
+    width: auto;
+}
+
+.nhs-title {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.nhs-content {
+    flex: 1;
+    padding: 2rem;
+    background: white;
+}
+
+.nhs-footer {
+    background-color: #eaeaea;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #4c4c4c;
+}
+
+.nhs-loading {
+    font-size: 1.2rem;
+    color: #005eb8;
+    padding: 2rem;
+}
+
+.nhs-error {
+    font-size: 1.1rem;
+    color: #d5281b;
+    padding: 2rem;
+}
+
+.nhs-info {
+    font-size: 1.1rem;
+    color: #0b0c0c;
+    padding: 2rem;
+}
+
+.nhs-panel {
+    padding: 2rem;
+    background: white;
+    border-left: 4px solid #005eb8;
+    font-family: Arial, sans-serif;
+}
+
+.nhs-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.nhs-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.nhs-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.nhs-input {
+    width: 100% !important;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 2px solid #aeb7bd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.nhs-btn-primary {
+    background-color: #007f3b !important;
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+}
+
+.nhs-btn-secondary {
+    background-color: #f3f2f1 !important;
+    color: #0b0c0c !important;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: 1px solid #b1b4b6;
+}
+
+
+/* ----------- Input Styling ----------- */
+.rz-input,
+.rz-dropdown,
+.rz-calendar {
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ----------- Dialog Layout ----------- */
+.rz-dialog {
+    max-width: 600px;
+    width: 95vw;
+}
+
+.rz-dialog .rz-dialog-content {
+    max-height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem;
+    position: relative;
+}
+
+/* ----------- Dropdown and Calendar Popups ----------- */
+.rz-datepicker-popup,
+.rz-dropdown-panel {
+    z-index: 1050 !important;
+    position: absolute !important;
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    bottom: auto !important;
+}
+
+/* ----------- Label and Form Field Layout ----------- */
+.rz-dialog label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.rz-dialog .dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Optional: For general font smoothing & spacing */
+body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Prevent clipping from parent scroll */
+body, .rz-dialog, .rz-dialog-content {
+    overflow: visible !important;
+}

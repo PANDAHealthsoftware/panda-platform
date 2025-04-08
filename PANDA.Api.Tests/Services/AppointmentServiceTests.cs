@@ -1,13 +1,13 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using PANDA.Api.Common;
 using PANDA.Api.Dto;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Mapping;
 using PANDA.Api.Models;
 using PANDA.Api.Services;
+using PANDA.Shared.DTOs;
+using PANDA.Shared.Enums;
 
 namespace PANDA.Api.Tests.Services;
 
@@ -34,13 +34,13 @@ public class AppointmentServiceTests
     [Fact]
     public async Task CreateAsync_Should_Add_And_Return_AppointmentDto()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new AppointmentService(context, _mapper);
 
         var dto = new CreateAppointmentDto
         {
             PatientId = 1,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(1),
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Who",
             Department = "Cardiology"
@@ -58,11 +58,11 @@ public class AppointmentServiceTests
     [Fact]
     public async Task GetByIdAsync_Should_Return_AppointmentDto()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var appointment = new Appointment
         {
             PatientId = 2,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(2),
+            AppointmentDate = DateTime.UtcNow.AddDays(2),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Strange",
             Department = Department.Cardiology
@@ -80,13 +80,13 @@ public class AppointmentServiceTests
     [Fact]
     public async Task UpdateAsync_Should_Update_And_Return_True()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new AppointmentService(context, _mapper);
 
         var appointment = new Appointment
         {
             PatientId = 3,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(3),
+            AppointmentDate = DateTime.UtcNow.AddDays(3),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. House",
             Department = Department.Cardiology
@@ -95,10 +95,10 @@ public class AppointmentServiceTests
         context.Appointments.Add(appointment);
         await context.SaveChangesAsync();
 
-        var updated = new AppointmentDto()
+        var updated = new UpdateAppointmentDto()
         {
             PatientId = 3,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(4),
+            AppointmentDate = DateTime.UtcNow.AddDays(4),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. House",
             Department = Department.Cardiology
@@ -115,13 +115,13 @@ public class AppointmentServiceTests
     [Fact]
     public async Task DeleteAsync_Should_Mark_Appointment_As_Cancelled()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new AppointmentService(context, _mapper);
 
         var appointment = new Appointment
         {
             PatientId = 4,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(5),
+            AppointmentDate = DateTime.UtcNow.AddDays(5),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. McCoy",
             Department = Department.Cardiology
@@ -141,13 +141,13 @@ public class AppointmentServiceTests
     [Fact]
     public async Task TrackMissedAppointmentsAsync_Should_Mark_As_Missed()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new AppointmentService(context, _mapper);
 
         var appointment = new Appointment
         {
             PatientId = 5,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(-1),
+            AppointmentDate = DateTime.UtcNow.AddDays(-1),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Smith",
             Department = Department.Cardiology
@@ -166,13 +166,13 @@ public class AppointmentServiceTests
     [Fact]
     public async Task TrackMissedAppointmentsAsync_Should_Not_Override_Cancelled()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new AppointmentService(context, _mapper);
 
         var appointment = new Appointment
         {
             PatientId = 7,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(-2),
+            AppointmentDate = DateTime.UtcNow.AddDays(-2),
             Status = AppointmentStatus.Cancelled,
             Clinician = "Dr. Banner",
             Department = Department.Neurology
@@ -191,13 +191,13 @@ public class AppointmentServiceTests
     [Fact]
     public async Task UpdateAsync_Should_Fail_For_Cancelled_Appointment()
     {
-        using var context = new PandaDbContext(_options);
+        await using var context = new PandaDbContext(_options);
         var service = new AppointmentService(context, _mapper);
 
         var appointment = new Appointment
         {
             PatientId = 6,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(1),
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
             Status = AppointmentStatus.Cancelled,
             Clinician = "Dr. Watson",
             Department = Department.Neurology
@@ -206,10 +206,10 @@ public class AppointmentServiceTests
         context.Appointments.Add(appointment);
         await context.SaveChangesAsync();
 
-        var updated = new AppointmentDto
+        var updated = new UpdateAppointmentDto
         {
             PatientId = 6,
-            AppointmentDate = DateTimeOffset.UtcNow.AddDays(2),
+            AppointmentDate = DateTime.UtcNow.AddDays(2),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Watson",
             Department = Department.Paediatrics

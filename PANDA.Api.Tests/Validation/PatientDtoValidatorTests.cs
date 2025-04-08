@@ -67,7 +67,7 @@ public class PatientDtoValidatorTests
             FirstName = "John",
             LastName = "Doe",
             DateOfBirth = new DateTime(1990, 1, 1),
-            NHSNumber = "9434765919", // valid checksum
+            NHSNumber = "9434765919",
             Postcode = "LS12 3AB",
             Gender = Gender.Male
         };

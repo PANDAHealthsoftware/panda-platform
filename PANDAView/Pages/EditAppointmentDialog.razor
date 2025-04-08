@@ -1,0 +1,138 @@
+﻿@using PANDA.Shared.DTOs
+@using PANDAView.Models
+@using PANDAview.Services
+@inject DialogService DialogService
+@inject IAppointmentService AppointmentService
+@inject NotificationService NotificationService
+
+<EditForm Model="_model" OnValidSubmit="OnSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="nhs-panel">
+        <h2 class="nhs-heading">Edit Appointment</h2>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label" for="clinician">Clinician</label>
+            <input id="clinician" type="text" class="nhs-input" @bind="_model.Clinician" />
+            <ValidationMessage For="@(() => _model.Clinician)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label" for="appointment-date">Date & Time</label>
+            <input id="appointment-date"
+                   type="datetime-local"
+                   class="nhs-input"
+                   @bind="_model.AppointmentDate"
+                   min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+            <ValidationMessage For="@(() => _model.AppointmentDate)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label" for="department">Department</label>
+            <select id="department" class="nhs-input" @bind="_model.Department">
+                @foreach (var d in _departments)
+                {
+                    <option value="@d.Value">@d.Text</option>
+                }
+            </select>
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label" for="status">Status</label>
+            <select id="status" class="nhs-input" @bind="_model.Status">
+                @foreach (var s in _statuses)
+                {
+                    <option value="@s.Value">@s.Text</option>
+                }
+            </select>
+        </div>
+
+        <div class="dialog-buttons">
+            <button type="submit" class="nhs-btn-primary" disabled="@_saving">
+                @ButtonText
+            </button>
+            <button type="button" class="nhs-btn-secondary" @onclick="Cancel" disabled="@_saving">
+                Cancel
+            </button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] public AppointmentViewModel Appointment { get; set; } = default!;
+
+    private AppointmentViewModel _model = new();
+    private bool _saving = false;
+
+    private List<EnumDropdownItem<Department>> _departments = [];
+    private List<EnumDropdownItem<AppointmentStatus>> _statuses = [];
+    private string ButtonText => _saving ? "Saving..." : "Save";
+
+    protected override void OnParametersSet()
+    {
+        _model = new AppointmentViewModel
+        {
+            Id = Appointment.Id,
+            PatientId = Appointment.PatientId,
+            AppointmentDate = Appointment.AppointmentDate,
+            Clinician = Appointment.Clinician,
+            Department = Appointment.Department,
+            Status = Appointment.Status
+        };
+
+        _departments = Enum.GetValues<Department>()
+            .Cast<Department>()
+            .Select(d => new EnumDropdownItem<Department> { Value = d, Text = d.ToDisplayString() })
+            .ToList();
+
+        _statuses = Enum.GetValues<AppointmentStatus>()
+            .Cast<AppointmentStatus>()
+            .Select(s => new EnumDropdownItem<AppointmentStatus> { Value = s, Text = s.ToDisplayString() })
+            .ToList();
+    }
+
+    private async Task OnSubmit()
+    {
+        _saving = true;
+
+        var dto = new UpdateAppointmentDto
+        {
+            Id = _model.Id,
+            PatientId = _model.PatientId,
+            AppointmentDate = _model.AppointmentDate,
+            Clinician = _model.Clinician,
+            Department = _model.Department,
+            Status = _model.Status
+        };
+
+        try
+        {
+            await AppointmentService.UpdateAppointmentAsync(dto);
+
+            NotificationService.Notify(new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Saved",
+                Detail = "Appointment updated successfully.",
+                Duration = 4000
+            });
+
+            DialogService.Close(true);
+        }
+        catch (Exception ex)
+        {
+            NotificationService.Notify(new NotificationMessage
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "Update Failed",
+                Detail = ex.Message,
+                Duration = 5000
+            });
+        }
+
+        _saving = false;
+    }
+
+    private void Cancel() => DialogService.Close(false);
+}

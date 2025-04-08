@@ -19,10 +19,9 @@ namespace Panda.Api.Converters
             // Fallback to UK format
             return DateTime.ParseExact(value!, DateFormat, CultureInfo.InvariantCulture);
         }
-
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(value.ToString(DateFormat));
+            writer.WriteStringValue(value.ToString("O")); // "O" = ISO 8601 round-trip format
         }
     }
 }
