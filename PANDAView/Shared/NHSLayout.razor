@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+
 <RadzenNotification />
 <RadzenDialog />
 
@@ -10,6 +12,14 @@
         </div>
     </header>
 
+    <nav class="nhs-nav">
+        <ul class="nhs-tabs">
+            <li><NavLink href="/appointments" class="nhs-tab" activeClass="nhs-tab-active">Appointments</NavLink></li>
+            <li><NavLink href="/patients" class="nhs-tab" activeClass="nhs-tab-active">Patients</NavLink></li>
+            <li><NavLink href="/admin" class="nhs-tab" activeClass="nhs-tab-active">Admin</NavLink></li>
+        </ul>
+    </nav>
+
     <main class="nhs-content">
         @Body
     </main>
@@ -18,3 +28,8 @@
         &copy; @DateTime.Now.Year NHS Foundation Trust
     </footer>
 </div>
+
+@code {
+    private string IsActive(string href)
+        => NavManager.Uri.Contains(href, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+}

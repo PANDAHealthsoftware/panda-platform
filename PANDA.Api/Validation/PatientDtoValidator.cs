@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using PANDA.Api.Common;
-using PANDA.Api.Dto;
+using PANDA.Shared.Common;
+using PANDA.Shared.DTOs;
 
 namespace PANDA.Api.Validation;
 

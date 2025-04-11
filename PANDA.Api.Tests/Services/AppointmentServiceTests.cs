@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using PANDA.Api.Dto;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Mapping;
 using PANDA.Api.Models;
 using PANDA.Api.Services;
+using PANDA.Api.Services.Appointment;
 using PANDA.Shared.DTOs;
+using PANDA.Shared.DTOs.Appointment;
 using PANDA.Shared.Enums;
 
 namespace PANDA.Api.Tests.Services;
@@ -43,7 +44,7 @@ public class AppointmentServiceTests
             AppointmentDate = DateTime.UtcNow.AddDays(1),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Who",
-            Department = "Cardiology"
+            Department = Department.Cardiology
         };
 
         var result = await service.CreateAsync(dto);

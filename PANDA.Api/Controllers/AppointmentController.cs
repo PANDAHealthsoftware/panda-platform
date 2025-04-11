@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PANDA.Api.Dto;
-using PANDA.Api.Services;
-using PANDA.Api.Common;
-using PANDA.Shared.DTOs;
+using PANDA.Api.Services.Appointment;
+using PANDA.Shared.Common;
+using PANDA.Shared.DTOs.Appointment;
 using Serilog;
 
 namespace PANDA.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")] // Resolves to: api/appointments
+[Route("api/[controller]")]
 public class AppointmentsController : ControllerBase
 {
     private readonly IAppointmentService _appointmentService;

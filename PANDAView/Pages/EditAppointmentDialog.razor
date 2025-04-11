@@ -1,46 +1,98 @@
 ﻿@using PANDA.Shared.DTOs
+@using PANDA.Shared.DTOs.Appointment
+@using PANDA.Shared.DTOs.Clinician
+@using PANDA.Shared.DTOs.Patient
 @using PANDAView.Models
-@using PANDAview.Services
-@inject DialogService DialogService
+@using PANDAView.Models.Appointment
+@using PANDAView.Services.Appointment
+@using PANDAView.Services.Clinician
+@using PANDAView.Services.Patient
 @inject IAppointmentService AppointmentService
+@inject IClinicianService ClinicianService
+@inject IPatientService PatientService
 @inject NotificationService NotificationService
+@inject DialogService DialogService
 
-<EditForm Model="_model" OnValidSubmit="OnSubmit">
+<EditForm Model="_editModel" OnValidSubmit="OnSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <div class="nhs-panel">
-        <h2 class="nhs-heading">Edit Appointment</h2>
+        <h2 class="nhs-heading">@(_editModel.Id == 0 ? "New Appointment" : "Edit Appointment")</h2>
 
+        <!-- Patient -->
         <div class="nhs-form-group">
-            <label class="nhs-label" for="clinician">Clinician</label>
-            <input id="clinician" type="text" class="nhs-input" @bind="_model.Clinician" />
-            <ValidationMessage For="@(() => _model.Clinician)" />
+            <label class="nhs-label">Patient</label>
+            <div class="patient-select-row">
+                @if (_editModel.Id == 0)
+                {
+                    <RadzenDropDown
+                        @bind-Value="_editModel.PatientId"
+                        Data="@_patients"
+                        TextProperty="FullName"
+                        ValueProperty="Id"
+                        Style="width: 100%; max-width: 400px;"
+                        Placeholder="Search or select patient"
+                        AllowFiltering="true"
+                        FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" />
+
+                    <button type="button" class="nhs-btn-secondary mt-2" @onclick="CreateNewPatient">+ Add New Patient</button>
+                }
+                else
+                {
+                    <input class="nhs-input" value="@_patients.FirstOrDefault(p => p.Id == _editModel.PatientId)?.FullName" disabled />
+                }
+            </div>
+            <ValidationMessage For="@(() => _editModel.PatientId)" />
         </div>
 
+        <!-- Department -->
         <div class="nhs-form-group">
-            <label class="nhs-label" for="appointment-date">Date & Time</label>
-            <input id="appointment-date"
-                   type="datetime-local"
-                   class="nhs-input"
-                   @bind="_model.AppointmentDate"
-                   min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
-            <ValidationMessage For="@(() => _model.AppointmentDate)" />
-        </div>
-
-        <div class="nhs-form-group">
-            <label class="nhs-label" for="department">Department</label>
-            <select id="department" class="nhs-input" @bind="_model.Department">
+            <label class="nhs-label">Department</label>
+            <select class="nhs-input" @onchange="OnDepartmentChanged">
                 @foreach (var d in _departments)
                 {
-                    <option value="@d.Value">@d.Text</option>
+                    <option value="@d.Value" selected="@(_editModel.Department == d.Value)">
+                        @d.Text
+                    </option>
                 }
             </select>
         </div>
 
+        <!-- Clinician -->
         <div class="nhs-form-group">
-            <label class="nhs-label" for="status">Status</label>
-            <select id="status" class="nhs-input" @bind="_model.Status">
+            <label class="nhs-label">Clinician</label>
+            @if (_editModel.Id == 0)
+            {
+                <select class="nhs-input" @bind="_editModel.ClinicianId">
+                    <option value="0" disabled>Select clinician</option>
+                    @foreach (var c in _filteredClinicians)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input class="nhs-input" value="@_clinicians.FirstOrDefault(c => c.Id == _editModel.ClinicianId)?.Name" disabled />
+            }
+            <ValidationMessage For="@(() => _editModel.ClinicianId)" />
+        </div>
+
+        <!-- Date & Time -->
+        <div class="nhs-form-group">
+            <label class="nhs-label">Date & Time</label>
+            <input type="datetime-local"
+                   class="nhs-input"
+                   @bind="_editModel.AppointmentDate"
+                   min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+            <ValidationMessage For="@(() => _editModel.AppointmentDate)" />
+        </div>
+
+        <!-- Status -->
+        <div class="nhs-form-group">
+            <label class="nhs-label">Status</label>
+            <select class="nhs-input" @bind="_editModel.Status">
                 @foreach (var s in _statuses)
                 {
                     <option value="@s.Value">@s.Text</option>
@@ -48,13 +100,10 @@
             </select>
         </div>
 
+        <!-- Buttons -->
         <div class="dialog-buttons">
-            <button type="submit" class="nhs-btn-primary" disabled="@_saving">
-                @ButtonText
-            </button>
-            <button type="button" class="nhs-btn-secondary" @onclick="Cancel" disabled="@_saving">
-                Cancel
-            </button>
+            <button type="submit" class="nhs-btn-primary" disabled="@_saving">@(_saving ? "Saving..." : "Save")</button>
+            <button type="button" class="nhs-btn-secondary" @onclick="Cancel" disabled="@_saving">Cancel</button>
         </div>
     </div>
 </EditForm>
@@ -62,59 +111,116 @@
 @code {
     [Parameter] public AppointmentViewModel Appointment { get; set; } = default!;
 
-    private AppointmentViewModel _model = new();
-    private bool _saving = false;
+    private EditAppointmentModel _editModel = new();
+    private List<PatientSummaryDto> _patients = new();
+    private List<ClinicianDto> _clinicians = new();
+    private List<ClinicianDto> _filteredClinicians = new();
+    private List<EnumDropdownItem<Department>> _departments = new();
+    private List<EnumDropdownItem<AppointmentStatus>> _statuses = new();
+    private bool _saving;
 
-    private List<EnumDropdownItem<Department>> _departments = [];
-    private List<EnumDropdownItem<AppointmentStatus>> _statuses = [];
-    private string ButtonText => _saving ? "Saving..." : "Save";
-
-    protected override void OnParametersSet()
+    protected override async Task OnInitializedAsync()
     {
-        _model = new AppointmentViewModel
-        {
-            Id = Appointment.Id,
-            PatientId = Appointment.PatientId,
-            AppointmentDate = Appointment.AppointmentDate,
-            Clinician = Appointment.Clinician,
-            Department = Appointment.Department,
-            Status = Appointment.Status
-        };
+        _patients = await PatientService.GetPatientSummariesAsync();
+        _clinicians = await ClinicianService.GetCliniciansAsync();
 
         _departments = Enum.GetValues<Department>()
-            .Cast<Department>()
             .Select(d => new EnumDropdownItem<Department> { Value = d, Text = d.ToDisplayString() })
             .ToList();
 
         _statuses = Enum.GetValues<AppointmentStatus>()
-            .Cast<AppointmentStatus>()
             .Select(s => new EnumDropdownItem<AppointmentStatus> { Value = s, Text = s.ToDisplayString() })
             .ToList();
+
+        _editModel = new EditAppointmentModel
+        {
+            Id = Appointment.Id,
+            PatientId = Appointment.PatientId,
+            PatientName = Appointment.PatientName,
+            AppointmentDate = Appointment.AppointmentDate == default ? DateTime.Now : Appointment.AppointmentDate,
+            Status = Appointment.Status == 0 ? AppointmentStatus.Scheduled : Appointment.Status,
+            Department = Appointment.Department,
+            ClinicianId = Appointment.ClinicianId
+        };
+
+        FilterClinicians();
+    }
+
+    private void FilterClinicians()
+    {
+        _filteredClinicians = _clinicians
+            .Where(c => c.Department == _editModel.Department)
+            .ToList();
+    }
+
+    private async Task CreateNewPatient()
+    {
+        var result = await DialogService.OpenAsync<EditPatientDialog>("New Patient");
+
+        if (result is PatientDto dto)
+        {
+            var summary = new PatientSummaryDto
+            {
+                Id = dto.Id,
+                FullName = $"{dto.FirstName} {dto.LastName}"
+            };
+
+            _patients.Add(summary);
+            _editModel.PatientId = summary.Id;
+            _editModel.PatientName = summary.FullName;
+        }
     }
 
     private async Task OnSubmit()
     {
         _saving = true;
 
-        var dto = new UpdateAppointmentDto
-        {
-            Id = _model.Id,
-            PatientId = _model.PatientId,
-            AppointmentDate = _model.AppointmentDate,
-            Clinician = _model.Clinician,
-            Department = _model.Department,
-            Status = _model.Status
-        };
-
         try
         {
-            await AppointmentService.UpdateAppointmentAsync(dto);
+            var selectedClinician = _clinicians.FirstOrDefault(c => c.Id == _editModel.ClinicianId);
+            if (selectedClinician == null)
+            {
+                NotifyError("Clinician not found", "Please re-select a clinician.");
+                return;
+            }
+
+            if (_editModel.Id == 0)
+            {
+                var createDto = new CreateAppointmentDto
+                {
+                    PatientId = _editModel.PatientId,
+                    PatientName = _editModel.PatientName ?? _patients.FirstOrDefault(p => p.Id == _editModel.PatientId)?.FullName ?? "Unknown",
+                    AppointmentDate = _editModel.AppointmentDate,
+                    Department = _editModel.Department,
+                    Status = _editModel.Status,
+                    Clinician = selectedClinician.Name,
+                    ClinicianId = selectedClinician.Id
+                };
+
+                await AppointmentService.CreateAppointmentAsync(createDto);
+            }
+            else
+            {
+                var updateDto = new UpdateAppointmentDto
+                {
+                    Id = _editModel.Id,
+                    PatientId = _editModel.PatientId,
+                    PatientName = _editModel.PatientName ?? _patients.FirstOrDefault(p => p.Id == _editModel.PatientId)?.FullName ?? "Unknown",
+                    AppointmentDate = _editModel.AppointmentDate,
+                    Department = _editModel.Department,
+                    Status = _editModel.Status,
+                    Clinician = selectedClinician.Name,
+                    ClinicianId = selectedClinician.Id
+                };
+
+                await AppointmentService.UpdateAppointmentAsync(updateDto);
+            }
 
             NotificationService.Notify(new NotificationMessage
             {
                 Severity = NotificationSeverity.Success,
                 Summary = "Saved",
-                Detail = "Appointment updated successfully.",
+                Detail = "Appointment saved successfully.",
                 Duration = 4000
             });
 
@@ -122,17 +228,36 @@
         }
         catch (Exception ex)
         {
-            NotificationService.Notify(new NotificationMessage
-            {
-                Severity = NotificationSeverity.Error,
-                Summary = "Update Failed",
-                Detail = ex.Message,
-                Duration = 5000
-            });
+            NotifyError("Save failed", ex.Message);
         }
 
         _saving = false;
     }
 
+    private void NotifyError(string summary, string detail)
+    {
+        NotificationService.Notify(new NotificationMessage
+        {
+            Severity = NotificationSeverity.Error,
+            Summary = summary,
+            Detail = detail,
+            Duration = 5000
+        });
+    }
+
     private void Cancel() => DialogService.Close(false);
+
+    private void OnDepartmentChanged(ChangeEventArgs e)
+    {
+        if (Enum.TryParse<Department>(e?.Value?.ToString(), out var dept))
+        {
+            _editModel.Department = dept;
+            FilterClinicians();
+
+            if (_editModel.Id == 0)
+            {
+                _editModel.ClinicianId = 0;
+            }
+        }
+    }
 }
