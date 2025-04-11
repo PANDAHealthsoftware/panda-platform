@@ -1,20 +1,39 @@
+/* === NHS Shell Layout === */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
 .nhs-shell {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #f8f8f8;
 }
 
+/* === Header === */
 .nhs-header {
     background-color: #005eb8;
     padding: 1rem;
     color: white;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .nhs-header-inner {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.nhs-appointments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .nhs-logo {
@@ -27,20 +46,73 @@
     margin: 0;
 }
 
+/* === Tabs Navigation === */
+.nhs-nav {
+    background: #f0f4f5;
+    border-bottom: 1px solid #d8dde0;
+    padding: 0;
+}
+
+.nhs-tabs {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0 1rem;
+    gap: 1rem;
+}
+
+.nhs-tabs li {
+    margin: 0;
+    padding: 0;
+}
+
+.nhs-tab {
+    display: inline-block;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #005eb8;
+    border-bottom: 4px solid transparent;
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.nhs-tab:hover {
+    background-color: #e0edf4;
+    border-color: #0072ce;
+}
+
+.nhs-tab-active {
+    border-bottom: 4px solid #005eb8;
+    background-color: #ffffff;
+    color: #0b0c0c;
+}
+
+.nhs-tab:hover {
+    background: #e0edf4;
+    border-color: #0072ce;
+}
+
+/* === Main Content === */
 .nhs-content {
     flex: 1;
     padding: 2rem;
     background: white;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
+/* === Footer === */
 .nhs-footer {
     background-color: #eaeaea;
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
     color: #4c4c4c;
+    width: 100%;
+    flex-shrink: 0;
 }
 
+/* === Notifications / Messages === */
 .nhs-loading {
     font-size: 1.2rem;
     color: #005eb8;
@@ -57,6 +129,13 @@
     font-size: 1.1rem;
     color: #0b0c0c;
     padding: 2rem;
+}
+
+/* === Panel / Forms === */
+.patient-select-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
 }
 
 .nhs-panel {
@@ -91,6 +170,7 @@
     box-sizing: border-box;
 }
 
+/* === Buttons === */
 .nhs-btn-primary {
     background-color: #007f3b !important;
     color: white !important;
@@ -107,8 +187,13 @@
     border: 1px solid #b1b4b6;
 }
 
+/* === Radzen Overrides === */
+.rz-scheduler-appointment {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
 
-/* ----------- Input Styling ----------- */
 .rz-input,
 .rz-dropdown,
 .rz-calendar {
@@ -117,7 +202,6 @@
     box-sizing: border-box;
 }
 
-/* ----------- Dialog Layout ----------- */
 .rz-dialog {
     max-width: 600px;
     width: 95vw;
@@ -131,7 +215,6 @@
     position: relative;
 }
 
-/* ----------- Dropdown and Calendar Popups ----------- */
 .rz-datepicker-popup,
 .rz-dropdown-panel {
     z-index: 1050 !important;
@@ -143,7 +226,6 @@
     bottom: auto !important;
 }
 
-/* ----------- Label and Form Field Layout ----------- */
 .rz-dialog label {
     display: block;
     margin-top: 1rem;
@@ -157,13 +239,26 @@
     margin-top: 2rem;
 }
 
-/* Optional: For general font smoothing & spacing */
-body {
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    overflow-x: hidden;
+/* === DatePicker Refinement === */
+.rz-datepicker {
+    border: 2px solid #aeb7bd !important;
+    border-radius: 4px !important;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    box-shadow: none;
+    width: 100%;
+    background-color: white;
 }
 
-/* Prevent clipping from parent scroll */
+.rz-datepicker .rz-inputtext {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0;
+    font-size: 1rem;
+}
+
+/* === Misc Fixes === */
 body, .rz-dialog, .rz-dialog-content {
     overflow: visible !important;
 }

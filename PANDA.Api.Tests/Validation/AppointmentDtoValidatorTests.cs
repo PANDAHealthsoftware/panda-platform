@@ -1,6 +1,6 @@
 ﻿using FluentValidation.TestHelper;
-using PANDA.Api.Dto;
 using PANDA.Api.Validation;
+using PANDA.Shared.DTOs.Appointment;
 using PANDA.Shared.Enums;
 
 namespace PANDA.Api.Tests.Validation;
@@ -31,7 +31,7 @@ public class CreateAppointmentDtoValidatorTests
             AppointmentDate = DateTime.UtcNow.AddDays(1),
             Status = AppointmentStatus.Scheduled,
             Clinician = "Dr. Valid",
-            Department = "ValidDept"
+            Department = Department.Cardiology
         };
 
         var result = _validator.TestValidate(dto);

@@ -1,12 +1,14 @@
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Panda.Api.Converters;
 using PANDA.Api.Infrastructure;
-using PANDA.Api.Services;
-using PANDA.Api.Validation;
 using PANDA.Api.Mapping;
-using AutoMapper;
+using PANDA.Api.Services;
+using PANDA.Api.Services.Appointment;
+using PANDA.Api.Services.Clinician;
+using PANDA.Api.Services.Patient;
+using PANDA.Api.Validation;
 using PANDA.Shared.Converters;
 using Serilog;
 
@@ -78,6 +80,7 @@ mapper.ConfigurationProvider.AssertConfigurationIsValid();
 // ----------------------------
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IClinicianService, ClinicianService>();
 
 var app = builder.Build();
 

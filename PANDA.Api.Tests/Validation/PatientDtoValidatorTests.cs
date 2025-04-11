@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using FluentValidation.TestHelper;
-using PANDA.Api.Common;
-using PANDA.Api.Dto;
 using PANDA.Api.Validation;
+using PANDA.Shared.Common;
+using PANDA.Shared.DTOs;
 
 namespace PANDA.Api.Tests.Validation;
 

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using PANDA.Api.Common;
-using PANDA.Api.Dto;
+using PANDA.Shared.Common;
 using PANDA.Shared.DTOs;
+using PANDA.Shared.DTOs.Appointment;
 
 namespace PANDA.Api.Validation;
 
@@ -12,6 +12,11 @@ public class AppointmentDtoValidator : AbstractValidator<UpdateAppointmentDto>
         RuleFor(x => x.PatientId)
             .GreaterThan(0)
             .WithMessage(ErrorMessages.InvalidPatientId);
+        
+        RuleFor(x => x.PatientName)
+            .NotEmpty()
+            .MaximumLength(200)
+            .WithMessage(ErrorMessages.InvalidPatientId);
 
         RuleFor(x => x.AppointmentDate)
             .GreaterThan(DateTime.UtcNow)
@@ -21,9 +26,8 @@ public class AppointmentDtoValidator : AbstractValidator<UpdateAppointmentDto>
             .IsInEnum()
             .WithMessage(ErrorMessages.InvalidAppointmentStatus);
 
-        RuleFor(x => x.Clinician)
-            .NotEmpty()
-            .MaximumLength(100)
+        RuleFor(x => x.ClinicianId)
+            .GreaterThan(0)
             .WithMessage(ErrorMessages.ClinicianRequired);
 
         RuleFor(x => x.Department)

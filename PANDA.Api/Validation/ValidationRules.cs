@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using PANDA.Api.Common;
+using PANDA.Shared.Common;
 
 namespace PANDA.Api.Validation;
 

@@ -1,4 +1,4 @@
-﻿using PANDA.Api.Common;
+﻿using PANDA.Shared.Common;
 
 namespace PANDA.Api.Models;
 public class Patient

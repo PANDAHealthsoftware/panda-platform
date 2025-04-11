@@ -28,4 +28,10 @@
       <ProjectReference Include="..\PANDA.Shared\PANDA.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Converters\" />
+      <Folder Include="Dto\" />
+      <Folder Include="Migrations\" />
+    </ItemGroup>
+
 </Project>

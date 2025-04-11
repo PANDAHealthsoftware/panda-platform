@@ -1,10 +1,11 @@
 ﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using PANDA.Api.Common;
-using PANDA.Api.Dto;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Models;
 using PANDA.Api.Services;
+using PANDA.Api.Services.Patient;
+using PANDA.Shared.Common;
+using PANDA.Shared.DTOs;
 
 namespace PANDA.Api.Tests.Services;
 public class PatientServiceTests

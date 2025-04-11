@@ -1,0 +1,95 @@
+﻿@using PANDA.Shared.DTOs
+@using PANDAView.Models.Patient
+@using PANDAView.Services.Patient
+@using PANDAView.Helpers
+@inject DialogService DialogService
+@inject IPatientService PatientService
+@inject NotificationService NotificationService
+
+<EditForm Model="@EditPatientModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="nhs-panel">
+        <h2 class="nhs-heading">@(_isNew ? "New Patient" : "Edit Patient")</h2>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">First Name</label>
+            <input class="nhs-input" @bind="EditPatientModel.FirstName" />
+            <ValidationMessage For="@(() => EditPatientModel.FirstName)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Last Name</label>
+            <input class="nhs-input" @bind="EditPatientModel.LastName" />
+            <ValidationMessage For="@(() => EditPatientModel.LastName)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">NHS Number</label>
+            <input class="nhs-input" @bind="EditPatientModel.NHSNumber" />
+            <ValidationMessage For="@(() => EditPatientModel.NHSNumber)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Date of Birth</label>
+            <input type="date" class="nhs-input" @bind="EditPatientModel.DateOfBirth" />
+            <ValidationMessage For="@(() => EditPatientModel.DateOfBirth)" />
+        </div>
+
+        <div class="dialog-buttons">
+            <button type="submit" class="nhs-btn-primary">@(_isNew ? "Create" : "Save")</button>
+            <button type="button" class="nhs-btn-secondary" @onclick="() => DialogService.Close()">Cancel</button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] public EditPatientModel? Patient { get; set; }
+
+    private EditPatientModel EditPatientModel = new();
+
+    private bool _isNew => EditPatientModel.Id == 0;
+
+    protected override void OnInitialized()
+    {
+        if (Patient != null)
+        {
+            EditPatientModel = new EditPatientModel
+            {
+                Id = Patient.Id,
+                FirstName = Patient.FirstName,
+                LastName = Patient.LastName,
+                NHSNumber = Patient.NHSNumber,
+                DateOfBirth = Patient.DateOfBirth
+            };
+        }
+        else
+        {
+            // Safe default for new patients
+            EditPatientModel = new EditPatientModel
+            {
+                DateOfBirth = DateTime.Today // Optional default DOB
+            };
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        PatientDto result;
+
+        if (EditPatientModel.Id.HasValue)
+        {
+            result = await PatientService.CreatePatientAsync(EditPatientModel.ToCreateDto());
+            NotificationService.Notify(NotificationSeverity.Success, "Patient created successfully");
+        }
+        else
+        {
+            result = await PatientService.UpdatePatientAsync(EditPatientModel.Id.Value, EditPatientModel.ToUpdateDto());
+            NotificationService.Notify(NotificationSeverity.Success, "Patient updated successfully");
+        }
+
+        DialogService.Close(result);
+    }
+}
+

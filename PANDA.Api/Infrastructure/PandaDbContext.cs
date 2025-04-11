@@ -8,6 +8,8 @@ namespace PANDA.Api.Infrastructure
     {
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        
+        public DbSet<Clinician> Clinicians { get; set; }
 
         public PandaDbContext(DbContextOptions<PandaDbContext> options)
             : base(options) { }
