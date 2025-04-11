@@ -3,6 +3,7 @@ using PANDA.Api.Models;
 using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Appointment;
 using PANDA.Shared.DTOs.Clinician;
+using PANDA.Shared.DTOs.Patient;
 
 namespace PANDA.Api.Mapping
 {

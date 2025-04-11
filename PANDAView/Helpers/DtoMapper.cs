@@ -1,5 +1,6 @@
 ﻿using PANDA.Shared.Common;
 using PANDA.Shared.DTOs;
+using PANDA.Shared.DTOs.Patient;
 
 namespace PANDAView.Helpers
 {

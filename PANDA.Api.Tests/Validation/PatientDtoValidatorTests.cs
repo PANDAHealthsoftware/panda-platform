@@ -3,6 +3,7 @@ using FluentValidation.TestHelper;
 using PANDA.Api.Validation;
 using PANDA.Shared.Common;
 using PANDA.Shared.DTOs;
+using PANDA.Shared.DTOs.Patient;
 
 namespace PANDA.Api.Tests.Validation;
 

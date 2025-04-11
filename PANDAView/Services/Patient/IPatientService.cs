@@ -6,7 +6,7 @@ namespace PANDAView.Services.Patient;
 public interface IPatientService
 {
     Task<PatientDto> CreatePatientAsync(CreatePatientDto dto);
-    Task<PatientDto?> UpdatePatientAsync(int id, UpdatePatientDto updateDto);
+    Task<UpdatePatientDto?> UpdatePatientAsync(int id, UpdatePatientDto updateDto);
     Task<List<PatientSummaryDto>> GetPatientSummariesAsync();
     Task<List<PatientDto>> GetPatientsAsync();
     Task<PatientDto?> GetPatientByIdAsync(int id);

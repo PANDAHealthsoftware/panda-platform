@@ -1,6 +1,9 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net;
+using System.Net.Http.Json;
+using Microsoft.AspNetCore.Mvc;
 using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Patient;
+using PANDAView.Helpers;
 
 namespace PANDAView.Services.Patient
 {
@@ -20,10 +23,20 @@ namespace PANDAView.Services.Patient
             if (!response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("❌ Patient creation failed: " + content);
+                Console.WriteLine("❌ Patient creation failed: " + content); // For dev log
+
+                // Attempt to parse validation errors
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest &&
+                    response.Content.Headers.ContentType?.MediaType == "application/problem+json")
+                {
+                    var problemDetails = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
+                    throw new ApiValidationException(problemDetails);
+                }
+
+                // For non-validation errors
+                throw new HttpRequestException($"API returned {response.StatusCode}: {content}");
             }
 
-            response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<PatientDto>();
         }
         public async Task<List<PatientSummaryDto>> GetPatientSummariesAsync()
@@ -52,15 +65,25 @@ namespace PANDAView.Services.Patient
             return await response.Content.ReadFromJsonAsync<PatientDto>();
         }
         
-        public async Task<PatientDto?> UpdatePatientAsync(int id, UpdatePatientDto updateDto)
+        public async Task<UpdatePatientDto?> UpdatePatientAsync(int id, UpdatePatientDto dto)
         {
-            var response = await _http.PutAsJsonAsync($"api/patients/{id}", updateDto);
-            if (response.IsSuccessStatusCode)
+            var response = await _http.PutAsJsonAsync($"api/patients/{id}", dto);
+
+            if (!response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadFromJsonAsync<PatientDto>();
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode == HttpStatusCode.BadRequest &&
+                    response.Content.Headers.ContentType?.MediaType == "application/problem+json")
+                {
+                    var problemDetails = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
+                    throw new ApiValidationException(problemDetails);
+                }
+
+                throw new HttpRequestException($"Update failed with status code {response.StatusCode}: {content}");
             }
 
-            return null;
+            return dto;
         }
     }
 }

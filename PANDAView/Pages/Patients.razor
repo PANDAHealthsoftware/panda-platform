@@ -1,8 +1,6 @@
 ﻿@page "/patients"
 @using PANDA.Shared.DTOs
-@using PANDA.Shared.DTOs.Patient
 @using PANDAView.Services.Patient
-@using PANDAView.Helpers
 @using PANDAView.Models.Patient
 @inject IPatientService PatientService
 @inject DialogService DialogService
@@ -11,7 +9,7 @@
 <h2 class="nhs-heading">Patient Administration</h2>
 <button class="nhs-btn-primary mb-2" @onclick="CreateNewPatient">+ Add Patient</button>
 
-<RadzenDataGrid TItem="PatientDto" Data="@_patients" RowSelect="EditPatient">
+<RadzenDataGrid TItem="PatientDto" Data="@_patients">
     <Columns>
         <RadzenDataGridColumn TItem="PatientDto" Property="FirstName" Title="First Name" />
         <RadzenDataGridColumn TItem="PatientDto" Property="LastName" Title="Last Name" />
@@ -37,9 +35,10 @@
     {
         var result = await DialogService.OpenAsync<EditPatientDialog>("New Patient");
 
-        if (result is PatientDto newPatient)
+        if (result is PatientDto)
         {
-            _patients.Add(newPatient);
+            _patients = await PatientService.GetPatientsAsync(); 
+            StateHasChanged();
         }
     }
 
@@ -54,17 +53,16 @@
                     FirstName = patient.FirstName,
                     LastName = patient.LastName,
                     NHSNumber = patient.NHSNumber,
-                    DateOfBirth = patient.DateOfBirth
+                    DateOfBirth = patient.DateOfBirth,
+                    Postcode = patient.Postcode,
+                    Gender = patient.Gender
                 }}
             });
 
-        if (result is PatientDto updated)
+        if (result is PatientDto)
         {
-            var index = _patients.FindIndex(p => p.Id == updated.Id);
-            if (index >= 0)
-            {
-                _patients[index] = updated;
-            }
+            _patients = await PatientService.GetPatientsAsync();
+            StateHasChanged();
         }
     }
 }

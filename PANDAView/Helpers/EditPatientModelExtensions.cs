@@ -1,5 +1,4 @@
-﻿using PANDA.Shared.DTOs;
-using PANDA.Shared.DTOs.Patient;
+﻿using PANDA.Shared.DTOs.Patient;
 using PANDAView.Models.Patient;
 
 namespace PANDAView.Helpers
@@ -11,7 +10,9 @@ namespace PANDAView.Helpers
             FirstName = model.FirstName,
             LastName = model.LastName,
             NHSNumber = model.NHSNumber,
-            DateOfBirth = model.DateOfBirth
+            DateOfBirth = model.DateOfBirth,
+            Postcode = model.Postcode,
+            Gender = model.Gender
         };
 
         public static UpdatePatientDto ToUpdateDto(this EditPatientModel model) => new()
@@ -19,7 +20,9 @@ namespace PANDAView.Helpers
             FirstName = model.FirstName,
             LastName = model.LastName,
             NHSNumber = model.NHSNumber,
-            DateOfBirth = model.DateOfBirth
+            DateOfBirth = model.DateOfBirth,
+            Postcode = model.Postcode,
+            Gender = model.Gender
         };
     }
 }

@@ -6,6 +6,7 @@ using PANDA.Api.Services;
 using PANDA.Api.Services.Patient;
 using PANDA.Shared.Common;
 using PANDA.Shared.DTOs;
+using PANDA.Shared.DTOs.Patient;
 
 namespace PANDA.Api.Tests.Services;
 public class PatientServiceTests
@@ -86,7 +87,7 @@ public class PatientServiceTests
         context.Patients.Add(patient);
         await context.SaveChangesAsync();
 
-        var updateDto = new PatientDto
+        var updateDto = new UpdatePatientDto()
         {
             FirstName = "Charlie",
             LastName = "Dean",
@@ -109,7 +110,7 @@ public class PatientServiceTests
         await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
-        var result = await service.UpdatePatientAsync(999, new PatientDto
+        var result = await service.UpdatePatientAsync(999, new UpdatePatientDto()
         {
             FirstName = "Ghost",
             LastName = "User",

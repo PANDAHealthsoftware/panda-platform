@@ -92,25 +92,25 @@ public class PatientsController : ControllerBase
 
     // Update Patient
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] PatientDto patientDto)
+    public async Task<IActionResult> Update(int id, [FromBody] UpdatePatientDto patientDto)
     {
-        Log.Information(LogMessages.UpdatingPatient, id, patientDto);
+        Log.Information("🔄 Incoming UpdatePatientDto: {@Dto}", patientDto);
 
         try
         {
-            var updatedPatient = await _patientService.UpdatePatientAsync(id, patientDto);
-            if (!updatedPatient)
+            var updated = await _patientService.UpdatePatientAsync(id, patientDto);
+            if (!updated)
             {
-                Log.Warning(LogMessages.PatientNotFound, id);
+                Log.Warning("⚠️ Patient not found for update (ID: {PatientId})", id);
                 return NotFound();
             }
 
-            Log.Information(LogMessages.PatientUpdated, id);
+            Log.Information("✅ Patient updated (ID: {PatientId})", id);
             return NoContent();
         }
         catch (Exception ex)
         {
-            Log.Error(ex, ErrorMessages.UnexpectedError);
+            Log.Error(ex, "❌ Unexpected error while updating patient");
             return StatusCode(500, ErrorMessages.UnexpectedError);
         }
     }

@@ -1,14 +1,14 @@
 ﻿using FluentValidation;
-using PANDA.Shared.Common;
-using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Patient;
+using PANDA.Shared.Common;
 
 namespace PANDA.Api.Validation;
-
-public class CreatePatientDtoValidator : AbstractValidator<CreatePatientDto>
+public class UpdatePatientDtoValidator : AbstractValidator<UpdatePatientDto>
 {
-    public CreatePatientDtoValidator()
+    public UpdatePatientDtoValidator()
     {
+        Console.WriteLine("✅ UpdatePatientDtoValidator constructed");
+
         RuleFor(x => x.FirstName)
             .NotEmpty()
             .MaximumLength(50)
@@ -27,11 +27,5 @@ public class CreatePatientDtoValidator : AbstractValidator<CreatePatientDto>
 
         RuleFor(x => x.Postcode)
             .MustBeValidPostcode();
-
-        RuleFor(x => x.Gender)
-            .NotNull()
-            .WithMessage("Gender is required.")
-            .IsInEnum()
-            .WithMessage(ErrorMessages.InvalidGender);
     }
 }

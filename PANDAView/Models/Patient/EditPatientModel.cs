@@ -10,4 +10,6 @@ public class EditPatientModel
     public string LastName { get; set; } = "";
     public string NHSNumber { get; set; } = "";
     public DateTime DateOfBirth { get; set; }
+    public string Postcode { get; set; } = "";
+    public Gender? Gender { get; set; } 
 }

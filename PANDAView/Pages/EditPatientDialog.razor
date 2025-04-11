@@ -1,4 +1,5 @@
 ﻿@using PANDA.Shared.DTOs
+@using PANDA.Shared.Common
 @using PANDAView.Models.Patient
 @using PANDAView.Services.Patient
 @using PANDAView.Helpers
@@ -9,6 +10,16 @@
 <EditForm Model="@EditPatientModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
+
+    @if (_serverErrors.Count > 0)
+    {
+        <ul class="nhsuk-error-summary__list">
+            @foreach (var error in _serverErrors.SelectMany(e => e.Value))
+            {
+                <li>@error</li>
+            }
+        </ul>
+    }
 
     <div class="nhs-panel">
         <h2 class="nhs-heading">@(_isNew ? "New Patient" : "Edit Patient")</h2>
@@ -37,6 +48,24 @@
             <ValidationMessage For="@(() => EditPatientModel.DateOfBirth)" />
         </div>
 
+        <div class="nhs-form-group">
+            <label class="nhs-label">Postcode</label>
+            <input class="nhs-input" @bind="EditPatientModel.Postcode" />
+            <ValidationMessage For="@(() => EditPatientModel.Postcode)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Gender</label>
+            <select class="nhs-input" @bind="EditPatientModel.Gender">
+                <option value="">-- Select --</option>
+                @foreach (Gender gender in Enum.GetValues(typeof(Gender)))
+                {
+                    <option value="@gender">@gender.ToDisplayString()</option>
+                }
+            </select>
+            <ValidationMessage For="@(() => EditPatientModel.Gender)" />
+        </div>
+
         <div class="dialog-buttons">
             <button type="submit" class="nhs-btn-primary">@(_isNew ? "Create" : "Save")</button>
             <button type="button" class="nhs-btn-secondary" @onclick="() => DialogService.Close()">Cancel</button>
@@ -48,7 +77,7 @@
     [Parameter] public EditPatientModel? Patient { get; set; }
 
     private EditPatientModel EditPatientModel = new();
-
+    private Dictionary<string, string[]> _serverErrors = new();
     private bool _isNew => EditPatientModel.Id == 0;
 
     protected override void OnInitialized()
@@ -61,35 +90,64 @@
                 FirstName = Patient.FirstName,
                 LastName = Patient.LastName,
                 NHSNumber = Patient.NHSNumber,
-                DateOfBirth = Patient.DateOfBirth
+                DateOfBirth = Patient.DateOfBirth,
+                Postcode = Patient.Postcode,
+                Gender = Patient.Gender
             };
         }
         else
         {
-            // Safe default for new patients
             EditPatientModel = new EditPatientModel
             {
-                DateOfBirth = DateTime.Today // Optional default DOB
+                DateOfBirth = DateTime.Today
             };
         }
     }
 
     private async Task HandleValidSubmit()
     {
-        PatientDto result;
+        _serverErrors.Clear();
 
-        if (EditPatientModel.Id.HasValue)
+        try
         {
-            result = await PatientService.CreatePatientAsync(EditPatientModel.ToCreateDto());
-            NotificationService.Notify(NotificationSeverity.Success, "Patient created successfully");
-        }
-        else
-        {
-            result = await PatientService.UpdatePatientAsync(EditPatientModel.Id.Value, EditPatientModel.ToUpdateDto());
-            NotificationService.Notify(NotificationSeverity.Success, "Patient updated successfully");
-        }
+            if (EditPatientModel.Id == null)
+            {
+                var result = await PatientService.CreatePatientAsync(EditPatientModel.ToCreateDto());
+                NotificationService.Notify(NotificationSeverity.Success, "Patient created successfully");
+                DialogService.Close(result);
+            }
+            else
+            {
+                await PatientService.UpdatePatientAsync(EditPatientModel.Id.Value, EditPatientModel.ToUpdateDto());
+                NotificationService.Notify(NotificationSeverity.Success, "Patient updated successfully");
 
-        DialogService.Close(result);
+                var updated = new PatientDto
+                {
+                    Id = EditPatientModel.Id.Value,
+                    FirstName = EditPatientModel.FirstName,
+                    LastName = EditPatientModel.LastName,
+                    NHSNumber = EditPatientModel.NHSNumber,
+                    DateOfBirth = EditPatientModel.DateOfBirth,
+                    Postcode = EditPatientModel.Postcode,
+                    Gender = EditPatientModel.Gender
+                };
+
+                DialogService.Close(updated);
+            }
+        }
+        catch (ApiValidationException ex)
+        {
+            _serverErrors = ex.Errors;
+
+            Console.WriteLine("❌ Server returned validation errors:");
+            foreach (var (key, errors) in _serverErrors)
+            {
+                Console.WriteLine($"   {key}: {string.Join(", ", errors)}");
+            }
+        }
+        catch (Exception ex)
+        {
+            NotificationService.Notify(NotificationSeverity.Error, "Update failed", ex.Message);
+        }
     }
 }
-

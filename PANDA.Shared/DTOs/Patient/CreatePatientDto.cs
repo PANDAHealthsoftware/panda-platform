@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using PANDA.Shared.Common;
 using PANDA.Shared.Converters;
 
-namespace PANDA.Shared.DTOs;
+namespace PANDA.Shared.DTOs.Patient;
 
 public class CreatePatientDto
 {

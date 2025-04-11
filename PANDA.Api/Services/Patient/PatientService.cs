@@ -67,7 +67,7 @@ namespace PANDA.Api.Services.Patient
             return await _context.Patients.FindAsync(id);
         }
 
-        public async Task<bool> UpdatePatientAsync(int id, PatientDto patientDto)
+        public async Task<bool> UpdatePatientAsync(int id, UpdatePatientDto patientDto)
         {
             var patient = await _context.Patients.FindAsync(id);
             if (patient == null) return false;
