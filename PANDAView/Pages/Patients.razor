@@ -1,10 +1,9 @@
 ﻿@page "/patients"
 @using PANDA.Shared.DTOs
-@using PANDAView.Services.Patient
 @using PANDAView.Models.Patient
+@using PANDAView.Services.Patient
 @inject IPatientService PatientService
 @inject DialogService DialogService
-@inject NotificationService NotificationService
 
 <h2 class="nhs-heading">Patient Administration</h2>
 <button class="nhs-btn-primary mb-2" @onclick="CreateNewPatient">+ Add Patient</button>
