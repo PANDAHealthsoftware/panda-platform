@@ -1,13 +1,16 @@
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Panda.Api.Converters;
 using PANDA.Api.Infrastructure;
-using PANDA.Api.Services;
-using PANDA.Api.Validation;
 using PANDA.Api.Mapping;
-using AutoMapper;
+using PANDA.Api.Services;
+using PANDA.Api.Services.Appointment;
+using PANDA.Api.Services.Clinician;
+using PANDA.Api.Services.Patient;
+using PANDA.Api.Validation;
 using PANDA.Shared.Converters;
+using PANDA.Shared.DTOs.Patient;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,18 +39,19 @@ builder.Services.AddCors(options =>
 });
 
 // ----------------------------
-// JSON + FluentValidation
+// Controllers + FluentValidation
 // ----------------------------
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
-    options.JsonSerializerOptions.Converters.Add(new DateTimeOffsetJsonConverter());
-});
-
-builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddValidatorsFromAssemblyContaining<PatientDtoValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<AppointmentDtoValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<CreateAppointmentDtoValidator>();
+builder.Services
+    .AddControllers()
+    .AddFluentValidation(fv =>
+    {
+        fv.RegisterValidatorsFromAssemblyContaining<UpdatePatientDtoValidator>();
+    })
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+        options.JsonSerializerOptions.Converters.Add(new DateTimeOffsetJsonConverter());
+    });
 
 // ----------------------------
 // Swagger & Localization
@@ -63,7 +67,7 @@ builder.Services.AddDbContext<PandaDbContext>(options =>
     options.UseSqlite("Data Source=panda.db"));
 
 // ----------------------------
-// AutoMapper (Manual Setup)
+// AutoMapper
 // ----------------------------
 var mapperConfig = new MapperConfiguration(cfg =>
 {
@@ -74,10 +78,12 @@ builder.Services.AddSingleton(mapper);
 mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
 // ----------------------------
-// App Services
+// Application Services
 // ----------------------------
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IClinicianService, ClinicianService>();
+builder.Services.AddTransient<IValidator<UpdatePatientDto>, UpdatePatientDtoValidator>();
 
 var app = builder.Build();
 
@@ -91,9 +97,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// ✅ CORS must go **before** controllers
 app.UseCors("AllowPANDAview");
-
 app.MapControllers();
+
 app.Run();

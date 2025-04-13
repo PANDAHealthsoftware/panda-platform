@@ -1,0 +1,67 @@
+﻿@page "/patients"
+@using PANDA.Shared.DTOs
+@using PANDAView.Models.Patient
+@using PANDAView.Services.Patient
+@inject IPatientService PatientService
+@inject DialogService DialogService
+
+<h2 class="nhs-heading">Patient Administration</h2>
+<button class="nhs-btn-primary mb-2" @onclick="CreateNewPatient">+ Add Patient</button>
+
+<RadzenDataGrid TItem="PatientDto" Data="@_patients">
+    <Columns>
+        <RadzenDataGridColumn TItem="PatientDto" Property="FirstName" Title="First Name" />
+        <RadzenDataGridColumn TItem="PatientDto" Property="LastName" Title="Last Name" />
+        <RadzenDataGridColumn TItem="PatientDto" Property="NHSNumber" Title="NHS Number" />
+        <RadzenDataGridColumn TItem="PatientDto" Property="DateOfBirth" Title="DOB" FormatString="{0:yyyy-MM-dd}" />
+        <RadzenDataGridColumn TItem="PatientDto" Context="p">
+            <Template Context="p">
+                <button class="nhs-btn-secondary" @onclick="() => EditPatient(p)">Edit</button>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    private List<PatientDto> _patients = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _patients = await PatientService.GetPatientsAsync();
+    }
+
+    private async Task CreateNewPatient()
+    {
+        var result = await DialogService.OpenAsync<EditPatientDialog>("New Patient");
+
+        if (result is PatientDto)
+        {
+            _patients = await PatientService.GetPatientsAsync(); 
+            StateHasChanged();
+        }
+    }
+
+    private async Task EditPatient(PatientDto patient)
+    {
+        var result = await DialogService.OpenAsync<EditPatientDialog>(
+            "Edit Patient",
+            new Dictionary<string, object>
+            {
+                { "Patient", new EditPatientModel {
+                    Id = patient.Id,
+                    FirstName = patient.FirstName,
+                    LastName = patient.LastName,
+                    NHSNumber = patient.NHSNumber,
+                    DateOfBirth = patient.DateOfBirth,
+                    Postcode = patient.Postcode,
+                    Gender = patient.Gender
+                }}
+            });
+
+        if (result is PatientDto)
+        {
+            _patients = await PatientService.GetPatientsAsync();
+            StateHasChanged();
+        }
+    }
+}

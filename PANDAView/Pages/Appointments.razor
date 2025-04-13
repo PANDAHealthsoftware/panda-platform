@@ -1,7 +1,8 @@
 ﻿@page "/appointments"
-@using PANDA.Shared.DTOs
-@using PANDAView.Models
-@using PANDAview.Services
+@using PANDA.Shared.DTOs.Appointment
+@using PANDAView.Models.Appointment
+@using PANDAView.Services.Appointment
+@using PANDAView.Services.Patient
 @inject IAppointmentService AppointmentService
 @inject NotificationService NotificationService
 @inject DialogService DialogService
@@ -16,11 +17,16 @@
             }
             else
             {
+                <div class="nhs-appointments-header">
+                    <h2 class="nhs-heading">Appointments</h2>
+                    <button class="nhs-btn-primary" @onclick="OpenNewAppointmentDialog">+ New Appointment</button>
+                </div>
+
                 <RadzenScheduler TItem="AppointmentViewModel"
                                  Data="@_appointments"
                                  StartProperty="AppointmentDate"
                                  EndProperty="AppointmentEnd"
-                                 TextProperty="Clinician"
+                                 TextProperty="DisplayLabel"
                                  Duration="30"
                                  View="SchedulerView.Day"
                                  SlotDuration="30"
@@ -52,30 +58,36 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await LoadAppointments();
+    }
+
+    private async Task LoadAppointments()
+    {
         try
         {
-            var raw = await AppointmentService.GetAppointmentsAsync();
-
-            if (raw != null)
+            var appointments = await AppointmentService.GetAppointmentsAsync();
+            Console.WriteLine($"Loaded {appointments.Count()} appointments");
+            if (appointments != null)
             {
-                _appointments = raw.Select(a => new AppointmentViewModel
+                _appointments = appointments.Select(a => new AppointmentViewModel
                 {
                     Id = a.Id,
                     PatientId = a.PatientId,
+                    PatientName = a.PatientName,
                     AppointmentDate = a.AppointmentDate,
                     Status = a.Status,
                     Clinician = a.Clinician,
-                    Department = a.Department
+                    Department = a.Department,
+                    ClinicianId = a.ClinicianId,
                 }).ToList();
             }
-
-            _ready = true;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error loading appointments: {ex}");
-            _ready = true;
         }
+
+        _ready = true;
     }
 
     private async Task OnAppointmentMove(SchedulerAppointmentMoveEventArgs args)
@@ -88,16 +100,17 @@
             {
                 Id = appointment.Id,
                 PatientId = appointment.PatientId,
+                PatientName = appointment.PatientName,
                 AppointmentDate = appointment.AppointmentDate,
                 Status = appointment.Status,
                 Clinician = appointment.Clinician,
-                Department = appointment.Department
+                ClinicianId = appointment.ClinicianId,
+                Department = appointment.Department,
             };
 
             try
             {
                 await AppointmentService.UpdateAppointmentAsync(updated);
-
                 NotificationService.Notify(new NotificationMessage
                 {
                     Severity = NotificationSeverity.Success,
@@ -105,7 +118,6 @@
                     Detail = $"New time: {appointment.AppointmentDate:t}",
                     Duration = 4000
                 });
-
                 await _scheduler.Reload();
             }
             catch (Exception ex)
@@ -128,20 +140,24 @@
 
         if (result is true)
         {
-            var raw = await AppointmentService.GetAppointmentsAsync();
-            if (raw != null)
-            {
-                _appointments = raw.Select(a => new AppointmentViewModel
-                {
-                    Id = a.Id,
-                    PatientId = a.PatientId,
-                    AppointmentDate = a.AppointmentDate,
-                    Status = a.Status,
-                    Clinician = a.Clinician,
-                    Department = a.Department
-                }).ToList();
-            }
+            await LoadAppointments();
+            await _scheduler.Reload();
+        }
+    }
 
+    private async Task OpenNewAppointmentDialog()
+    {
+        var result = await DialogService.OpenAsync<EditAppointmentDialog>("New Appointment",
+            new Dictionary<string, object> { { "Appointment", new AppointmentViewModel
+            {
+                AppointmentDate = DateTime.Now,
+                Status = AppointmentStatus.Scheduled,
+                Department = Department.Cardiology //Set as a default? 
+            } } });
+
+        if (result is true)
+        {
+            await LoadAppointments();
             await _scheduler.Reload();
         }
     }
