@@ -1,261 +1,169 @@
-# PANDA - Patient Appointment Network Data Application (Tech Test)
+# PANDA - Patient Appointment Network Data Application
 
 ## Overview
-PANDA is a production-quality API designed for managing patient demographics and appointments. This application implements a CRUD backend with the ability to store patient data and appointments, while ensuring high-quality code, effective validation, and integration with external systems.
 
-This solution is developed as part of the Aire Logic tech test, showcasing technical knowledge, best practices, and design decisions.
+PANDA is a modular, production-quality application designed for managing patient demographics and appointments. It is structured across multiple projects to separate responsibilities and ensure testability, maintainability, and scalability.
 
-## Features
-- **Patient CRUD Operations**: Create, read, update, and delete patient records.
-- **Appointment CRUD Operations**: Schedule, update, view, and cancel patient appointments.
-- **Validation**: FluentValidation for both `PatientDto` and `CreateAppointmentDto`.
-- **Automated Testing**: Unit tests for all CRUD operations and helper methods, including validation and edge case scenarios.
-- **AutoMapper Integration**: Simplified data mapping between entities and DTOs.
+This solution was developed as part of the Aire Logic technical assessment and follows modern .NET practices, including layered architecture, authentication, authorization, automated testing, and structured logging.
 
-## Tech Stack
-- **.NET 8**: The application is built using .NET 8 for the backend API.
-- **Entity Framework**: ORM for SQL data access.
-- **SQLite**: Persistent SQLite database for data storage.
-- **FluentValidation**: Ensures data validity for DTOs.
-- **NSubstitute**: Used for mocking dependencies in unit tests.
-- **EF Core InMemory**: For in-memory testing of CRUD operations.
-- **AutoMapper**: For efficient mapping between entities and DTOs.
+## Solution Structure
 
-## Getting Started
+- `PANDA.Api`: ASP.NET Core Web API for appointments and patient management.
+- `PANDAView`: Blazor WebAssembly frontend client for interacting with the API.
+- `PANDA.Shared`: Shared DTOs, enums, and converters used by both API and frontend.
+- `PANDA.Api.Tests`: Test project containing unit and integration tests for the API.
 
-### Prerequisites
-To run the project locally, ensure you have the following installed:
-- .NET 8 SDK
-- SQLite (if not using the default SQLite file)
-- Visual Studio or JetBrains Rider for development
+## Key Features
 
-### Clone the Repository
-```bash
-git clone https://github.com/your-repository/panda.git
-cd panda
+- RESTful API for patient and appointment management
+- JWT bearer authentication with role-based access control
+- FluentValidation for input DTOs
+- AutoMapper for mapping between domain models and DTOs
+- SQLite with Entity Framework Core
+- Structured logging using Serilog
+- Swagger UI for API documentation and testing
+- Frontend built with Blazor WebAssembly
+- Unit and integration tests (xUnit, NSubstitute, FluentAssertions, bUnit)
+
+## Security and Authentication
+
+### JWT Authentication
+
+The API uses JWT Bearer tokens to authenticate and authorize users. Roles such as `Admin` and `Clinician` are enforced via policies and `[Authorize(Roles = "...")]` attributes.
+
+Include the JWT token in the request header:
+
+```
+Authorization: Bearer <your-token>
 ```
 
-### Set up the Database
-The SQLite database is automatically seeded with sample data for patients and appointments. No additional setup is needed.
+Test tokens can be generated for integration testing using the `JwtTestHelper` in the `PANDA.Api.Tests.Helpers` namespace.
 
-### Running the Application
-You can run the application using the following command:
+## Setup Instructions
+
+### Prerequisites
+
+- .NET 8 SDK
+- Visual Studio / JetBrains Rider / VS Code
+- SQLite (optional — file-based DB is used)
+
+### Cloning and Running the API
+
 ```bash
+git clone https://github.com/your-org/panda-api.git
+cd panda-api
+dotnet restore
+dotnet run --project PANDA.Api
+```
+
+The API will start on `https://localhost:5001`. Swagger UI is available at `/swagger`.
+
+## Using the Blazor Frontend (PANDAView)
+
+PANDAView is a Blazor WebAssembly app that interacts with the PANDA API via HTTP using JWT tokens.
+
+### Running the Frontend
+
+```bash
+cd PANDAView
 dotnet run
 ```
 
-The API will start on `http://localhost:5000`. You can use any API client (e.g., Postman or cURL) to test the endpoints.
+The app will start at `https://localhost:5002` (or whichever port is configured). Ensure CORS is enabled in the API to allow requests from this origin.
 
-### Available Endpoints
+### Authentication from Frontend
 
-### Available Endpoints with Examples
+1. Obtain a JWT from your auth system or test helper.
+2. Store it in browser storage (local/session).
+3. Configure `HttpClient` to use the token:
+   ```csharp
+   httpClient.DefaultRequestHeaders.Authorization =
+       new AuthenticationHeaderValue("Bearer", token);
+   ```
 
-#### **POST /patients**
+### Role-Based UI in Blazor
 
-**Request Body**
-```json
-{
-  "firstName": "Alice",
-  "lastName": "Smith",
-  "dateOfBirth": "1990-05-20",
-  "nhsNumber": "9876543210",
-  "postcode": "XY1 2AB",
-  "gender": 2
-}
+```razor
+<AuthorizeView Roles="Admin">
+    <button class="btn btn-danger">Delete Appointment</button>
+</AuthorizeView>
 ```
 
-**Response**
-```json
-{
-  "id": 1,
-  "message": "Patient created successfully"
-}
-```
+## Testing
 
-#### **GET /patients/{id}**
+### Running Unit & Integration Tests
 
-**Example Response**
-```json
-{
-  "id": 1,
-  "firstName": "Alice",
-  "lastName": "Smith",
-  "dateOfBirth": "1990-05-20",
-  "nhsNumber": "9876543210",
-  "postcode": "XY1 2AB",
-  "gender": 2
-}
-```
-
-#### **PUT /patients/{id}**
-
-**Request Body**
-```json
-{
-  "firstName": "Alice",
-  "lastName": "Johnson",
-  "dateOfBirth": "1990-05-20",
-  "nhsNumber": "9876543210",
-  "postcode": "XY1 2AB",
-  "gender": 2
-}
-```
-
-**Response**: `204 No Content`
-
-#### **POST /appointments**
-
-**Request Body**
-```json
-{
-  "patientId": 1,
-  "startTime": "2025-04-05T10:00:00Z",
-  "endTime": "2025-04-05T10:30:00Z",
-  "location": "Clinic Room 3"
-}
-```
-
-**Response**
-```json
-{
-  "id": 1,
-  "message": "Appointment created successfully"
-}
-```
-
-#### **GET /appointments/{id}**
-
-**Example Response**
-```json
-{
-  "id": 1,
-  "patientId": 1,
-  "startTime": "2025-04-05T10:00:00Z",
-  "endTime": "2025-04-05T10:30:00Z",
-  "location": "Clinic Room 3",
-  "isCancelled": false
-}
-```
-
-#### **PUT /appointments/{id}**
-
-**Request Body**
-```json
-{
-  "startTime": "2025-04-05T11:00:00Z",
-  "endTime": "2025-04-05T11:30:00Z",
-  "location": "Clinic Room 4"
-}
-```
-
-**Response**: `204 No Content`
-
-#### **DELETE /appointments/{id}**
-
-**Response**: `204 No Content`
-
-
-- **POST /patients**: Create a new patient.
-- **GET /patients/{id}**: Get details of a specific patient.
-- **PUT /patients/{id}**: Update an existing patient.
-- **DELETE /patients/{id}**: Delete a patient record.
-- **POST /appointments**: Create a new appointment.
-- **GET /appointments/{id}**: View an appointment.
-- **PUT /appointments/{id}**: Update an appointment.
-- **DELETE /appointments/{id}**: Cancel an appointment.
-
-### Testing with API Client (Postman, cURL, etc.)
-To interact with the API using your preferred client (Postman, cURL, or similar), follow these steps:
-
-1. **Postman Setup**:
-    - Open Postman and create a new **GET** request for `http://localhost:5000/api/patients` to retrieve all patients.
-    - For creating a new patient, use **POST** and set the body type to `application/json`, then send a JSON payload like this:
-      ```json
-      {
-        "firstName": "John",
-        "lastName": "Doe",
-        "dateOfBirth": "1985-10-10",
-        "nhsNumber": "1234567890",
-        "postcode": "AB1 2CD",
-        "gender": 1
-      }
-      ```
-    - For updating a patient, send a **PUT** request to `http://localhost:5000/api/patients/{id}` with the patient's updated details in the body.
-
-2. **cURL Setup**:
-    - Use cURL to send requests from the command line. For example, to retrieve all patients:
-      ```bash
-      curl -X GET http://localhost:5000/api/patients
-      ```
-    - To create a new patient, use:
-      ```bash
-      curl -X POST http://localhost:5000/api/patients         -H "Content-Type: application/json"         -d '{"firstName": "John", "lastName": "Doe", "dateOfBirth": "1985-10-10", "nhsNumber": "1234567890", "postcode": "AB1 2CD", "gender": 1}'
-      ```
-
-3. **Expected Responses**:
-    - For **GET /patients**: Returns a list of all patients, with the `Gender` property showing the enum value (e.g., "Male", "Female").
-    - For **GET /patients/{id}**: Returns a single patient with the `Gender` as an enum value.
-    - For **POST /patients**: Returns a success message and the ID of the newly created patient.
-    - For **PUT /patients/{id}**: Updates the patient data and returns a `204 No Content` status upon success.
-    - For **DELETE /patients/{id}**: Deletes the patient and returns a `204 No Content` status upon success.
-
-### Validation and Error Handling
-The application uses FluentValidation for all DTOs, ensuring the input data is valid. API responses provide clear messages for validation errors.
-
-### Seeding Data
-The SQLite database is seeded with realistic patient and appointment data on startup. You can review or modify this data in the `seed.sql` file.
-
-## Running Tests
-Navigate to the tests folder: Use the terminal to go to the PANDA.Api.Tests folder where the test project is located.
-Integration tests would be added at a later date / when time permits.
 ```bash
 cd PANDA.Api.Tests
-```
-Run the tests: Once you're in the PANDA.Api.Tests directory, run the tests using the following command:
-The tests cover the CRUD operations, validation logic, and edge case scenarios.
-```bash
 dotnet test
 ```
-Ensure Dependencies: Make sure you have all the necessary dependencies installed. If you're missing any, you can restore them with:
+
+Includes tests for:
+- Controllers (mocked + integration)
+- Services and validators
+- JWT-protected endpoints
+- Helper utilities (e.g., JWT token generator)
+
+### Running UI Tests (bUnit)
+
+UI tests for Blazor components can be found in `PANDAView.Tests` (if created). Run with:
+
 ```bash
-dotnet restore
+cd PANDAView.Tests
+dotnet test
 ```
-## Contributing
-This project was created for the Aire Logic tech test. However, contributions to improve the application are welcome. Please fork the repository, make changes, and submit a pull request.
+
+## Branching and Contribution Guidelines
+
+### Branch Strategy
+
+- `master`: Production/stable releases only.
+- `development`: All feature branches should branch from here.
+- `feature/*`: Feature branches (e.g., `feature/api-auth`, `feature/blazor-ui`).
+
+### GitHub Branch Rules
+
+- `master` is protected: no direct commits, no branching from master.
+- All pull requests target `development`.
+
+## DTO Validation
+
+The following DTOs are validated using FluentValidation:
+
+- `CreatePatientDto`
+- `UpdatePatientDto`
+- `CreateAppointmentDto`
+
+Validation errors return `400 Bad Request` with detailed messages.
+
+## Enums Used
+
+### Gender
+| Value | Name     |
+|-------|----------|
+| 0     | Male     |
+| 1     | Female   |
+| 2     | Other    |
+| 3     | Unknown  |
+
+### AppointmentStatus
+| Value | Name      |
+|-------|-----------|
+| 0     | Scheduled |
+| 1     | Completed |
+| 2     | Missed    |
+| 3     | Cancelled |
+
+### Department
+| Value | Name        |
+|-------|-------------|
+| 0     | General     |
+| 1     | Cardiology  |
+| 2     | Neurology   |
+| 3     | Oncology    |
+| 4     | Paediatrics |
+| 5     | Dermatology |
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Enums
-
-The application uses enums for several fields to maintain consistency and enforce domain constraints.
-
-### AppointmentStatus Enum
-
-| Value | Name      | Description                         |
-|-------|-----------|-------------------------------------|
-| 0     | Scheduled | The appointment is scheduled.       |
-| 1     | Completed | The appointment has occurred.       |
-| 2     | Missed    | The patient missed the appointment. |
-| 3     | Cancelled | The appointment was cancelled.      |
-
-### Department Enum
-
-| Value | Name         | Description               |
-|-------|--------------|---------------------------|
-| 0     | General      | General practice/medicine |
-| 1     | Cardiology   | Heart-related medicine    |
-| 2     | Neurology    | Nervous system medicine   |
-| 3     | Oncology     | Cancer-related medicine   |
-| 4     | Paediatrics  | Children’s medicine       |
-| 5     | Dermatology  | Skin-related medicine     |
-
-### Patient Enum
-
-| Value | Name   | Description             |
-|-------|--------|-------------------------|
-| 0     | Male   | Male patient            |
-| 1     | Female | Female patient          |
-| 2     | Other  | Other/non-binary option |
-| 3     | Unknown| Gender not specified    |
-
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
