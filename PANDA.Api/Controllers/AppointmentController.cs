@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PANDA.Api.Services.Appointment;
 using PANDA.Shared.Common;
 using PANDA.Shared.DTOs.Appointment;
@@ -6,6 +7,7 @@ using Serilog;
 
 namespace PANDA.Api.Controllers;
 
+[Authorize(Roles = "Clinician,Admin")]
 [ApiController]
 [Route("api/[controller]")]
 public class AppointmentsController : ControllerBase

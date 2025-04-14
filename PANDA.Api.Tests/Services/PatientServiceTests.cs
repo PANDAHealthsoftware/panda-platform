@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Models;
-using PANDA.Api.Services;
 using PANDA.Api.Services.Patient;
 using PANDA.Shared.Common;
-using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Patient;
 
 namespace PANDA.Api.Tests.Services;

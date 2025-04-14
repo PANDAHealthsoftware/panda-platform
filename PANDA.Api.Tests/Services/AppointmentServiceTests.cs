@@ -4,9 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Mapping;
 using PANDA.Api.Models;
-using PANDA.Api.Services;
 using PANDA.Api.Services.Appointment;
-using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Appointment;
 using PANDA.Shared.Enums;
 

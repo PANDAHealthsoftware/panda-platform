@@ -1,0 +1,191 @@
+2025-04-14 10:28:02.379 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-14 10:28:02.393 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-14 10:28:02.408 +01:00 [INF] Hosting environment: Development
+2025-04-14 10:28:02.408 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-14 10:28:02.571 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 181.1183ms
+2025-04-14 10:28:16.524 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-14 10:28:16.531 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:16.535 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:16.547 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-14 10:28:16.642 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:16.644 +01:00 [INF] Retrieving all appointments
+2025-04-14 10:28:17.173 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."ClinicianId", "a"."Department", "a"."MissedTimestamp", "a"."PatientId", "a"."PatientName", "a"."Status"
+FROM "Appointments" AS "a"
+ORDER BY "a"."AppointmentDate"
+2025-04-14 10:28:17.240 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 594.6947ms.
+2025-04-14 10:28:17.244 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:28:17.283 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 733.9076ms
+2025-04-14 10:28:17.283 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:17.287 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 764.0124ms
+2025-04-14 10:28:20.608 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients/summaries - null null
+2025-04-14 10:28:20.610 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:20.610 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-14 10:28:20.613 +01:00 [INF] Route matched with {action = "GetSummaries", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[PANDA.Shared.DTOs.Patient.PatientSummaryDto]]] GetSummaries() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:28:20.614 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:20.644 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."FirstName" || ' ' || "p"."LastName" AS "FullName"
+FROM "Patients" AS "p"
+2025-04-14 10:28:20.645 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 30.5653ms.
+2025-04-14 10:28:20.645 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Patient.PatientSummaryDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:28:20.647 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) in 33.4289ms
+2025-04-14 10:28:20.647 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-14 10:28:20.647 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients/summaries - 200 null application/json; charset=utf-8 39.1569ms
+2025-04-14 10:28:20.670 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/clinicians - null null
+2025-04-14 10:28:20.671 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:20.671 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-14 10:28:20.673 +01:00 [INF] Route matched with {action = "GetAll", controller = "Clinicians"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.CliniciansController (PANDA.Api).
+2025-04-14 10:28:20.673 +01:00 [INF] Executing action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:20.674 +01:00 [INF] Retrieving all clinicians
+2025-04-14 10:28:20.705 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Department", "c"."Name"
+FROM "Clinicians" AS "c"
+2025-04-14 10:28:20.713 +01:00 [INF] Executed action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 39.3743ms.
+2025-04-14 10:28:20.713 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Clinician.ClinicianDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:28:20.715 +01:00 [INF] Executed action PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) in 41.4889ms
+2025-04-14 10:28:20.715 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-14 10:28:20.715 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/clinicians - 200 null application/json; charset=utf-8 44.3421ms
+2025-04-14 10:28:23.665 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-14 10:28:23.666 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:23.666 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:23.668 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:28:23.668 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:23.669 +01:00 [INF] Retrieving all patients
+2025-04-14 10:28:23.674 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-14 10:28:23.684 +01:00 [INF] Retrieved 5 patients
+2025-04-14 10:28:23.685 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 16.6068ms.
+2025-04-14 10:28:23.685 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:28:23.690 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 21.6716ms
+2025-04-14 10:28:23.690 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:23.690 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 24.3499ms
+2025-04-14 10:28:27.965 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients/1 - null null
+2025-04-14 10:28:27.965 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:27.966 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients/1 - 204 null null 1.3268ms
+2025-04-14 10:28:27.968 +01:00 [INF] Request starting HTTP/2 PUT https://localhost:44372/api/patients/1 - application/json; charset=utf-8 134
+2025-04-14 10:28:27.968 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:27.968 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.Update (PANDA.Api)'
+2025-04-14 10:28:27.973 +01:00 [INF] Route matched with {action = "Update", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, PANDA.Shared.DTOs.Patient.UpdatePatientDto) on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:28:28.030 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.Update (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:28.031 +01:00 [INF] 🔄 Incoming UpdatePatientDto: {"FirstName":"Alicex","LastName":"Smith","NHSNumber":"1000000001","Postcode":"BB6 7RP","DateOfBirth":"1985-05-12T00:00:00.0000000","Gender":"Female","$type":"UpdatePatientDto"}
+2025-04-14 10:28:28.054 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2025-04-14 10:28:28.102 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Patients" SET "FirstName" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2025-04-14 10:28:28.112 +01:00 [INF] ✅ Patient updated (ID: 1)
+2025-04-14 10:28:28.112 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.Update (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.NoContentResult in 81.859ms.
+2025-04-14 10:28:28.114 +01:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2025-04-14 10:28:28.114 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.Update (PANDA.Api) in 140.2885ms
+2025-04-14 10:28:28.114 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.Update (PANDA.Api)'
+2025-04-14 10:28:28.114 +01:00 [INF] Request finished HTTP/2 PUT https://localhost:44372/api/patients/1 - 204 null null 145.9523ms
+2025-04-14 10:28:28.125 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-14 10:28:28.125 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:28.125 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:28.125 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:28:28.125 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:28.126 +01:00 [INF] Retrieving all patients
+2025-04-14 10:28:28.126 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-14 10:28:28.127 +01:00 [INF] Retrieved 5 patients
+2025-04-14 10:28:28.127 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.4233ms.
+2025-04-14 10:28:28.127 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:28:28.127 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 2.0598ms
+2025-04-14 10:28:28.127 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:28.127 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 2.6127ms
+2025-04-14 10:28:32.994 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients/1 - null null
+2025-04-14 10:28:32.994 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:32.995 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients/1 - 204 null null 0.3798ms
+2025-04-14 10:28:32.995 +01:00 [INF] Request starting HTTP/2 PUT https://localhost:44372/api/patients/1 - application/json; charset=utf-8 133
+2025-04-14 10:28:32.996 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:32.996 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.Update (PANDA.Api)'
+2025-04-14 10:28:32.996 +01:00 [INF] Route matched with {action = "Update", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, PANDA.Shared.DTOs.Patient.UpdatePatientDto) on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:28:32.998 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.Update (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:32.998 +01:00 [INF] 🔄 Incoming UpdatePatientDto: {"FirstName":"Alice","LastName":"Smith","NHSNumber":"1000000001","Postcode":"BB6 7RP","DateOfBirth":"1985-05-12T00:00:00.0000000","Gender":"Female","$type":"UpdatePatientDto"}
+2025-04-14 10:28:33.001 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+WHERE "p"."Id" = @__p_0
+LIMIT 1
+2025-04-14 10:28:33.003 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Patients" SET "FirstName" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2025-04-14 10:28:33.007 +01:00 [INF] ✅ Patient updated (ID: 1)
+2025-04-14 10:28:33.007 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.Update (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.NoContentResult in 8.7652ms.
+2025-04-14 10:28:33.007 +01:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2025-04-14 10:28:33.007 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.Update (PANDA.Api) in 11.2552ms
+2025-04-14 10:28:33.007 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.Update (PANDA.Api)'
+2025-04-14 10:28:33.007 +01:00 [INF] Request finished HTTP/2 PUT https://localhost:44372/api/patients/1 - 204 null null 11.7498ms
+2025-04-14 10:28:33.012 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-14 10:28:33.012 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:28:33.012 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:33.012 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:28:33.013 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:28:33.013 +01:00 [INF] Retrieving all patients
+2025-04-14 10:28:33.013 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-14 10:28:33.014 +01:00 [INF] Retrieved 5 patients
+2025-04-14 10:28:33.014 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.9297ms.
+2025-04-14 10:28:33.014 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:28:33.014 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 1.5535ms
+2025-04-14 10:28:33.014 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:28:33.014 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 2.0182ms
+2025-04-14 10:29:34.277 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-14 10:29:34.277 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:29:34.277 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.4741ms
+2025-04-14 10:29:34.278 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/patients - application/json; charset=utf-8 141
+2025-04-14 10:29:34.278 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:29:34.278 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-14 10:29:34.281 +01:00 [INF] Route matched with {action = "Create", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(PANDA.Shared.DTOs.Patient.CreatePatientDto) on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:29:34.293 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.Create (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:29:34.293 +01:00 [INF] Creating patient with data: {"FirstName":"John","LastName":"Mc Fish","DateOfBirth":"1982-04-14T00:00:00.0000000","NHSNumber":"9434765919","Postcode":"M4 5DT","Gender":"Male","$type":"CreatePatientDto"}
+2025-04-14 10:29:34.314 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (Size = 7), @p4='?' (Size = 10), @p5='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "FirstName", "Gender", "LastName", "NHSNumber", "Postcode")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-14 10:29:34.326 +01:00 [INF] Patient added with ID: 6
+2025-04-14 10:29:34.326 +01:00 [INF] Patient created successfully with ID: 6
+2025-04-14 10:29:34.326 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.Create (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 33.4965ms.
+2025-04-14 10:29:34.326 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'PANDA.Api.Models.Patient'.
+2025-04-14 10:29:34.336 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.Create (PANDA.Api) in 55.7956ms
+2025-04-14 10:29:34.336 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-14 10:29:34.337 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/patients - 201 null application/json; charset=utf-8 58.4668ms
+2025-04-14 10:29:34.342 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-14 10:29:34.342 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:29:34.342 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:29:34.342 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:29:34.342 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:29:34.343 +01:00 [INF] Retrieving all patients
+2025-04-14 10:29:34.343 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-14 10:29:34.343 +01:00 [INF] Retrieved 6 patients
+2025-04-14 10:29:34.343 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.9106ms.
+2025-04-14 10:29:34.344 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:29:34.344 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 1.3919ms
+2025-04-14 10:29:34.344 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:29:34.344 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 1.9124ms
+2025-04-14 10:29:37.495 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-14 10:29:37.495 +01:00 [INF] CORS policy execution successful.
+2025-04-14 10:29:37.495 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:29:37.495 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-14 10:29:37.496 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-14 10:29:37.496 +01:00 [INF] Retrieving all patients
+2025-04-14 10:29:37.496 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-14 10:29:37.497 +01:00 [INF] Retrieved 6 patients
+2025-04-14 10:29:37.497 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.0632ms.
+2025-04-14 10:29:37.497 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-14 10:29:37.497 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 1.7392ms
+2025-04-14 10:29:37.497 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-14 10:29:37.497 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 2.2759ms
+2025-04-14 10:31:43.762 +01:00 [INF] Application is shutting down...
