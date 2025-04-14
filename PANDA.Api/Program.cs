@@ -1,7 +1,11 @@
+using System.Text;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Mapping;
 using PANDA.Api.Services;
@@ -57,7 +61,32 @@ builder.Services
 // Swagger & Localization
 // ----------------------------
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PANDA API", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Enter 'Bearer {token}'",
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+        {
+            new OpenApiSecurityScheme {
+                Reference = new OpenApiReference {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
+
 builder.Services.AddLocalization();
 
 // ----------------------------
@@ -85,6 +114,36 @@ builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IClinicianService, ClinicianService>();
 builder.Services.AddTransient<IValidator<UpdatePatientDto>, UpdatePatientDtoValidator>();
 
+// ----------------------------
+// JWT Authentication & Authorization
+// ----------------------------
+var jwtKey = builder.Configuration["Jwt:Key"] ?? "super-secure-signing-key";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "https://your-authority.com";
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = jwtIssuer,
+            ValidateAudience = true,
+            ValidAudience = "panda-api",
+            ValidateLifetime = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+            ValidateIssuerSigningKey = true
+        };
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("RequireClinician", policy => policy.RequireRole("Clinician"));
+});
+
+// ----------------------------
+// Build App
+// ----------------------------
 var app = builder.Build();
 
 // ----------------------------
@@ -98,6 +157,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors("AllowPANDAview");
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();
