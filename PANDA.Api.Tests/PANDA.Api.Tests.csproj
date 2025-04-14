@@ -31,4 +31,8 @@
       <ProjectReference Include="..\PANDA.Api\PANDA.Api.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Integration\" />
+    </ItemGroup>
+
 </Project>
