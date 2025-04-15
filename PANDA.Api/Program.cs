@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Text;
 using AutoMapper;
 using FluentValidation;
@@ -8,13 +9,13 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Mapping;
-using PANDA.Api.Services;
 using PANDA.Api.Services.Appointment;
 using PANDA.Api.Services.Clinician;
 using PANDA.Api.Services.Patient;
 using PANDA.Api.Validation;
 using PANDA.Shared.Converters;
 using PANDA.Shared.DTOs.Patient;
+using PANDA.Shared.Security;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -117,8 +118,8 @@ builder.Services.AddTransient<IValidator<UpdatePatientDto>, UpdatePatientDtoVali
 // ----------------------------
 // JWT Authentication & Authorization
 // ----------------------------
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "super-secure-signing-key";
-var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "https://your-authority.com";
+var jwtKey = builder.Configuration["Jwt:Key"] ?? "super-secure-signing-key-must-be-at-least-32-chars";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "https://panda-api.local";
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -130,17 +131,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidAudience = "panda-api",
             ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
-            ValidateIssuerSigningKey = true
+            RoleClaimType = ClaimTypes.Role
         };
     });
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("RequireClinician", policy => policy.RequireRole("Clinician"));
+    options.AddPolicy("RequireAdmin", policy => policy.RequireRole(Roles.Admin));
+    options.AddPolicy("RequireClinician", policy => policy.RequireRole(Roles.Clinician));
+    options.AddPolicy("RequireReception", policy => policy.RequireRole(Roles.Reception));
 });
-
+Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
 // ----------------------------
 // Build App
 // ----------------------------
@@ -161,5 +164,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+Console.WriteLine("🧩 Tokens assembly version: " +
+                  typeof(Microsoft.IdentityModel.Tokens.TokenValidationParameters).Assembly.FullName);
 
+Console.WriteLine("🔐 JWT handler assembly version: " +
+                  typeof(System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler).Assembly.FullName);
 app.Run();

@@ -31,7 +31,7 @@ public class PatientDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_DateOfBirth_Is_Invalid()
     {
-        var model = new PatientDto { DateOfBirth = DateTime.Today.AddDays(1) };
+        var model = new PatientDto { DateOfBirth = DateOnly.FromDateTime(new DateTime(1990, 1, 1)) };
         var result = _validator.TestValidate(model);
         result.ShouldHaveValidationErrorFor(x => x.DateOfBirth);
     }
@@ -67,7 +67,7 @@ public class PatientDtoValidatorTests
         {
             FirstName = "John",
             LastName = "Doe",
-            DateOfBirth = new DateTime(1990, 1, 1),
+            DateOfBirth = DateOnly.FromDateTime(new DateTime(1990, 1, 1)),
             NHSNumber = "9434765919",
             Postcode = "LS12 3AB",
             Gender = Gender.Male

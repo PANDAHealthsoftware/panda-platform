@@ -29,7 +29,7 @@ public class PatientServiceTests
         {
             FirstName = "Alice",
             LastName = "Smith",
-            DateOfBirth = new DateTime(1985, 6, 15),
+            DateOfBirth = new DateOnly(1985, 6, 15),
             NHSNumber = "9876543210",
             Postcode = "AB12 3CD",
             Gender = Gender.Female
@@ -52,7 +52,7 @@ public class PatientServiceTests
         {
             FirstName = "Bob",
             LastName = "Jones",
-            DateOfBirth = DateTime.Today,
+            DateOfBirth = new DateOnly(1985, 6, 15),
             NHSNumber = "1234567890",
             Postcode = "XY99 1YZ",
             Gender = Gender.Male
@@ -76,7 +76,7 @@ public class PatientServiceTests
         {
             FirstName = "Carl",
             LastName = "Dean",
-            DateOfBirth = DateTime.Today,
+            DateOfBirth = new DateOnly(1985, 6, 15),
             NHSNumber = "0000000000",
             Postcode = "ZZ1 1ZZ",
             Gender = Gender.Male
@@ -112,7 +112,7 @@ public class PatientServiceTests
         {
             FirstName = "Ghost",
             LastName = "User",
-            DateOfBirth = DateTime.Today,
+            DateOfBirth = new DateOnly(1985, 6, 15),
             NHSNumber = "0000000000",
             Postcode = "XX1 1XX",
             Gender = Gender.Other
@@ -131,7 +131,7 @@ public class PatientServiceTests
         {
             FirstName = "David",
             LastName = "Lee",
-            DateOfBirth = DateTime.Today,
+            DateOfBirth = new DateOnly(1985, 6, 15),
             NHSNumber = "1111111111",
             Postcode = "YY1 2YY",
             Gender = Gender.Male
