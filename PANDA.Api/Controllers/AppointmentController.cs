@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using PANDA.Api.Services.Appointment;
 using PANDA.Shared.Common;
 using PANDA.Shared.DTOs.Appointment;
+using PANDA.Shared.Security;
 using Serilog;
 
 namespace PANDA.Api.Controllers;
 
-[Authorize(Roles = "Clinician,Admin")]
 [ApiController]
 [Route("api/[controller]")]
 public class AppointmentsController : ControllerBase
@@ -21,6 +21,7 @@ public class AppointmentsController : ControllerBase
 
     // POST: api/appointments
     [HttpPost]
+    [Authorize(Roles = Roles.Admin + "," + Roles.Clinician + "," + Roles.Reception)]
     public async Task<IActionResult> Create([FromBody] CreateAppointmentDto createDto)
     {
         Log.Information(LogMessages.CreatingAppointment, createDto);
@@ -41,6 +42,7 @@ public class AppointmentsController : ControllerBase
 
     // GET: api/appointments/{id}
     [HttpGet("{id}")]
+    [Authorize(Roles = Roles.Admin + "," + Roles.Clinician + "," + Roles.Reception)]
     public async Task<IActionResult> GetById(int id)
     {
         Log.Information(LogMessages.RetrievingAppointment, id);
@@ -65,6 +67,7 @@ public class AppointmentsController : ControllerBase
 
     // GET: api/appointments
     [HttpGet]
+    [Authorize(Roles = Roles.Admin + "," + Roles.Clinician + "," + Roles.Reception)]
     public async Task<IActionResult> GetAll()
     {
         Log.Information(LogMessages.RetrievingAllAppointments);
@@ -83,6 +86,7 @@ public class AppointmentsController : ControllerBase
 
     // PUT: api/appointments/{id}
     [HttpPut("{id}")]
+    [Authorize(Roles = Roles.Admin + "," + Roles.Clinician + "," + Roles.Reception)]
     public async Task<IActionResult> Update(int id, [FromBody] UpdateAppointmentDto dto)
     {
         Log.Information(LogMessages.UpdatingAppointment, id, dto);
@@ -108,6 +112,7 @@ public class AppointmentsController : ControllerBase
 
     // DELETE: api/appointments/{id}
     [HttpDelete("{id}")]
+    [Authorize(Roles = Roles.Admin + "," + Roles.Clinician + "," + Roles.Reception)]
     public async Task<IActionResult> Cancel(int id)
     {
         Log.Information(LogMessages.CancellingAppointment, id);
@@ -133,6 +138,7 @@ public class AppointmentsController : ControllerBase
 
     // POST: api/appointments/track-missed
     [HttpPost("track-missed")]
+    [Authorize(Roles = Roles.Admin + "," + Roles.Clinician)]
     public async Task<IActionResult> TrackMissedAppointment([FromQuery] int appointmentId)
     {
         Log.Information(LogMessages.TrackingMissed, appointmentId);

@@ -10,11 +10,11 @@ public static class ValidationRules
             .GreaterThan(0)
             .WithMessage(ErrorMessages.InvalidPatientId);
 
-    public static IRuleBuilderOptions<T, DateTime> MustBeValidDateOfBirth<T>(this IRuleBuilder<T, DateTime> ruleBuilder) =>
+    public static IRuleBuilderOptions<T, DateOnly> MustBeValidDateOfBirth<T>(this IRuleBuilder<T, DateOnly> ruleBuilder) =>
         ruleBuilder
-            .Must(date => date > DateTime.MinValue)
+            .Must(date => date > DateOnly.MinValue)
             .WithMessage(ErrorMessages.DateOfBirthRequired)
-            .LessThan(DateTime.Today)
+            .LessThan(DateOnly.FromDateTime(DateTime.Today))
             .WithMessage(ErrorMessages.InvalidDateOfBirth);
 
     public static IRuleBuilderOptions<T, string> MustBeValidNhsNumber<T>(this IRuleBuilder<T, string> ruleBuilder) =>

@@ -1,0 +1,15 @@
+﻿@page "/login"
+@inherits LoginBase
+
+<h3>Login</h3>
+
+<EditForm Model="Credentials" OnValidSubmit="HandleLogin">
+    <InputText @bind-Value="Credentials.Username" />
+    <InputText @bind-Value="Credentials.Password" type="password" />
+    <button type="submit" disabled="@IsLoading">Login</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <p class="text-danger">@ErrorMessage</p>
+}

@@ -1,0 +1,26 @@
+﻿@page "/home"
+@inherits HomeBase
+
+
+<div class="nhs-shell nhs-content">
+    <h1 class="nhs-heading">Welcome to PANDA</h1>
+    <p class="nhs-info">Patient Appointment Network Data Application</p>
+
+    @if (IsAuthenticated)
+    {
+        <p class="nhs-info">You are logged in as: <strong>@UserName</strong></p>
+    }
+
+    <div class="nhs-panel">
+        <h2 class="nhs-heading">Quick Actions</h2>
+        <div class="patient-select-row">
+            <NavLink class="nhs-btn-primary" href="/patients">Manage Patients</NavLink>
+            <NavLink class="nhs-btn-primary" href="/appointments">View Appointments</NavLink>
+            <NavLink class="nhs-btn-primary" href="/appointments/create">New Appointment</NavLink>
+            @if (IsAdmin)
+            {
+                <NavLink class="nhs-btn-secondary" href="/admin">Admin Panel</NavLink>
+            }
+        </div>
+    </div>
+</div>

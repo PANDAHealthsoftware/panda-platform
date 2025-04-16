@@ -1,6 +1,7 @@
 ﻿@page "/patients"
 @using PANDA.Shared.DTOs
 @using PANDAView.Models.Patient
+@using PANDAView.Pages.Patients.Dialogs
 @using PANDAView.Services.Patient
 @inject IPatientService PatientService
 @inject DialogService DialogService
@@ -14,6 +15,8 @@
         <RadzenDataGridColumn TItem="PatientDto" Property="LastName" Title="Last Name" />
         <RadzenDataGridColumn TItem="PatientDto" Property="NHSNumber" Title="NHS Number" />
         <RadzenDataGridColumn TItem="PatientDto" Property="DateOfBirth" Title="DOB" FormatString="{0:yyyy-MM-dd}" />
+        <RadzenDataGridColumn TItem="PatientDto" Property="Gender" Title="Gender" />
+        <RadzenDataGridColumn TItem="PatientDto" Property="Postcode" Title="Postcode" />
         <RadzenDataGridColumn TItem="PatientDto" Context="p">
             <Template Context="p">
                 <button class="nhs-btn-secondary" @onclick="() => EditPatient(p)">Edit</button>

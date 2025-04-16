@@ -12,7 +12,7 @@ public class CreatePatientDto
 
     [DataType(DataType.Date)]
     [JsonConverter(typeof(DateOnlyJsonConverter))]
-    public DateTime DateOfBirth { get; set; }
+    public DateOnly DateOfBirth { get; set; }
 
     public string NHSNumber { get; set; } = default!;
     public string Postcode { get; set; } = default!;

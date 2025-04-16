@@ -3,6 +3,7 @@ using PANDA.Api.Services;
 using PANDA.Api.Services.Clinician;
 using PANDA.Shared.Common;
 using PANDA.Shared.DTOs;
+using PANDA.Shared.DTOs.Clinician;
 using Serilog;
 
 namespace PANDA.Api.Controllers;

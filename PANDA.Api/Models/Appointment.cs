@@ -4,7 +4,7 @@ using PANDA.Shared.Enums;
 
 namespace PANDA.Api.Models;
 
-public class Appointment
+public class Appointment: AuditableEntity
 {
     public int Id { get; set; }
     public int PatientId { get; set; }

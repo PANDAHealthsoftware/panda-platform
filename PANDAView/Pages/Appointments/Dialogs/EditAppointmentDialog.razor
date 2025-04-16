@@ -4,6 +4,7 @@
 @using PANDA.Shared.DTOs.Patient
 @using PANDAView.Models
 @using PANDAView.Models.Appointment
+@using PANDAView.Pages.Patients.Dialogs
 @using PANDAView.Services.Appointment
 @using PANDAView.Services.Clinician
 @using PANDAView.Services.Patient
@@ -68,13 +69,13 @@
                     <option value="0" disabled>Select clinician</option>
                     @foreach (var c in _filteredClinicians)
                     {
-                        <option value="@c.Id">@c.Name</option>
+                        <option value="@c.Id">@c.FullName</option>
                     }
                 </select>
             }
             else
             {
-                <input class="nhs-input" value="@_clinicians.FirstOrDefault(c => c.Id == _editModel.ClinicianId)?.Name" disabled />
+                <input class="nhs-input" value="@_clinicians.FirstOrDefault(c => c.Id == _editModel.ClinicianId)?.FullName" disabled />
             }
             <ValidationMessage For="@(() => _editModel.ClinicianId)" />
         </div>
@@ -193,7 +194,7 @@
                     AppointmentDate = _editModel.AppointmentDate,
                     Department = _editModel.Department,
                     Status = _editModel.Status,
-                    Clinician = selectedClinician.Name,
+                    Clinician = selectedClinician.FullName,
                     ClinicianId = selectedClinician.Id
                 };
 
@@ -209,7 +210,7 @@
                     AppointmentDate = _editModel.AppointmentDate,
                     Department = _editModel.Department,
                     Status = _editModel.Status,
-                    Clinician = selectedClinician.Name,
+                    Clinician = selectedClinician.FullName,
                     ClinicianId = selectedClinician.Id
                 };
 

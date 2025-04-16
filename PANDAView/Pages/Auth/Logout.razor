@@ -1,0 +1,12 @@
+﻿@page "/logout"
+@using PANDAView.Services.Authentication
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await AuthService.LogoutAsync();
+        NavigationManager.NavigateTo("/login", true);
+    }
+}
