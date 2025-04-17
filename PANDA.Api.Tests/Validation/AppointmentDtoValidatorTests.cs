@@ -10,16 +10,19 @@ public class CreateAppointmentDtoValidatorTests
     private readonly CreateAppointmentDtoValidator _validator = new();
 
     [Fact]
-    public void Should_Have_Error_When_Required_Fields_Are_Missing()
+    public void Should_Have_Error_When_Clinician_Is_Missing()
     {
-        var dto = new CreateAppointmentDto();
+        var validator = new CreateAppointmentDtoValidator();
 
-        var result = _validator.TestValidate(dto);
+        var dto = new CreateAppointmentDto
+        {
+            PatientId = 1,
+            AppointmentDate = DateTime.UtcNow.AddDays(1),
+            Department = Department.Cardiology 
+        };
 
-        result.ShouldHaveValidationErrorFor(x => x.PatientId);
-        result.ShouldHaveValidationErrorFor(x => x.AppointmentDate);
-        result.ShouldHaveValidationErrorFor(x => x.Clinician);
-        result.ShouldHaveValidationErrorFor(x => x.Department);
+        var result = validator.TestValidate(dto);
+        result.ShouldHaveValidationErrorFor(x => x.ClinicianId);
     }
 
     [Fact]
@@ -30,7 +33,6 @@ public class CreateAppointmentDtoValidatorTests
             PatientId = 1,
             AppointmentDate = DateTime.UtcNow.AddDays(1),
             Status = AppointmentStatus.Scheduled,
-            Clinician = "Dr. Valid",
             Department = Department.Cardiology
         };
 

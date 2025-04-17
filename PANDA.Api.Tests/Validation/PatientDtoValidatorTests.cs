@@ -1,7 +1,6 @@
-﻿using FluentAssertions;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
 using PANDA.Api.Validation;
-using PANDA.Shared.Common;
+using PANDA.Domain.Enums;
 using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Patient;
 
@@ -31,8 +30,19 @@ public class PatientDtoValidatorTests
     [Fact]
     public void Should_Have_Error_When_DateOfBirth_Is_Invalid()
     {
-        var model = new PatientDto { DateOfBirth = DateOnly.FromDateTime(new DateTime(1990, 1, 1)) };
-        var result = _validator.TestValidate(model);
+        var validator = new CreatePatientDtoValidator();
+
+        var dto = new CreatePatientDto
+        {
+            FirstName = "John",
+            LastName = "Smith",
+            NHSNumber = "1234567890",
+            Postcode = "AB12 3CD",
+            Gender = Gender.Male,
+            DateOfBirth = DateOnly.MinValue // 👈 invalid value
+        };
+
+        var result = validator.TestValidate(dto);
         result.ShouldHaveValidationErrorFor(x => x.DateOfBirth);
     }
 

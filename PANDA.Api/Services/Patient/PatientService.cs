@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PANDA.Api.Infrastructure;
+using PANDA.Domain.Entities;
+using PANDA.Domain.ValueObjects;
 using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Patient;
 using Serilog;
@@ -14,18 +16,18 @@ namespace PANDA.Api.Services.Patient
         {
             _context = context;
         }
-        
+
         public async Task<List<PatientSummaryDto>> GetPatientSummariesAsync()
         {
             return await _context.Patients
                 .Select(p => new PatientSummaryDto
                 {
                     Id = p.Id,
-                    FullName = p.FirstName + " " + p.LastName
+                    FullName = p.Name.FirstName + " " + p.Name.LastName
                 })
                 .ToListAsync();
         }
-        
+
         public async Task<List<PatientDto>> GetAllPatientsAsync()
         {
             var patients = await _context.Patients.ToListAsync();
@@ -33,8 +35,8 @@ namespace PANDA.Api.Services.Patient
             return patients.Select(p => new PatientDto
             {
                 Id = p.Id,
-                FirstName = p.FirstName,
-                LastName = p.LastName,
+                FirstName = p.Name.FirstName,
+                LastName = p.Name.LastName,
                 DateOfBirth = p.DateOfBirth,
                 Gender = p.Gender,
                 NHSNumber = p.NHSNumber,
@@ -42,17 +44,17 @@ namespace PANDA.Api.Services.Patient
             }).ToList();
         }
 
-        public async Task<Models.Patient> AddPatientAsync(CreatePatientDto patientDto)
+        public async Task<Domain.Entities.Patient> AddPatientAsync(CreatePatientDto patientDto)
         {
-            var patient = new Models.Patient
-            {
-                FirstName = patientDto.FirstName,
-                LastName = patientDto.LastName,
-                DateOfBirth = patientDto.DateOfBirth,
-                NHSNumber = patientDto.NHSNumber,
-                Postcode = patientDto.Postcode,
-                Gender = patientDto.Gender,
-            };
+            var fullName = new FullName(patientDto.FirstName, patientDto.LastName);
+
+            var patient = new Domain.Entities.Patient(
+                fullName,
+                patientDto.DateOfBirth,
+                patientDto.Gender,
+                patientDto.NHSNumber,
+                patientDto.Postcode
+            );
 
             _context.Patients.Add(patient);
             await _context.SaveChangesAsync();
@@ -62,7 +64,7 @@ namespace PANDA.Api.Services.Patient
             return patient;
         }
 
-        public async Task<Models.Patient?> GetPatientByIdAsync(int id)
+        public async Task<Domain.Entities.Patient?> GetPatientByIdAsync(int id)
         {
             return await _context.Patients.FindAsync(id);
         }
@@ -72,11 +74,15 @@ namespace PANDA.Api.Services.Patient
             var patient = await _context.Patients.FindAsync(id);
             if (patient == null) return false;
 
-            patient.FirstName = patientDto.FirstName;
-            patient.LastName = patientDto.LastName;
-            patient.DateOfBirth = patientDto.DateOfBirth;
-            patient.NHSNumber = patientDto.NHSNumber;
-            patient.Postcode = patientDto.Postcode;
+            var fullName = new FullName(patientDto.FirstName, patientDto.LastName);
+
+            patient.UpdateDetails(
+                fullName,
+                patientDto.DateOfBirth,
+                patientDto.Gender,
+                patientDto.NHSNumber,
+                patientDto.Postcode
+            );
 
             await _context.SaveChangesAsync();
             return true;

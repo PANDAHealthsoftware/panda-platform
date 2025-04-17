@@ -1,12 +1,14 @@
 ﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using PANDA.Api.Infrastructure;
-using PANDA.Api.Models;
 using PANDA.Api.Services.Patient;
-using PANDA.Shared.Common;
+using PANDA.Domain.Entities;
+using PANDA.Domain.Enums;
+using PANDA.Domain.ValueObjects;
 using PANDA.Shared.DTOs.Patient;
 
 namespace PANDA.Api.Tests.Services;
+
 public class PatientServiceTests
 {
     private readonly DbContextOptions<PandaDbContext> _options;
@@ -14,7 +16,7 @@ public class PatientServiceTests
     public PatientServiceTests()
     {
         _options = new DbContextOptionsBuilder<PandaDbContext>()
-            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .EnableSensitiveDataLogging()
             .Options;
     }
@@ -25,7 +27,7 @@ public class PatientServiceTests
         await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
-        var dto = new CreatePatientDto()
+        var dto = new CreatePatientDto
         {
             FirstName = "Alice",
             LastName = "Smith",
@@ -38,7 +40,7 @@ public class PatientServiceTests
         var result = await service.AddPatientAsync(dto);
 
         result.Id.Should().BeGreaterThan(0);
-        result.FirstName.Should().Be("Alice");
+        result.Name.FirstName.Should().Be("Alice");
         context.Patients.Count().Should().Be(1);
     }
 
@@ -48,22 +50,20 @@ public class PatientServiceTests
         await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
-        var patient = new Patient
-        {
-            FirstName = "Bob",
-            LastName = "Jones",
-            DateOfBirth = new DateOnly(1985, 6, 15),
-            NHSNumber = "1234567890",
-            Postcode = "XY99 1YZ",
-            Gender = Gender.Male
-        };
+        var patient = new Patient(
+            new FullName("Bob", "Jones"),
+            new DateOnly(1985, 6, 15),
+            Gender.Male,
+            "1234567890",
+            "XY99 1YZ"
+        );
 
         context.Patients.Add(patient);
         await context.SaveChangesAsync();
 
         var result = await service.GetPatientByIdAsync(patient.Id);
         result.Should().NotBeNull();
-        result.FirstName.Should().Be("Bob");
+        result!.Name.FirstName.Should().Be("Bob");
     }
 
     [Fact]
@@ -72,20 +72,18 @@ public class PatientServiceTests
         await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
-        var patient = new Patient
-        {
-            FirstName = "Carl",
-            LastName = "Dean",
-            DateOfBirth = new DateOnly(1985, 6, 15),
-            NHSNumber = "0000000000",
-            Postcode = "ZZ1 1ZZ",
-            Gender = Gender.Male
-        };
+        var patient = new Patient(
+            new FullName("John", "Doe"),
+            new DateOnly(1985, 6, 15),
+            Gender.Male,
+            "1234567890",
+            "AB12 3CD"
+        );
 
         context.Patients.Add(patient);
         await context.SaveChangesAsync();
 
-        var updateDto = new UpdatePatientDto()
+        var updateDto = new UpdatePatientDto
         {
             FirstName = "Charlie",
             LastName = "Dean",
@@ -99,7 +97,8 @@ public class PatientServiceTests
         updated.Should().BeTrue();
 
         var updatedPatient = await context.Patients.FindAsync(patient.Id);
-        updatedPatient!.FirstName.Should().Be("Charlie");
+        updatedPatient!.Name.FirstName.Should().Be("Charlie");
+        updatedPatient.Name.LastName.Should().Be("Dean");
     }
 
     [Fact]
@@ -108,7 +107,7 @@ public class PatientServiceTests
         await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
-        var result = await service.UpdatePatientAsync(999, new UpdatePatientDto()
+        var result = await service.UpdatePatientAsync(999, new UpdatePatientDto
         {
             FirstName = "Ghost",
             LastName = "User",
@@ -127,15 +126,13 @@ public class PatientServiceTests
         await using var context = new PandaDbContext(_options);
         var service = new PatientService(context);
 
-        var patient = new Patient
-        {
-            FirstName = "David",
-            LastName = "Lee",
-            DateOfBirth = new DateOnly(1985, 6, 15),
-            NHSNumber = "1111111111",
-            Postcode = "YY1 2YY",
-            Gender = Gender.Male
-        };
+        var patient = new Patient(
+            new FullName("David", "Lee"),
+            new DateOnly(1985, 6, 15),
+            Gender.Male,
+            "1111111111",
+            "YY1 2YY"
+        );
 
         context.Patients.Add(patient);
         await context.SaveChangesAsync();

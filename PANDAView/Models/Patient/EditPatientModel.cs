@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using PANDA.Domain.Enums;
 using PANDA.Shared.Common;
 
 namespace PANDAView.Models.Patient;

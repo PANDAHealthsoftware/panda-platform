@@ -1,0 +1,1460 @@
+2025-04-17 14:16:11.543 +01:00 [INF] User profile is available. Using 'C:\Users\simon_adm\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-17 14:16:11.667 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-17 14:16:11.668 +01:00 [INF] Hosting environment: Development
+2025-04-17 14:16:11.668 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-17 14:16:11.711 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger - null null
+2025-04-17 14:16:11.761 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/index.html - null null
+2025-04-17 14:16:11.774 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger - 301 null null 63.3615ms
+2025-04-17 14:16:11.891 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/index.html - 200 null text/html;charset=utf-8 129.858ms
+2025-04-17 14:16:11.903 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/index.css - null null
+2025-04-17 14:16:11.903 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/index.js - null null
+2025-04-17 14:16:11.905 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/swagger-ui.css - null null
+2025-04-17 14:16:11.905 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/swagger-ui-bundle.js - null null
+2025-04-17 14:16:11.906 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/swagger-ui-standalone-preset.js - null null
+2025-04-17 14:16:11.909 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/index.js - 200 null application/javascript;charset=utf-8 6.7803ms
+2025-04-17 14:16:11.926 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-04-17 14:16:11.926 +01:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-04-17 14:16:11.926 +01:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-04-17 14:16:11.927 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/index.css - 200 202 text/css 23.8959ms
+2025-04-17 14:16:11.929 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/swagger-ui-standalone-preset.js - 200 229223 text/javascript 23.5082ms
+2025-04-17 14:16:11.929 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/swagger-ui.css - 200 154948 text/css 23.9419ms
+2025-04-17 14:16:11.932 +01:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-04-17 14:16:11.945 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/swagger-ui-bundle.js - 200 1466741 text/javascript 39.8206ms
+2025-04-17 14:16:12.055 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-17 14:16:12.221 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 165.9237ms
+2025-04-17 14:16:30.368 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/auth/login - null null
+2025-04-17 14:16:30.373 +01:00 [INF] CORS policy execution successful.
+2025-04-17 14:16:30.375 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/auth/login - 204 null null 6.7966ms
+2025-04-17 14:16:30.377 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/auth/login - application/json; charset=utf-8 42
+2025-04-17 14:16:30.378 +01:00 [INF] CORS policy execution successful.
+2025-04-17 14:16:30.482 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/04/2025 15:41:03', Current time (UTC): '17/04/2025 13:16:30'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-04-17 14:16:30.504 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/04/2025 15:41:03', Current time (UTC): '17/04/2025 13:16:30'.
+2025-04-17 14:16:30.506 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 14:16:30.522 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(PANDA.Api.Controllers.LoginRequest) on controller PANDA.Api.Controllers.AuthController (PANDA.Api).
+2025-04-17 14:16:30.593 +01:00 [INF] Executing action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api) - Validation state: "Valid"
+2025-04-17 14:16:30.607 +01:00 [INF] Executed action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 11.3379ms.
+2025-04-17 14:16:30.612 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-04-17 14:16:30.625 +01:00 [INF] Executed action PANDA.Api.Controllers.AuthController.Login (PANDA.Api) in 100.9419ms
+2025-04-17 14:16:30.626 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 14:16:30.626 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/auth/login - 200 null application/json; charset=utf-8 249.108ms
+2025-04-17 14:16:32.496 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 14:16:32.497 +01:00 [INF] CORS policy execution successful.
+2025-04-17 14:16:32.497 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 1.0993ms
+2025-04-17 14:16:32.498 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 14:16:32.499 +01:00 [INF] CORS policy execution successful.
+2025-04-17 14:16:32.511 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 14:16:32.513 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 14:16:32.628 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 14:16:32.630 +01:00 [INF] Retrieving all patients
+2025-04-17 14:16:33.403 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."FirstName", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 14:16:33.458 +01:00 [INF] Retrieved 2 patients
+2025-04-17 14:16:33.459 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 830.735ms.
+2025-04-17 14:16:33.460 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 14:16:33.468 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 953.952ms
+2025-04-17 14:16:33.468 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 14:16:33.470 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The converter specified on 'PANDA.Shared.DTOs.PatientDto.DateOfBirth' is not compatible with the type 'System.DateOnly'.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_SerializationConverterOnAttributeNotCompatible(Type classTypeAttributeIsOn, MemberInfo memberInfo, Type typeToConvert)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetConverterFromAttribute(JsonConverterAttribute converterAttribute, Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetCustomConverterForMember(Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreatePropertyInfo(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, JsonSerializerOptions options, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMember(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMembersDeclaredBySuperType(JsonTypeInfo typeInfo, Type currentType, NullabilityInfoContext nullabilityCtx, Boolean constructorHasSetsRequiredMembersAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.PopulateProperties(JsonTypeInfo typeInfo, NullabilityInfoContext nullabilityCtx)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateTypeInfoCore(Type type, JsonConverter converter, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateJsonTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoNoCaching(Type type)
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CreateCacheEntry(Type type, CachingContext context)
+--- End of stack trace from previous location ---
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CacheEntry.GetResult()
+   at System.Text.Json.JsonSerializerOptions.CachingContext.GetOrAddTypeInfo(Type type, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.Configure()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.<EnsureConfigured>g__ConfigureSynchronized|172_0()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.EnsureConfigured()
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfo(Type type)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-04-17 14:16:33.482 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 500 null text/plain; charset=utf-8 983.1297ms
+2025-04-17 16:15:59.094 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 16:15:59.130 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 16:15:59.142 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-17 16:15:59.154 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-04-17 16:15:59.290 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted"))
+2025-04-17 16:15:59.356 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted"))
+2025-04-17 16:15:59.365 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u"
+    WHERE NOT ("u"."IsDeleted"))
+2025-04-17 16:15:59.449 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?', @p4='?' (Size = 16), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?', @p9='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 16:15:59.457 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?', @p4='?' (Size = 13), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?', @p9='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 16:15:59.462 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 4), @p8='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 16:15:59.464 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 5), @p8='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 16:15:59.464 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 8), @p4='?' (Size = 5), @p5='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 16:15:59.465 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 16:15:59.465 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 16:15:59.601 +01:00 [INF] User profile is available. Using 'C:\Users\simon_adm\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-17 16:15:59.684 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-17 16:15:59.685 +01:00 [INF] Hosting environment: Development
+2025-04-17 16:15:59.685 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-17 16:15:59.706 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-17 16:15:59.907 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 201.8006ms
+2025-04-17 16:16:00.654 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 16:16:00.659 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:00.661 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 7.3513ms
+2025-04-17 16:16:00.664 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 16:16:00.666 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:00.782 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '17/04/2025 14:16:30', Current time (UTC): '17/04/2025 15:16:00'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-04-17 16:16:00.802 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '17/04/2025 14:16:30', Current time (UTC): '17/04/2025 15:16:00'.
+2025-04-17 16:16:00.806 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Clinician|Reception)
+2025-04-17 16:16:00.810 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-04-17 16:16:00.810 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 401 null null 146.3722ms
+2025-04-17 16:16:07.232 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/auth/login - null null
+2025-04-17 16:16:07.233 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:07.234 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/auth/login - 204 null null 1.2457ms
+2025-04-17 16:16:07.235 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/auth/login - application/json; charset=utf-8 42
+2025-04-17 16:16:07.236 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:07.237 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '17/04/2025 14:16:30', Current time (UTC): '17/04/2025 15:16:07'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-04-17 16:16:07.238 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '17/04/2025 14:16:30', Current time (UTC): '17/04/2025 15:16:07'.
+2025-04-17 16:16:07.239 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 16:16:07.253 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(PANDA.Api.Controllers.LoginRequest) on controller PANDA.Api.Controllers.AuthController (PANDA.Api).
+2025-04-17 16:16:07.311 +01:00 [INF] Executing action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:16:07.324 +01:00 [INF] Executed action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 10.8422ms.
+2025-04-17 16:16:07.327 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-04-17 16:16:07.339 +01:00 [INF] Executed action PANDA.Api.Controllers.AuthController.Login (PANDA.Api) in 83.8145ms
+2025-04-17 16:16:07.340 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 16:16:07.340 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/auth/login - 200 null application/json; charset=utf-8 104.3721ms
+2025-04-17 16:16:08.740 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 16:16:08.740 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:08.740 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.4874ms
+2025-04-17 16:16:08.741 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 16:16:08.741 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:08.751 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:16:08.753 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 16:16:08.754 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:16:08.755 +01:00 [INF] Retrieving all patients
+2025-04-17 16:16:08.804 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 16:16:08.813 +01:00 [INF] Retrieved 2 patients
+2025-04-17 16:16:08.813 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 58.9841ms.
+2025-04-17 16:16:08.814 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:16:08.822 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 68.718ms
+2025-04-17 16:16:08.823 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:16:08.824 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The converter specified on 'PANDA.Shared.DTOs.PatientDto.DateOfBirth' is not compatible with the type 'System.DateOnly'.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_SerializationConverterOnAttributeNotCompatible(Type classTypeAttributeIsOn, MemberInfo memberInfo, Type typeToConvert)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetConverterFromAttribute(JsonConverterAttribute converterAttribute, Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetCustomConverterForMember(Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreatePropertyInfo(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, JsonSerializerOptions options, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMember(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMembersDeclaredBySuperType(JsonTypeInfo typeInfo, Type currentType, NullabilityInfoContext nullabilityCtx, Boolean constructorHasSetsRequiredMembersAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.PopulateProperties(JsonTypeInfo typeInfo, NullabilityInfoContext nullabilityCtx)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateTypeInfoCore(Type type, JsonConverter converter, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateJsonTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoNoCaching(Type type)
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CreateCacheEntry(Type type, CachingContext context)
+--- End of stack trace from previous location ---
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CacheEntry.GetResult()
+   at System.Text.Json.JsonSerializerOptions.CachingContext.GetOrAddTypeInfo(Type type, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.Configure()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.<EnsureConfigured>g__ConfigureSynchronized|172_0()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.EnsureConfigured()
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfo(Type type)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-04-17 16:16:08.835 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 500 null text/plain; charset=utf-8 93.89ms
+2025-04-17 16:16:11.100 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 16:16:11.100 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:11.100 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.5151ms
+2025-04-17 16:16:11.101 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 16:16:11.102 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:11.102 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 16:16:11.104 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 16:16:11.104 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:16:11.105 +01:00 [INF] Retrieving all appointments
+2025-04-17 16:16:11.124 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."PatientName", "a"."Status"
+FROM "Appointments" AS "a"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 16:16:11.134 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 30.0814ms.
+2025-04-17 16:16:11.135 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:16:11.142 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 38.5039ms
+2025-04-17 16:16:11.143 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 16:16:11.143 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 41.3083ms
+2025-04-17 16:16:21.824 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 16:16:21.824 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:21.824 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.4631ms
+2025-04-17 16:16:21.825 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 16:16:21.825 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:16:21.825 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:16:21.825 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 16:16:21.826 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:16:21.826 +01:00 [INF] Retrieving all patients
+2025-04-17 16:16:21.827 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 16:16:21.827 +01:00 [INF] Retrieved 2 patients
+2025-04-17 16:16:21.827 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.374ms.
+2025-04-17 16:16:21.827 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:16:21.828 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 2.7164ms
+2025-04-17 16:16:21.829 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:16:21.829 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The converter specified on 'PANDA.Shared.DTOs.PatientDto.DateOfBirth' is not compatible with the type 'System.DateOnly'.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_SerializationConverterOnAttributeNotCompatible(Type classTypeAttributeIsOn, MemberInfo memberInfo, Type typeToConvert)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetConverterFromAttribute(JsonConverterAttribute converterAttribute, Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetCustomConverterForMember(Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreatePropertyInfo(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, JsonSerializerOptions options, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMember(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMembersDeclaredBySuperType(JsonTypeInfo typeInfo, Type currentType, NullabilityInfoContext nullabilityCtx, Boolean constructorHasSetsRequiredMembersAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.PopulateProperties(JsonTypeInfo typeInfo, NullabilityInfoContext nullabilityCtx)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateTypeInfoCore(Type type, JsonConverter converter, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateJsonTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoNoCaching(Type type)
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CreateCacheEntry(Type type, CachingContext context)
+--- End of stack trace from previous location ---
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CacheEntry.GetResult()
+   at System.Text.Json.JsonSerializerOptions.CachingContext.GetOrAddTypeInfo(Type type, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.Configure()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.<EnsureConfigured>g__ConfigureSynchronized|172_0()
+--- End of stack trace from previous location ---
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.<EnsureConfigured>g__ConfigureSynchronized|172_0()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.EnsureConfigured()
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfo(Type type)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-04-17 16:16:21.831 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 500 null text/plain; charset=utf-8 5.8875ms
+2025-04-17 16:18:51.669 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 16:18:51.702 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 16:18:51.712 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-17 16:18:51.724 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-04-17 16:18:51.856 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted"))
+2025-04-17 16:18:51.860 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted"))
+2025-04-17 16:18:51.860 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u"
+    WHERE NOT ("u"."IsDeleted"))
+2025-04-17 16:18:51.954 +01:00 [INF] User profile is available. Using 'C:\Users\simon_adm\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-17 16:18:52.018 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-17 16:18:52.018 +01:00 [INF] Hosting environment: Development
+2025-04-17 16:18:52.018 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-17 16:18:52.036 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-17 16:18:52.216 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 180.8742ms
+2025-04-17 16:18:53.447 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 16:18:53.451 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:18:53.453 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 6.408ms
+2025-04-17 16:18:53.454 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 16:18:53.456 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:18:53.591 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:18:53.602 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 16:18:53.606 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:18:53.608 +01:00 [INF] Retrieving all patients
+2025-04-17 16:18:53.667 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 16:18:53.721 +01:00 [INF] Retrieved 2 patients
+2025-04-17 16:18:53.724 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 115.3955ms.
+2025-04-17 16:18:53.729 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:18:53.751 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 146.9888ms
+2025-04-17 16:18:53.752 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:18:53.753 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The converter specified on 'PANDA.Shared.DTOs.PatientDto.DateOfBirth' is not compatible with the type 'System.DateOnly'.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_SerializationConverterOnAttributeNotCompatible(Type classTypeAttributeIsOn, MemberInfo memberInfo, Type typeToConvert)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetConverterFromAttribute(JsonConverterAttribute converterAttribute, Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetCustomConverterForMember(Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreatePropertyInfo(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, JsonSerializerOptions options, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMember(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMembersDeclaredBySuperType(JsonTypeInfo typeInfo, Type currentType, NullabilityInfoContext nullabilityCtx, Boolean constructorHasSetsRequiredMembersAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.PopulateProperties(JsonTypeInfo typeInfo, NullabilityInfoContext nullabilityCtx)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateTypeInfoCore(Type type, JsonConverter converter, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateJsonTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoNoCaching(Type type)
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CreateCacheEntry(Type type, CachingContext context)
+--- End of stack trace from previous location ---
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CacheEntry.GetResult()
+   at System.Text.Json.JsonSerializerOptions.CachingContext.GetOrAddTypeInfo(Type type, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.Configure()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.<EnsureConfigured>g__ConfigureSynchronized|172_0()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.EnsureConfigured()
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfo(Type type)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-04-17 16:18:53.773 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 500 null text/plain; charset=utf-8 318.3247ms
+2025-04-17 16:18:57.529 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 16:18:57.530 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:18:57.530 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.9521ms
+2025-04-17 16:18:57.531 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 16:18:57.531 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:18:57.533 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 16:18:57.535 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 16:18:57.535 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:18:57.536 +01:00 [INF] Retrieving all appointments
+2025-04-17 16:18:57.553 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."PatientName", "a"."Status"
+FROM "Appointments" AS "a"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 16:18:57.563 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 27.9404ms.
+2025-04-17 16:18:57.564 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:18:57.579 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 43.9016ms
+2025-04-17 16:18:57.579 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 16:18:57.579 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 47.9282ms
+2025-04-17 16:19:00.291 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/auth/login - null null
+2025-04-17 16:19:00.292 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:19:00.292 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/auth/login - 204 null null 0.7477ms
+2025-04-17 16:19:00.294 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/auth/login - application/json; charset=utf-8 42
+2025-04-17 16:19:00.294 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:19:00.295 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 16:19:00.300 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(PANDA.Api.Controllers.LoginRequest) on controller PANDA.Api.Controllers.AuthController (PANDA.Api).
+2025-04-17 16:19:00.338 +01:00 [INF] Executing action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:19:00.349 +01:00 [INF] Executed action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 10.4253ms.
+2025-04-17 16:19:00.349 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-04-17 16:19:00.353 +01:00 [INF] Executed action PANDA.Api.Controllers.AuthController.Login (PANDA.Api) in 52.6621ms
+2025-04-17 16:19:00.353 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 16:19:00.353 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/auth/login - 200 null application/json; charset=utf-8 59.2059ms
+2025-04-17 16:19:05.273 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 16:19:05.273 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:19:05.273 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.5226ms
+2025-04-17 16:19:05.274 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 16:19:05.275 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:19:05.275 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:19:05.275 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 16:19:05.276 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:19:05.276 +01:00 [INF] Retrieving all patients
+2025-04-17 16:19:05.277 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 16:19:05.277 +01:00 [INF] Retrieved 2 patients
+2025-04-17 16:19:05.277 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.354ms.
+2025-04-17 16:19:05.277 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:19:05.278 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 2.6281ms
+2025-04-17 16:19:05.278 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:19:05.279 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The converter specified on 'PANDA.Shared.DTOs.PatientDto.DateOfBirth' is not compatible with the type 'System.DateOnly'.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_SerializationConverterOnAttributeNotCompatible(Type classTypeAttributeIsOn, MemberInfo memberInfo, Type typeToConvert)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetConverterFromAttribute(JsonConverterAttribute converterAttribute, Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetCustomConverterForMember(Type typeToConvert, MemberInfo memberInfo, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreatePropertyInfo(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, JsonSerializerOptions options, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMember(JsonTypeInfo typeInfo, Type typeToConvert, MemberInfo memberInfo, NullabilityInfoContext nullabilityCtx, Boolean shouldCheckForRequiredKeyword, Boolean hasJsonIncludeAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.AddMembersDeclaredBySuperType(JsonTypeInfo typeInfo, Type currentType, NullabilityInfoContext nullabilityCtx, Boolean constructorHasSetsRequiredMembersAttribute, PropertyHierarchyResolutionState& state)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.PopulateProperties(JsonTypeInfo typeInfo, NullabilityInfoContext nullabilityCtx)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateTypeInfoCore(Type type, JsonConverter converter, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.CreateJsonTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver.GetTypeInfo(Type type, JsonSerializerOptions options)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoNoCaching(Type type)
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CreateCacheEntry(Type type, CachingContext context)
+--- End of stack trace from previous location ---
+   at System.Text.Json.JsonSerializerOptions.CachingContext.CacheEntry.GetResult()
+   at System.Text.Json.JsonSerializerOptions.CachingContext.GetOrAddTypeInfo(Type type, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.Configure()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.<EnsureConfigured>g__ConfigureSynchronized|172_0()
+--- End of stack trace from previous location ---
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.<EnsureConfigured>g__ConfigureSynchronized|172_0()
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo.EnsureConfigured()
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfoInternal(Type type, Boolean ensureConfigured, Nullable`1 ensureNotNull, Boolean resolveIfMutable, Boolean fallBackToNearestAncestorType)
+   at System.Text.Json.JsonSerializerOptions.GetTypeInfo(Type type)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-04-17 16:19:05.281 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 500 null text/plain; charset=utf-8 6.3392ms
+2025-04-17 16:24:00.929 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 16:24:00.962 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 16:24:00.973 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-17 16:24:00.985 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-04-17 16:24:01.130 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted"))
+2025-04-17 16:24:01.134 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted"))
+2025-04-17 16:24:01.135 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u"
+    WHERE NOT ("u"."IsDeleted"))
+2025-04-17 16:24:01.257 +01:00 [INF] User profile is available. Using 'C:\Users\simon_adm\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-17 16:24:01.331 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-17 16:24:01.331 +01:00 [INF] Hosting environment: Development
+2025-04-17 16:24:01.331 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-17 16:24:01.353 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-17 16:24:01.554 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 202.1552ms
+2025-04-17 16:24:06.858 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 16:24:06.863 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:24:06.866 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 7.2862ms
+2025-04-17 16:24:06.867 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 16:24:06.869 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:24:06.995 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:24:07.005 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 16:24:07.010 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:24:07.011 +01:00 [INF] Retrieving all patients
+2025-04-17 16:24:07.065 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 16:24:07.121 +01:00 [INF] Retrieved 2 patients
+2025-04-17 16:24:07.124 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 112.2894ms.
+2025-04-17 16:24:07.131 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:24:16.373 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 16:24:16.374 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:24:16.374 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 1.09ms
+2025-04-17 16:24:16.376 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 16:24:16.376 +01:00 [INF] CORS policy execution successful.
+2025-04-17 16:24:16.379 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 16:24:16.380 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 16:24:16.381 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 16:24:16.381 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 9372.0121ms
+2025-04-17 16:24:16.381 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 16:24:16.381 +01:00 [INF] Retrieving all appointments
+2025-04-17 16:24:16.384 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 9516.9633ms
+2025-04-17 16:24:16.407 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."PatientName", "a"."Status"
+FROM "Appointments" AS "a"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 16:24:16.420 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 39.7845ms.
+2025-04-17 16:24:16.421 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 16:24:16.430 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 50.0454ms
+2025-04-17 16:24:16.430 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 16:24:16.430 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 54.8371ms
+2025-04-17 17:43:29.043 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:43:29.090 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:43:29.103 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-17 17:43:29.119 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-04-17 17:43:29.271 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted"))
+2025-04-17 17:43:29.396 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 19), @p4='?' (Size = 16), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?' (Size = 11), @p9='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 17:43:29.404 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 17), @p4='?' (Size = 13), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?' (Size = 11), @p9='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 17:43:29.420 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u"
+    WHERE NOT ("u"."IsDeleted"))
+2025-04-17 17:43:29.428 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 8), @p4='?' (Size = 5), @p5='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:43:29.429 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:43:29.429 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:43:29.435 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted"))
+2025-04-17 17:43:29.464 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 4), @p8='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:43:29.466 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 5), @p8='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:43:29.504 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Chris Carter'
+LIMIT 1
+2025-04-17 17:43:29.507 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Emma Reid'
+LIMIT 1
+2025-04-17 17:43:29.508 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Appointments" AS "a"
+    WHERE NOT ("a"."IsDeleted"))
+2025-04-17 17:43:29.528 +01:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[@p0='?' (Size = 33), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Appointments" ("AppointmentDate", "ClinicianId", "DeletedAt", "Department", "IsDeleted", "LastModified", "MissedTimestamp", "PatientId", "Status")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:43:29.550 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'PANDA.Api.Infrastructure.PandaDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'NOT NULL constraint failed: Appointments.PatientName'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'NOT NULL constraint failed: Appointments.PatientName'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-04-17 17:45:17.459 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:45:17.498 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:45:17.511 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-17 17:45:17.524 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-04-17 17:45:17.691 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted"))
+2025-04-17 17:45:17.822 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 19), @p4='?' (Size = 16), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?' (Size = 11), @p9='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 17:45:17.832 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 17), @p4='?' (Size = 13), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?' (Size = 11), @p9='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 17:45:17.850 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u"
+    WHERE NOT ("u"."IsDeleted"))
+2025-04-17 17:45:17.858 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 8), @p4='?' (Size = 5), @p5='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:45:17.859 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:45:17.859 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:45:17.864 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted"))
+2025-04-17 17:45:17.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 4), @p8='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:45:17.895 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 5), @p8='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:45:17.932 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Chris Carter'
+LIMIT 1
+2025-04-17 17:45:17.934 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Emma Reid'
+LIMIT 1
+2025-04-17 17:45:17.936 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Appointments" AS "a"
+    WHERE NOT ("a"."IsDeleted"))
+2025-04-17 17:45:17.955 +01:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[@p0='?' (Size = 33), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Appointments" ("AppointmentDate", "ClinicianId", "DeletedAt", "Department", "IsDeleted", "LastModified", "MissedTimestamp", "PatientId", "Status")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:45:17.978 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'PANDA.Api.Infrastructure.PandaDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'NOT NULL constraint failed: Appointments.PatientName'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'NOT NULL constraint failed: Appointments.PatientName'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-04-17 17:47:18.440 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:47:18.483 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:47:18.494 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-17 17:47:18.506 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-04-17 17:47:18.656 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted"))
+2025-04-17 17:47:18.774 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 19), @p4='?' (Size = 16), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?' (Size = 11), @p9='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 17:47:18.782 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (Size = 17), @p4='?' (Size = 13), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime), @p8='?' (Size = 11), @p9='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Clinicians" ("CreatedAt", "DeletedAt", "Department", "Email", "FullName", "IsActive", "IsDeleted", "LastModified", "PhoneNumber", "RegistrationNumber")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9)
+RETURNING "Id";
+2025-04-17 17:47:18.798 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u"
+    WHERE NOT ("u"."IsDeleted"))
+2025-04-17 17:47:18.807 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 8), @p4='?' (Size = 5), @p5='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:47:18.807 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 9)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:47:18.808 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime), @p3='?' (Size = 12), @p4='?' (Size = 9), @p5='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("DeletedAt", "IsDeleted", "LastModified", "PasswordHash", "Role", "Username")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-04-17 17:47:18.812 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted"))
+2025-04-17 17:47:18.841 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 4), @p8='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:47:18.843 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 8), @p7='?' (Size = 5), @p8='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:47:18.878 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Chris Carter'
+LIMIT 1
+2025-04-17 17:47:18.881 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Emma Reid'
+LIMIT 1
+2025-04-17 17:47:18.882 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Appointments" AS "a"
+    WHERE NOT ("a"."IsDeleted"))
+2025-04-17 17:47:18.899 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 33), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Appointments" ("AppointmentDate", "ClinicianId", "DeletedAt", "Department", "IsDeleted", "LastModified", "MissedTimestamp", "PatientId", "Status")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:47:18.900 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 33), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime), @p3='?' (DbType = Int32), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Appointments" ("AppointmentDate", "ClinicianId", "DeletedAt", "Department", "IsDeleted", "LastModified", "MissedTimestamp", "PatientId", "Status")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:47:18.997 +01:00 [INF] User profile is available. Using 'C:\Users\simon_adm\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-17 17:47:19.085 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-17 17:47:19.086 +01:00 [INF] Hosting environment: Development
+2025-04-17 17:47:19.086 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-17 17:47:19.106 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/index.html - null null
+2025-04-17 17:47:19.250 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/index.html - 200 null text/html;charset=utf-8 144.2335ms
+2025-04-17 17:47:19.423 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-17 17:47:19.423 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/favicon-32x32.png - null null
+2025-04-17 17:47:19.436 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-04-17 17:47:19.437 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/favicon-32x32.png - 200 628 image/png 12.9259ms
+2025-04-17 17:47:19.553 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 130.1457ms
+2025-04-17 17:47:26.954 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/auth/login - null null
+2025-04-17 17:47:26.957 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:26.959 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/auth/login - 204 null null 5.3009ms
+2025-04-17 17:47:26.961 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/auth/login - application/json; charset=utf-8 42
+2025-04-17 17:47:26.962 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:27.075 +01:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '17/04/2025 16:19:00', Current time (UTC): '17/04/2025 16:47:27'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-04-17 17:47:27.090 +01:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '17/04/2025 16:19:00', Current time (UTC): '17/04/2025 16:47:27'.
+2025-04-17 17:47:27.092 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 17:47:27.104 +01:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(PANDA.Api.Controllers.LoginRequest) on controller PANDA.Api.Controllers.AuthController (PANDA.Api).
+2025-04-17 17:47:27.154 +01:00 [INF] Executing action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:47:27.165 +01:00 [INF] Executed action method PANDA.Api.Controllers.AuthController.Login (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 8.7731ms.
+2025-04-17 17:47:27.169 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-04-17 17:47:27.177 +01:00 [INF] Executed action PANDA.Api.Controllers.AuthController.Login (PANDA.Api) in 70.462ms
+2025-04-17 17:47:27.177 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AuthController.Login (PANDA.Api)'
+2025-04-17 17:47:27.177 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/auth/login - 200 null application/json; charset=utf-8 216.0734ms
+2025-04-17 17:47:28.313 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 17:47:28.314 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:28.314 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.9578ms
+2025-04-17 17:47:28.315 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 17:47:28.315 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:28.327 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 17:47:28.329 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:47:28.330 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:47:28.331 +01:00 [INF] Retrieving all patients
+2025-04-17 17:47:28.360 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 17:47:28.368 +01:00 [INF] Retrieved 2 patients
+2025-04-17 17:47:28.369 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 38.8736ms.
+2025-04-17 17:47:28.369 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:47:28.382 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 52.3015ms
+2025-04-17 17:47:28.382 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 17:47:28.385 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 69.7493ms
+2025-04-17 17:47:42.571 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 17:47:42.572 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:42.572 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.5648ms
+2025-04-17 17:47:42.573 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/patients - application/json; charset=utf-8 126
+2025-04-17 17:47:42.573 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:42.574 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:47:42.576 +01:00 [INF] Route matched with {action = "Create", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(PANDA.Shared.DTOs.Patient.CreatePatientDto) on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:47:42.623 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-17 17:47:42.642 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.Create (PANDA.Api) in 66.1807ms
+2025-04-17 17:47:42.642 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:47:42.642 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/patients - 400 null application/problem+json; charset=utf-8 69.6503ms
+2025-04-17 17:47:49.913 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 17:47:49.915 +01:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Clinician|Reception)
+2025-04-17 17:47:49.918 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-04-17 17:47:49.919 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 401 null null 5.5607ms
+2025-04-17 17:47:53.130 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 17:47:53.130 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:53.130 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.3453ms
+2025-04-17 17:47:53.131 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/patients - application/json; charset=utf-8 126
+2025-04-17 17:47:53.131 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:47:53.131 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:47:53.131 +01:00 [INF] Route matched with {action = "Create", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(PANDA.Shared.DTOs.Patient.CreatePatientDto) on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:47:53.134 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-17 17:47:53.134 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.Create (PANDA.Api) in 2.9185ms
+2025-04-17 17:47:53.134 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:47:53.134 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/patients - 400 null application/problem+json; charset=utf-8 3.7241ms
+2025-04-17 17:48:26.843 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 17:48:26.845 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:26.845 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 1.9777ms
+2025-04-17 17:48:26.846 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/patients - application/json; charset=utf-8 128
+2025-04-17 17:48:26.847 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:26.847 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:48:26.847 +01:00 [INF] Route matched with {action = "Create", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(PANDA.Shared.DTOs.Patient.CreatePatientDto) on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:48:26.848 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-17 17:48:26.849 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.Create (PANDA.Api) in 1.776ms
+2025-04-17 17:48:26.849 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:48:26.849 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/patients - 400 null application/problem+json; charset=utf-8 2.4486ms
+2025-04-17 17:48:32.271 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients - null null
+2025-04-17 17:48:32.271 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:32.271 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients - 204 null null 0.3662ms
+2025-04-17 17:48:32.272 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/patients - application/json; charset=utf-8 126
+2025-04-17 17:48:32.272 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:32.272 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:48:32.273 +01:00 [INF] Route matched with {action = "Create", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(PANDA.Shared.DTOs.Patient.CreatePatientDto) on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:48:32.273 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.Create (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:32.274 +01:00 [INF] Creating patient with data: {"FirstName":"Simon","LastName":"Roberts","DateOfBirth":"1979-01-01","NHSNumber":"9434765919","Postcode":"BB6 7RP","Gender":"Male","$type":"CreatePatientDto"}
+2025-04-17 17:48:32.291 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = DateTime), @p2='?' (DbType = Int32), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime), @p5='?' (Size = 10), @p6='?' (Size = 7), @p7='?' (Size = 5), @p8='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Patients" ("DateOfBirth", "DeletedAt", "Gender", "IsDeleted", "LastModified", "NHSNumber", "Postcode", "FirstName", "LastName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id";
+2025-04-17 17:48:32.294 +01:00 [INF] Patient added with ID: 3
+2025-04-17 17:48:32.294 +01:00 [INF] Patient created successfully with ID: 3
+2025-04-17 17:48:32.295 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.Create (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 21.7167ms.
+2025-04-17 17:48:32.295 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'PANDA.Domain.Entities.Patient'.
+2025-04-17 17:48:32.313 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.Create (PANDA.Api) in 40.4811ms
+2025-04-17 17:48:32.313 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.Create (PANDA.Api)'
+2025-04-17 17:48:32.313 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/patients - 201 null application/json; charset=utf-8 41.2501ms
+2025-04-17 17:48:32.341 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients - null null
+2025-04-17 17:48:32.341 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:32.341 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:32.341 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:48:32.342 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:32.342 +01:00 [INF] Retrieving all patients
+2025-04-17 17:48:32.343 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 17:48:32.343 +01:00 [INF] Retrieved 3 patients
+2025-04-17 17:48:32.343 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.616ms.
+2025-04-17 17:48:32.343 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.PatientDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:32.344 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api) in 2.3005ms
+2025-04-17 17:48:32.344 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:32.344 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients - 200 null application/json; charset=utf-8 3.1312ms
+2025-04-17 17:48:36.877 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 17:48:36.877 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:36.878 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.5007ms
+2025-04-17 17:48:36.879 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:48:36.879 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:36.879 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:36.880 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:48:36.881 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:36.881 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:48:36.920 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:48:36.931 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 49.9941ms.
+2025-04-17 17:48:36.931 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:36.939 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 58.666ms
+2025-04-17 17:48:36.939 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:36.939 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 60.6996ms
+2025-04-17 17:48:40.673 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:48:40.673 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:40.673 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - 204 null null 0.3395ms
+2025-04-17 17:48:40.674 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:48:40.675 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:40.675 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:48:40.676 +01:00 [INF] Route matched with {action = "GetSummaries", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[PANDA.Shared.DTOs.Patient.PatientSummaryDto]]] GetSummaries() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:48:40.676 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:40.678 +01:00 [INF] Patient summaries endpoint hit by: admin
+2025-04-17 17:48:40.687 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."FirstName" || ' ' || "p"."LastName" AS "FullName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 17:48:40.687 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 10.8724ms.
+2025-04-17 17:48:40.687 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Patient.PatientSummaryDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:40.688 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) in 12.0883ms
+2025-04-17 17:48:40.688 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:48:40.688 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients/summaries - 200 null application/json; charset=utf-8 14.0472ms
+2025-04-17 17:48:40.699 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/clinicians - null null
+2025-04-17 17:48:40.699 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:40.699 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/clinicians - 204 null null 0.2701ms
+2025-04-17 17:48:40.700 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/clinicians - null null
+2025-04-17 17:48:40.700 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:40.701 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:48:40.702 +01:00 [INF] Route matched with {action = "GetAll", controller = "Clinicians"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.CliniciansController (PANDA.Api).
+2025-04-17 17:48:40.702 +01:00 [INF] Executing action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:40.703 +01:00 [INF] Retrieving all clinicians
+2025-04-17 17:48:40.706 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted")
+2025-04-17 17:48:40.708 +01:00 [INF] Executed action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 5.394ms.
+2025-04-17 17:48:40.708 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Clinician.ClinicianDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:40.710 +01:00 [INF] Executed action PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) in 7.6854ms
+2025-04-17 17:48:40.710 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:48:40.710 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/clinicians - 200 null application/json; charset=utf-8 9.5194ms
+2025-04-17 17:48:47.894 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - null null
+2025-04-17 17:48:47.894 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:47.895 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - 204 null null 0.5065ms
+2025-04-17 17:48:47.895 +01:00 [INF] Request starting HTTP/2 PUT https://localhost:44372/api/appointments/1 - application/json; charset=utf-8 136
+2025-04-17 17:48:47.896 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:47.896 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:48:47.898 +01:00 [INF] Route matched with {action = "Update", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, PANDA.Shared.DTOs.Appointment.UpdateAppointmentDto) on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:48:47.935 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-17 17:48:47.935 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api) in 36.7871ms
+2025-04-17 17:48:47.935 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:48:47.935 +01:00 [INF] Request finished HTTP/2 PUT https://localhost:44372/api/appointments/1 - 400 null application/problem+json; charset=utf-8 39.7007ms
+2025-04-17 17:48:47.945 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 17:48:47.945 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:47.945 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.3552ms
+2025-04-17 17:48:47.946 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:48:47.946 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:47.946 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:47.946 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:48:47.947 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:47.947 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:48:47.949 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:48:47.950 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.8736ms.
+2025-04-17 17:48:47.950 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:47.951 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 4.0282ms
+2025-04-17 17:48:47.951 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:47.951 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 4.8227ms
+2025-04-17 17:48:50.706 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:48:50.706 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:50.706 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:50.706 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:48:50.706 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:50.707 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:48:50.707 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:48:50.708 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.2525ms.
+2025-04-17 17:48:50.708 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:50.708 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 1.9762ms
+2025-04-17 17:48:50.708 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:48:50.708 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 2.7599ms
+2025-04-17 17:48:57.258 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:48:57.259 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:57.259 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - 204 null null 0.3963ms
+2025-04-17 17:48:57.260 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:48:57.260 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:57.260 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:48:57.260 +01:00 [INF] Route matched with {action = "GetSummaries", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[PANDA.Shared.DTOs.Patient.PatientSummaryDto]]] GetSummaries() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:48:57.261 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:57.261 +01:00 [INF] Patient summaries endpoint hit by: admin
+2025-04-17 17:48:57.263 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."FirstName" || ' ' || "p"."LastName" AS "FullName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 17:48:57.263 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.4492ms.
+2025-04-17 17:48:57.263 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Patient.PatientSummaryDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:57.264 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) in 3.2586ms
+2025-04-17 17:48:57.264 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:48:57.264 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients/summaries - 200 null application/json; charset=utf-8 4.267ms
+2025-04-17 17:48:57.280 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/clinicians - null null
+2025-04-17 17:48:57.280 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:57.280 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/clinicians - 204 null null 0.3066ms
+2025-04-17 17:48:57.281 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/clinicians - null null
+2025-04-17 17:48:57.281 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:48:57.282 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:48:57.282 +01:00 [INF] Route matched with {action = "GetAll", controller = "Clinicians"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.CliniciansController (PANDA.Api).
+2025-04-17 17:48:57.282 +01:00 [INF] Executing action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:48:57.282 +01:00 [INF] Retrieving all clinicians
+2025-04-17 17:48:57.283 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted")
+2025-04-17 17:48:57.283 +01:00 [INF] Executed action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.9652ms.
+2025-04-17 17:48:57.283 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Clinician.ClinicianDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:48:57.284 +01:00 [INF] Executed action PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) in 1.8899ms
+2025-04-17 17:48:57.284 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:48:57.284 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/clinicians - 200 null application/json; charset=utf-8 2.5167ms
+2025-04-17 17:49:05.736 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - null null
+2025-04-17 17:49:05.736 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:49:05.736 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - 204 null null 0.4651ms
+2025-04-17 17:49:05.737 +01:00 [INF] Request starting HTTP/2 PUT https://localhost:44372/api/appointments/1 - application/json; charset=utf-8 136
+2025-04-17 17:49:05.737 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:49:05.738 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:49:05.738 +01:00 [INF] Route matched with {action = "Update", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, PANDA.Shared.DTOs.Appointment.UpdateAppointmentDto) on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:49:05.739 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-17 17:49:05.739 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api) in 1.5037ms
+2025-04-17 17:49:05.739 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:49:05.739 +01:00 [INF] Request finished HTTP/2 PUT https://localhost:44372/api/appointments/1 - 400 null application/problem+json; charset=utf-8 2.0817ms
+2025-04-17 17:49:05.900 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 17:49:05.900 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:49:05.900 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.4256ms
+2025-04-17 17:49:05.901 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:49:05.901 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:49:05.902 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:49:05.902 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:49:05.902 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:49:05.902 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:49:05.903 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:49:05.903 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.2537ms.
+2025-04-17 17:49:05.903 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:49:05.904 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 1.9479ms
+2025-04-17 17:49:05.904 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:49:05.904 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 2.5972ms
+2025-04-17 17:50:09.055 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:50:09.056 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:09.057 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - 204 null null 1.8765ms
+2025-04-17 17:50:09.058 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:50:09.058 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:09.059 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:50:09.059 +01:00 [INF] Route matched with {action = "GetSummaries", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[PANDA.Shared.DTOs.Patient.PatientSummaryDto]]] GetSummaries() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:50:09.059 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:50:09.059 +01:00 [INF] Patient summaries endpoint hit by: admin
+2025-04-17 17:50:09.062 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."FirstName" || ' ' || "p"."LastName" AS "FullName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 17:50:09.062 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2.8687ms.
+2025-04-17 17:50:09.062 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Patient.PatientSummaryDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:50:09.062 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) in 3.448ms
+2025-04-17 17:50:09.062 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:50:09.062 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients/summaries - 200 null application/json; charset=utf-8 4.1251ms
+2025-04-17 17:50:09.069 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/clinicians - null null
+2025-04-17 17:50:09.069 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:09.069 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/clinicians - 204 null null 0.2877ms
+2025-04-17 17:50:09.070 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/clinicians - null null
+2025-04-17 17:50:09.070 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:09.070 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:50:09.070 +01:00 [INF] Route matched with {action = "GetAll", controller = "Clinicians"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.CliniciansController (PANDA.Api).
+2025-04-17 17:50:09.071 +01:00 [INF] Executing action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:50:09.071 +01:00 [INF] Retrieving all clinicians
+2025-04-17 17:50:09.072 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted")
+2025-04-17 17:50:09.072 +01:00 [INF] Executed action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.8544ms.
+2025-04-17 17:50:09.072 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Clinician.ClinicianDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:50:09.072 +01:00 [INF] Executed action PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) in 1.9215ms
+2025-04-17 17:50:09.072 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:50:09.072 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/clinicians - 200 null application/json; charset=utf-8 2.6267ms
+2025-04-17 17:50:14.710 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - null null
+2025-04-17 17:50:14.710 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:14.710 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - 204 null null 0.4341ms
+2025-04-17 17:50:14.711 +01:00 [INF] Request starting HTTP/2 PUT https://localhost:44372/api/appointments/1 - application/json; charset=utf-8 136
+2025-04-17 17:50:14.711 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:14.712 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:50:14.712 +01:00 [INF] Route matched with {action = "Update", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, PANDA.Shared.DTOs.Appointment.UpdateAppointmentDto) on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:50:14.713 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-17 17:50:14.714 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api) in 1.8312ms
+2025-04-17 17:50:14.714 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:50:14.714 +01:00 [INF] Request finished HTTP/2 PUT https://localhost:44372/api/appointments/1 - 400 null application/problem+json; charset=utf-8 2.6227ms
+2025-04-17 17:50:14.722 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 17:50:14.722 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:14.723 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.3181ms
+2025-04-17 17:50:14.724 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:50:14.724 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:14.724 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:50:14.724 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:50:14.724 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:50:14.724 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:50:14.725 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:50:14.726 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.5548ms.
+2025-04-17 17:50:14.726 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:50:14.727 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 2.4248ms
+2025-04-17 17:50:14.727 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:50:14.727 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 3.1667ms
+2025-04-17 17:50:20.668 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 17:50:20.668 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:20.668 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.5595ms
+2025-04-17 17:50:20.669 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:50:20.669 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:50:20.669 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:50:20.670 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:50:20.670 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:50:20.670 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:50:20.671 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:50:20.671 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.3344ms.
+2025-04-17 17:50:20.671 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:50:20.672 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 2.0415ms
+2025-04-17 17:50:20.672 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:50:20.672 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 2.6872ms
+2025-04-17 17:50:53.415 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:50:53.446 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-04-17 17:50:53.456 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-04-17 17:50:53.468 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-04-17 17:50:53.598 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted"))
+2025-04-17 17:50:53.602 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Users" AS "u"
+    WHERE NOT ("u"."IsDeleted"))
+2025-04-17 17:50:53.605 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted"))
+2025-04-17 17:50:53.644 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Chris Carter'
+LIMIT 1
+2025-04-17 17:50:53.686 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted") AND "c"."FullName" = 'Dr. Emma Reid'
+LIMIT 1
+2025-04-17 17:50:53.687 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Appointments" AS "a"
+    WHERE NOT ("a"."IsDeleted"))
+2025-04-17 17:50:53.786 +01:00 [INF] User profile is available. Using 'C:\Users\simon_adm\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-04-17 17:50:53.850 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-17 17:50:53.850 +01:00 [INF] Hosting environment: Development
+2025-04-17 17:50:53.850 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-17 17:50:53.868 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-17 17:50:54.044 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 176.4221ms
+2025-04-17 17:51:01.872 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 17:51:01.877 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:01.879 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 7.497ms
+2025-04-17 17:51:01.882 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:51:01.883 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:01.993 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:51:02.003 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:51:02.007 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:51:02.009 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:51:02.067 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:51:02.111 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 101.6186ms.
+2025-04-17 17:51:02.116 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:51:02.156 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 150.273ms
+2025-04-17 17:51:02.156 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:51:02.158 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 276.8076ms
+2025-04-17 17:51:06.301 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:51:06.302 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:06.302 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/patients/summaries - 204 null null 1.1081ms
+2025-04-17 17:51:06.303 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/patients/summaries - null null
+2025-04-17 17:51:06.303 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:06.306 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:51:06.308 +01:00 [INF] Route matched with {action = "GetSummaries", controller = "Patients"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[PANDA.Shared.DTOs.Patient.PatientSummaryDto]]] GetSummaries() on controller PANDA.Api.Controllers.PatientsController (PANDA.Api).
+2025-04-17 17:51:06.308 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:51:06.310 +01:00 [INF] Patient summaries endpoint hit by: admin
+2025-04-17 17:51:06.332 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."FirstName" || ' ' || "p"."LastName" AS "FullName"
+FROM "Patients" AS "p"
+WHERE NOT ("p"."IsDeleted")
+2025-04-17 17:51:06.332 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 23.7637ms.
+2025-04-17 17:51:06.332 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Patient.PatientSummaryDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:51:06.334 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api) in 25.5922ms
+2025-04-17 17:51:06.334 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientsController.GetSummaries (PANDA.Api)'
+2025-04-17 17:51:06.334 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/patients/summaries - 200 null application/json; charset=utf-8 30.5097ms
+2025-04-17 17:51:06.343 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/clinicians - null null
+2025-04-17 17:51:06.344 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:06.344 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/clinicians - 204 null null 0.2332ms
+2025-04-17 17:51:06.345 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/clinicians - null null
+2025-04-17 17:51:06.345 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:06.346 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:51:06.347 +01:00 [INF] Route matched with {action = "GetAll", controller = "Clinicians"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.CliniciansController (PANDA.Api).
+2025-04-17 17:51:06.347 +01:00 [INF] Executing action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:51:06.348 +01:00 [INF] Retrieving all clinicians
+2025-04-17 17:51:06.350 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+FROM "Clinicians" AS "c"
+WHERE NOT ("c"."IsDeleted")
+2025-04-17 17:51:06.353 +01:00 [INF] Executed action method PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 5.3879ms.
+2025-04-17 17:51:06.353 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Clinician.ClinicianDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:51:06.358 +01:00 [INF] Executed action PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api) in 11.0574ms
+2025-04-17 17:51:06.358 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.CliniciansController.GetAll (PANDA.Api)'
+2025-04-17 17:51:06.358 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/clinicians - 200 null application/json; charset=utf-8 13.4599ms
+2025-04-17 17:51:09.693 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - null null
+2025-04-17 17:51:09.693 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:09.694 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments/1 - 204 null null 0.9528ms
+2025-04-17 17:51:09.696 +01:00 [INF] Request starting HTTP/2 PUT https://localhost:44372/api/appointments/1 - application/json; charset=utf-8 136
+2025-04-17 17:51:09.696 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:09.697 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:51:09.703 +01:00 [INF] Route matched with {action = "Update", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Update(Int32, PANDA.Shared.DTOs.Appointment.UpdateAppointmentDto) on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:51:09.789 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-04-17 17:51:09.812 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api) in 108.7234ms
+2025-04-17 17:51:09.812 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.Update (PANDA.Api)'
+2025-04-17 17:51:09.812 +01:00 [INF] Request finished HTTP/2 PUT https://localhost:44372/api/appointments/1 - 400 null application/problem+json; charset=utf-8 116.5565ms
+2025-04-17 17:51:09.906 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44372/api/appointments - null null
+2025-04-17 17:51:09.906 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:09.906 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44372/api/appointments - 204 null null 0.4056ms
+2025-04-17 17:51:09.908 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/appointments - null null
+2025-04-17 17:51:09.908 +01:00 [INF] CORS policy execution successful.
+2025-04-17 17:51:09.909 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:51:09.909 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentsController (PANDA.Api).
+2025-04-17 17:51:09.909 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-17 17:51:09.909 +01:00 [INF] Retrieving all appointments
+2025-04-17 17:51:09.912 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."ClinicianId", "a"."DeletedAt", "a"."Department", "a"."IsDeleted", "a"."LastModified", "a"."MissedTimestamp", "a"."PatientId", "a"."Status", "t"."Id", "t"."CreatedAt", "t"."DeletedAt", "t"."Department", "t"."Email", "t"."FullName", "t"."IsActive", "t"."IsDeleted", "t"."LastModified", "t"."PhoneNumber", "t"."RegistrationNumber", "t0"."Id", "t0"."DateOfBirth", "t0"."DeletedAt", "t0"."Gender", "t0"."IsDeleted", "t0"."LastModified", "t0"."NHSNumber", "t0"."Postcode", "t0"."FirstName", "t0"."LastName"
+FROM "Appointments" AS "a"
+INNER JOIN (
+    SELECT "c"."Id", "c"."CreatedAt", "c"."DeletedAt", "c"."Department", "c"."Email", "c"."FullName", "c"."IsActive", "c"."IsDeleted", "c"."LastModified", "c"."PhoneNumber", "c"."RegistrationNumber"
+    FROM "Clinicians" AS "c"
+    WHERE NOT ("c"."IsDeleted")
+) AS "t" ON "a"."ClinicianId" = "t"."Id"
+INNER JOIN (
+    SELECT "p"."Id", "p"."DateOfBirth", "p"."DeletedAt", "p"."Gender", "p"."IsDeleted", "p"."LastModified", "p"."NHSNumber", "p"."Postcode", "p"."FirstName", "p"."LastName"
+    FROM "Patients" AS "p"
+    WHERE NOT ("p"."IsDeleted")
+) AS "t0" ON "a"."PatientId" = "t0"."Id"
+WHERE NOT ("a"."IsDeleted")
+ORDER BY "a"."AppointmentDate"
+2025-04-17 17:51:09.913 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3.5961ms.
+2025-04-17 17:51:09.913 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Shared.DTOs.Appointment.AppointmentDto, PANDA.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-17 17:51:09.913 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api) in 4.7248ms
+2025-04-17 17:51:09.913 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentsController.GetAll (PANDA.Api)'
+2025-04-17 17:51:09.914 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/appointments - 200 null application/json; charset=utf-8 5.5619ms
