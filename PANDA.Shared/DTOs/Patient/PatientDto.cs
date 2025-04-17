@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PANDA.Domain.Enums;
 using PANDA.Shared.Common;
 using PANDA.Shared.Converters;
 
@@ -9,8 +10,7 @@ namespace PANDA.Shared.DTOs
         public int Id { get; set; }
         public string FirstName { get; set; } = default!;
         public string LastName { get; set; } = default!;
-
-        [JsonConverter(typeof(DateOnlyJsonConverter))]
+        
         public DateOnly DateOfBirth { get; set; }
 
         public string NHSNumber { get; set; } = default!;

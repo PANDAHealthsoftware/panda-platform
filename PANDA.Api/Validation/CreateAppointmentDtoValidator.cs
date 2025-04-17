@@ -21,10 +21,8 @@ public class CreateAppointmentDtoValidator : AbstractValidator<CreateAppointment
             .IsInEnum()
             .WithMessage(ErrorMessages.InvalidAppointmentStatus);
 
-        RuleFor(x => x.PatientId)
-            .Cascade(CascadeMode.Stop)
-            .GreaterThan(0)
-            .WithMessage(ErrorMessages.ClinicianRequired);
+        RuleFor(x => x.ClinicianId)
+            .GreaterThan(0).WithMessage("Clinician must be selected");
 
         RuleFor(x => x.Department)
             .IsInEnum()

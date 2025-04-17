@@ -73,10 +73,10 @@
                 {
                     Id = a.Id,
                     PatientId = a.PatientId,
-                    PatientName = a.PatientName,
+                    PatientName = a.PatientFullName,
                     AppointmentDate = a.AppointmentDate,
                     Status = a.Status,
-                    Clinician = a.Clinician,
+                    Clinician = a.ClinicianFullName,
                     Department = a.Department,
                     ClinicianId = a.ClinicianId,
                 }).ToList();
@@ -100,10 +100,8 @@
             {
                 Id = appointment.Id,
                 PatientId = appointment.PatientId,
-                PatientName = appointment.PatientName,
                 AppointmentDate = appointment.AppointmentDate,
                 Status = appointment.Status,
-                Clinician = appointment.Clinician,
                 ClinicianId = appointment.ClinicianId,
                 Department = appointment.Department,
             };

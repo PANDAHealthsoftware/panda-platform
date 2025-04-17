@@ -137,9 +137,9 @@ public class AppointmentsController : ControllerBase
     }
 
     // POST: api/appointments/track-missed
-    [HttpPost("track-missed")]
+    [HttpPost("{id}/track-missed")]
     [Authorize(Roles = Roles.Admin + "," + Roles.Clinician)]
-    public async Task<IActionResult> TrackMissedAppointment([FromQuery] int appointmentId)
+    public async Task<IActionResult> TrackMissedAppointment(int appointmentId)
     {
         Log.Information(LogMessages.TrackingMissed, appointmentId);
 

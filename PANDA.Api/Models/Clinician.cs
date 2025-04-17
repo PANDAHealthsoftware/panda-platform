@@ -1,4 +1,5 @@
-﻿using PANDA.Shared.Enums;
+﻿using PANDA.Domain.Entities;
+using PANDA.Shared.Enums;
 
 namespace PANDA.Api.Models;
 

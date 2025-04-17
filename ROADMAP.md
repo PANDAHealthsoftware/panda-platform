@@ -1,4 +1,3 @@
-
 # PANDA Roadmap
 
 This roadmap outlines the planned development for the PANDA (Patient Appointment Network Data Application) project. It reflects current capabilities and prioritizes upcoming enhancements in functionality, infrastructure, testing, and deployment.
