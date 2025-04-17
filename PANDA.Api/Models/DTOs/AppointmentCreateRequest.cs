@@ -1,4 +1,4 @@
-﻿namespace PANDA.Shared.Common;
+﻿namespace PANDA.Api.Models.DTOs;
 
 public class AppointmentCreateRequest
 {

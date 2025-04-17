@@ -1,4 +1,6 @@
-﻿namespace PANDA.Api.Models;
+﻿using PANDA.Domain.Entities;
+
+namespace PANDA.Api.Models;
 
 public class User: AuditableEntity
 {

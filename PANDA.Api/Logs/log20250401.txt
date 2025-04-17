@@ -1,0 +1,181 @@
+2025-04-01 14:01:19.416 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-01 14:01:19.444 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-01 14:01:19.455 +01:00 [INF] Hosting environment: Development
+2025-04-01 14:01:19.455 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-01 14:01:19.637 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 199.4096ms
+2025-04-01 14:01:27.794 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Patient/1 - null null
+2025-04-01 14:01:27.804 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientController.Get (PANDA.Api)'
+2025-04-01 14:01:27.819 +01:00 [INF] Route matched with {action = "Get", controller = "Patient"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller PANDA.Api.Controllers.PatientController (PANDA.Api).
+2025-04-01 14:01:27.906 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientController.Get (PANDA.Api) - Validation state: "Valid"
+2025-04-01 14:01:27.907 +01:00 [INF] Retrieving patient with ID: 1
+2025-04-01 14:01:27.934 +01:00 [INF] Patient retrieved successfully: {"Id":1,"FirstName":"Alice","LastName":"Smith","DateOfBirth":"1985-04-23T00:00:00.0000000","Gender":null,"NHSNumber":"9434765919","Postcode":"AB1 2CD","$type":"Patient"}
+2025-04-01 14:01:27.939 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientController.Get (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 30.8748ms.
+2025-04-01 14:01:27.945 +01:00 [INF] Executing OkObjectResult, writing value of type 'PANDA.Api.Models.Patient'.
+2025-04-01 14:01:27.977 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientController.Get (PANDA.Api) in 156.5474ms
+2025-04-01 14:01:27.977 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientController.Get (PANDA.Api)'
+2025-04-01 14:01:27.979 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Patient/1 - 200 null application/json; charset=utf-8 185.9921ms
+2025-04-01 14:57:03.929 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-01 14:57:03.949 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-01 14:57:03.960 +01:00 [INF] Hosting environment: Development
+2025-04-01 14:57:03.960 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-01 14:57:04.139 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 193.2314ms
+2025-04-01 14:58:16.422 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/Appointment - application/json 138
+2025-04-01 14:58:16.437 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api)'
+2025-04-01 14:58:16.452 +01:00 [INF] Route matched with {action = "Create", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(PANDA.Api.Dto.AppointmentDto) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 14:58:16.588 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api) - Validation state: "Valid"
+2025-04-01 14:58:16.590 +01:00 [INF] Creating appointment with data: {"PatientId":1,"AppointmentDate":"2025-04-10T14:00:00.0000000+00:00","Status":"Scheduled","Clinician":"Dr Gupta","Department":"General","$type":"AppointmentDto"}
+2025-04-01 14:58:16.614 +01:00 [INF] Appointment created successfully with ID: 5
+2025-04-01 14:58:16.617 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 26.5042ms.
+2025-04-01 14:58:16.623 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'PANDA.Api.Models.Appointment'.
+2025-04-01 14:58:16.663 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api) in 208.2511ms
+2025-04-01 14:58:16.663 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api)'
+2025-04-01 14:58:16.664 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/Appointment - 201 null application/json; charset=utf-8 242.7953ms
+2025-04-01 14:58:36.731 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointment/5 - null null
+2025-04-01 14:58:36.732 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 14:58:36.734 +01:00 [INF] Route matched with {action = "Get", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 14:58:36.738 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) - Validation state: "Valid"
+2025-04-01 14:58:36.738 +01:00 [INF] Retrieving appointment with ID: 5
+2025-04-01 14:58:36.873 +01:00 [ERR] An error occurred while retrieving appointment with ID: 5
+System.Data.DataException: Error parsing column 2 (AppointmentDate=2025-04-10 14:00:00+00:00 - String)
+ ---> System.InvalidCastException: Invalid cast from 'System.String' to 'System.DateTimeOffset'.
+   at System.Convert.DefaultToType(IConvertible value, Type targetType, IFormatProvider provider)
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   --- End of inner exception stack trace ---
+   at Dapper.SqlMapper.ThrowDataException(Exception ex, Int32 index, IDataReader reader, Object value) in /_/Dapper/SqlMapper.cs:line 3966
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   at Dapper.SqlMapper.QueryRowAsync[T](IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command)
+   at PANDA.Api.Services.AppointmentService.GetByIdAsync(Int32 id)
+   at PANDA.Api.Controllers.AppointmentController.Get(Int32 id)
+2025-04-01 14:58:36.906 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 167.8869ms.
+2025-04-01 14:58:36.906 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2025-04-01 14:58:36.907 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) in 172.4309ms
+2025-04-01 14:58:36.907 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 14:58:36.907 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointment/5 - 500 null text/plain; charset=utf-8 177.234ms
+2025-04-01 15:00:05.561 +01:00 [INF] Request starting HTTP/2 POST https://localhost:44372/api/Appointment - application/json 138
+2025-04-01 15:00:05.562 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api)'
+2025-04-01 15:00:05.562 +01:00 [INF] Route matched with {action = "Create", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(PANDA.Api.Dto.AppointmentDto) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 15:00:05.564 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api) - Validation state: "Valid"
+2025-04-01 15:00:05.564 +01:00 [INF] Creating appointment with data: {"PatientId":1,"AppointmentDate":"2025-04-10T15:00:00.0000000+00:00","Status":"Scheduled","Clinician":"Dr Gupta","Department":"General","$type":"AppointmentDto"}
+2025-04-01 15:00:05.571 +01:00 [INF] Appointment created successfully with ID: 6
+2025-04-01 15:00:05.571 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.CreatedAtActionResult in 6.5516ms.
+2025-04-01 15:00:05.571 +01:00 [INF] Executing CreatedAtActionResult, writing value of type 'PANDA.Api.Models.Appointment'.
+2025-04-01 15:00:05.572 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api) in 9.1648ms
+2025-04-01 15:00:05.572 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Create (PANDA.Api)'
+2025-04-01 15:00:05.572 +01:00 [INF] Request finished HTTP/2 POST https://localhost:44372/api/Appointment - 201 null application/json; charset=utf-8 11.041ms
+2025-04-01 15:00:15.689 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointment/6 - null null
+2025-04-01 15:00:15.690 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:00:15.690 +01:00 [INF] Route matched with {action = "Get", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 15:00:15.690 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) - Validation state: "Valid"
+2025-04-01 15:00:15.690 +01:00 [INF] Retrieving appointment with ID: 6
+2025-04-01 15:00:15.734 +01:00 [ERR] An error occurred while retrieving appointment with ID: 6
+System.Data.DataException: Error parsing column 2 (AppointmentDate=2025-04-10 15:00:00+00:00 - String)
+ ---> System.InvalidCastException: Invalid cast from 'System.String' to 'System.DateTimeOffset'.
+   at System.Convert.DefaultToType(IConvertible value, Type targetType, IFormatProvider provider)
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   --- End of inner exception stack trace ---
+   at Dapper.SqlMapper.ThrowDataException(Exception ex, Int32 index, IDataReader reader, Object value) in /_/Dapper/SqlMapper.cs:line 3966
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   at Dapper.SqlMapper.QueryRowAsync[T](IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command)
+   at PANDA.Api.Services.AppointmentService.GetByIdAsync(Int32 id)
+   at PANDA.Api.Controllers.AppointmentController.Get(Int32 id)
+2025-04-01 15:00:15.735 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 44.8289ms.
+2025-04-01 15:00:15.736 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2025-04-01 15:00:15.736 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) in 46.1005ms
+2025-04-01 15:00:15.736 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:00:15.736 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointment/6 - 500 null text/plain; charset=utf-8 46.9184ms
+2025-04-01 15:00:41.250 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointment/6 - null null
+2025-04-01 15:00:41.250 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:00:41.250 +01:00 [INF] Route matched with {action = "Get", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 15:00:41.251 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) - Validation state: "Valid"
+2025-04-01 15:00:44.698 +01:00 [INF] Retrieving appointment with ID: 6
+2025-04-01 15:01:02.295 +01:00 [ERR] An error occurred while retrieving appointment with ID: 6
+System.Data.DataException: Error parsing column 2 (AppointmentDate=2025-04-10 15:00:00+00:00 - String)
+ ---> System.InvalidCastException: Invalid cast from 'System.String' to 'System.DateTimeOffset'.
+   at System.Convert.DefaultToType(IConvertible value, Type targetType, IFormatProvider provider)
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   --- End of inner exception stack trace ---
+   at Dapper.SqlMapper.ThrowDataException(Exception ex, Int32 index, IDataReader reader, Object value) in /_/Dapper/SqlMapper.cs:line 3966
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   at Dapper.SqlMapper.QueryRowAsync[T](IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command)
+   at PANDA.Api.Services.AppointmentService.GetByIdAsync(Int32 id)
+   at PANDA.Api.Controllers.AppointmentController.Get(Int32 id)
+2025-04-01 15:01:02.297 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 21046.0838ms.
+2025-04-01 15:01:02.297 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2025-04-01 15:01:02.297 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) in 21047.0873ms
+2025-04-01 15:01:02.297 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:01:02.298 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointment/6 - 500 null text/plain; charset=utf-8 21047.6659ms
+2025-04-01 15:01:05.162 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointment/6 - null null
+2025-04-01 15:01:05.164 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:01:05.165 +01:00 [INF] Route matched with {action = "Get", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 15:01:05.165 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) - Validation state: "Valid"
+2025-04-01 15:01:07.770 +01:00 [INF] Retrieving appointment with ID: 6
+2025-04-01 15:01:43.163 +01:00 [ERR] An error occurred while retrieving appointment with ID: 6
+System.Data.DataException: Error parsing column 2 (AppointmentDate=2025-04-10 15:00:00+00:00 - String)
+ ---> System.InvalidCastException: Invalid cast from 'System.String' to 'System.DateTimeOffset'.
+   at System.Convert.DefaultToType(IConvertible value, Type targetType, IFormatProvider provider)
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   --- End of inner exception stack trace ---
+   at Dapper.SqlMapper.ThrowDataException(Exception ex, Int32 index, IDataReader reader, Object value) in /_/Dapper/SqlMapper.cs:line 3966
+   at Deserializee056787f-021b-4e94-b2da-07e837937237(DbDataReader)
+   at Dapper.SqlMapper.QueryRowAsync[T](IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command)
+   at PANDA.Api.Services.AppointmentService.GetByIdAsync(Int32 id)
+   at PANDA.Api.Controllers.AppointmentController.Get(Int32 id)
+2025-04-01 15:01:43.164 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 37998.8728ms.
+2025-04-01 15:01:43.164 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2025-04-01 15:01:43.165 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) in 37999.8831ms
+2025-04-01 15:01:43.165 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:01:43.165 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointment/6 - 500 null text/plain; charset=utf-8 38002.181ms
+2025-04-01 15:04:53.784 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-01 15:04:53.804 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-01 15:04:53.816 +01:00 [INF] Hosting environment: Development
+2025-04-01 15:04:53.816 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-01 15:04:53.982 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 180.8297ms
+2025-04-01 15:04:56.428 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointment/6 - null null
+2025-04-01 15:04:56.441 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:04:56.456 +01:00 [INF] Route matched with {action = "Get", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 15:04:56.544 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) - Validation state: "Valid"
+2025-04-01 15:05:00.798 +01:00 [INF] Retrieving appointment with ID: 6
+2025-04-01 15:05:00.859 +01:00 [ERR] An error occurred while retrieving appointment with ID: 6
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Reason'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Dapper.SqlMapper.QueryRowAsync[T](IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 489
+   at PANDA.Api.Services.AppointmentService.GetByIdAsync(Int32 id) in C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api\Services\AppointmentService.cs:line 42
+   at PANDA.Api.Controllers.AppointmentController.Get(Int32 id) in C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api\Controllers\Appointment.cs:line 53
+2025-04-01 15:05:00.891 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 4343.769ms.
+2025-04-01 15:05:00.896 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2025-04-01 15:05:00.899 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) in 4441.4045ms
+2025-04-01 15:05:00.899 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:05:00.902 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointment/6 - 500 null text/plain; charset=utf-8 4473.728ms
+2025-04-01 15:06:31.060 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-01 15:06:31.079 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-01 15:06:31.090 +01:00 [INF] Hosting environment: Development
+2025-04-01 15:06:31.090 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-01 15:06:31.256 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 179.6242ms
+2025-04-01 15:06:33.781 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointment/6 - null null
+2025-04-01 15:06:33.794 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:06:33.808 +01:00 [INF] Route matched with {action = "Get", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(Int32) on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-01 15:06:33.900 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) - Validation state: "Valid"
+2025-04-01 15:06:37.866 +01:00 [INF] Retrieving appointment with ID: 6
+2025-04-01 15:06:37.929 +01:00 [ERR] An error occurred while retrieving appointment with ID: 6
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Reason'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Dapper.SqlMapper.QueryRowAsync[T](IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 489
+   at PANDA.Api.Services.AppointmentService.GetByIdAsync(Int32 id) in C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api\Services\AppointmentService.cs:line 50
+   at PANDA.Api.Controllers.AppointmentController.Get(Int32 id) in C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api\Controllers\Appointment.cs:line 53
+2025-04-01 15:06:37.962 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 4059.627ms.
+2025-04-01 15:06:37.968 +01:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2025-04-01 15:06:37.971 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api) in 4160.8429ms
+2025-04-01 15:06:37.971 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.Get (PANDA.Api)'
+2025-04-01 15:06:37.972 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointment/6 - 500 null text/plain; charset=utf-8 4191.7051ms

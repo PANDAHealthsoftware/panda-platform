@@ -137,7 +137,6 @@
         {
             Id = Appointment.Id,
             PatientId = Appointment.PatientId,
-            PatientName = Appointment.PatientName,
             AppointmentDate = Appointment.AppointmentDate == default ? DateTime.Now : Appointment.AppointmentDate,
             Status = Appointment.Status == 0 ? AppointmentStatus.Scheduled : Appointment.Status,
             Department = Appointment.Department,
@@ -168,10 +167,9 @@
 
             _patients.Add(summary);
             _editModel.PatientId = summary.Id;
-            _editModel.PatientName = summary.FullName;
         }
     }
-
+    
     private async Task OnSubmit()
     {
         _saving = true;
@@ -190,11 +188,9 @@
                 var createDto = new CreateAppointmentDto
                 {
                     PatientId = _editModel.PatientId,
-                    PatientName = _editModel.PatientName ?? _patients.FirstOrDefault(p => p.Id == _editModel.PatientId)?.FullName ?? "Unknown",
                     AppointmentDate = _editModel.AppointmentDate,
                     Department = _editModel.Department,
                     Status = _editModel.Status,
-                    Clinician = selectedClinician.FullName,
                     ClinicianId = selectedClinician.Id
                 };
 
@@ -206,11 +202,9 @@
                 {
                     Id = _editModel.Id,
                     PatientId = _editModel.PatientId,
-                    PatientName = _editModel.PatientName ?? _patients.FirstOrDefault(p => p.Id == _editModel.PatientId)?.FullName ?? "Unknown",
                     AppointmentDate = _editModel.AppointmentDate,
                     Department = _editModel.Department,
                     Status = _editModel.Status,
-                    Clinician = selectedClinician.FullName,
                     ClinicianId = selectedClinician.Id
                 };
 

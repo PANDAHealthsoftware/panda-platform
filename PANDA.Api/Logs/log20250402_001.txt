@@ -1,0 +1,28 @@
+2025-04-02 15:38:34.893 +01:00 [INF] Now listening on: http://localhost:5216
+2025-04-02 15:38:34.913 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 15:38:34.913 +01:00 [INF] Hosting environment: Development
+2025-04-02 15:38:34.914 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 15:40:19.638 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5216/api/appointments - null null
+2025-04-02 15:40:19.654 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-04-02 15:40:19.657 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5216/api/appointments - 404 0 null 19.0578ms
+2025-04-02 15:40:19.660 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5216/api/appointments, Response status code: 404
+2025-04-02 15:40:35.198 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/appointments/1 - null null
+2025-04-02 15:40:35.202 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/appointments/1 - 404 0 null 4.2232ms
+2025-04-02 15:40:35.203 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5216/api/appointments/1, Response status code: 404
+2025-04-02 15:41:53.040 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/appointments/1 - null null
+2025-04-02 15:41:53.042 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/appointments/1 - 404 0 null 2.149ms
+2025-04-02 15:41:53.044 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5216/api/appointments/1, Response status code: 404
+2025-04-02 15:42:18.712 +01:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5216/api/appointments/1 - null null
+2025-04-02 15:42:18.714 +01:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5216/api/appointments/1 - 404 0 null 1.5011ms
+2025-04-02 15:42:18.715 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: DELETE http://localhost:5216/api/appointments/1, Response status code: 404
+2025-04-02 15:42:57.712 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/appointments/1 - null null
+2025-04-02 15:42:57.714 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/appointments/1 - 404 0 null 1.7754ms
+2025-04-02 15:42:57.715 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5216/api/appointments/1, Response status code: 404
+2025-04-02 15:45:51.048 +01:00 [INF] Now listening on: http://localhost:5216
+2025-04-02 15:45:51.065 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 15:45:51.065 +01:00 [INF] Hosting environment: Development
+2025-04-02 15:45:51.066 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 15:46:00.265 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/ - null null
+2025-04-02 15:46:00.281 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-04-02 15:46:00.284 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/ - 404 0 null 19.8046ms
+2025-04-02 15:46:00.289 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5216/, Response status code: 404

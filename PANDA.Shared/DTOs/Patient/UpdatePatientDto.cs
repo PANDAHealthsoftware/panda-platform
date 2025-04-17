@@ -1,4 +1,5 @@
-﻿using PANDA.Shared.Common;
+﻿using PANDA.Domain.Enums;
+using PANDA.Shared.Common;
 
 namespace PANDA.Shared.DTOs.Patient;
 

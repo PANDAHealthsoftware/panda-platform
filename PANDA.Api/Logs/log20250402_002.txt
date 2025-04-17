@@ -1,0 +1,148 @@
+2025-04-02 15:46:44.823 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 15:46:44.844 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-02 15:46:44.867 +01:00 [INF] Hosting environment: Development
+2025-04-02 15:46:44.867 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 15:46:45.044 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 203.2659ms
+2025-04-02 15:46:55.035 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-02 15:46:55.039 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 5.5705ms
+2025-04-02 15:47:39.724 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44372/api/v1/appointment - null null
+2025-04-02 15:47:39.731 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44372/api/v1/appointment - 404 null null 7.2234ms
+2025-04-02 15:47:39.732 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44372/api/v1/appointment, Response status code: 404
+2025-04-02 15:47:41.633 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44372/api/v1/appointment - null null
+2025-04-02 15:47:41.634 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44372/api/v1/appointment - 404 null null 0.8763ms
+2025-04-02 15:47:41.634 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44372/api/v1/appointment, Response status code: 404
+2025-04-02 15:47:54.158 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointment - null null
+2025-04-02 15:47:54.162 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 15:47:54.173 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-02 15:47:54.270 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-02 15:47:54.788 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."Department", "a"."MissedTimestamp", "a"."PatientId", "a"."Status"
+FROM "Appointments" AS "a"
+2025-04-02 15:47:54.848 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 576.2439ms.
+2025-04-02 15:47:54.853 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.AppointmentDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 15:47:54.890 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api) in 715.0222ms
+2025-04-02 15:47:54.890 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 15:47:54.894 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointment - 200 null application/json; charset=utf-8 736.5043ms
+2025-04-02 15:48:04.166 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44372/api/Appointment - null null
+2025-04-02 15:48:04.166 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 15:48:04.167 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-02 15:48:04.167 +01:00 [INF] Executing action method PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-02 15:48:04.178 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."Department", "a"."MissedTimestamp", "a"."PatientId", "a"."Status"
+FROM "Appointments" AS "a"
+2025-04-02 15:48:04.179 +01:00 [INF] Executed action method PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 11.1512ms.
+2025-04-02 15:48:04.179 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.AppointmentDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 15:48:04.179 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api) in 12.5619ms
+2025-04-02 15:48:04.179 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 15:48:04.180 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44372/api/Appointment - 200 null application/json; charset=utf-8 13.5321ms
+2025-04-02 15:49:03.017 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Patient - null null
+2025-04-02 15:49:03.042 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 15:49:03.044 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patient"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientController (PANDA.Api).
+2025-04-02 15:49:03.044 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-02 15:49:03.045 +01:00 [INF] Retrieving all patients
+2025-04-02 15:49:03.063 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-02 15:49:03.072 +01:00 [INF] Retrieved 3 patients
+2025-04-02 15:49:03.072 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 28.161ms.
+2025-04-02 15:49:03.072 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.PatientDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 15:49:03.080 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api) in 35.9508ms
+2025-04-02 15:49:03.080 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 15:49:03.080 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Patient - 200 null application/json; charset=utf-8 63.0396ms
+2025-04-02 15:49:09.288 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:44372/api/Patient - null null
+2025-04-02 15:49:09.289 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 15:49:09.289 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patient"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientController (PANDA.Api).
+2025-04-02 15:49:09.289 +01:00 [INF] Executing action method PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api) - Validation state: "Valid"
+2025-04-02 15:49:09.290 +01:00 [INF] Retrieving all patients
+2025-04-02 15:49:09.290 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-02 15:49:09.290 +01:00 [INF] Retrieved 3 patients
+2025-04-02 15:49:09.290 +01:00 [INF] Executed action method PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.9267ms.
+2025-04-02 15:49:09.291 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.PatientDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 15:49:09.291 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api) in 1.8859ms
+2025-04-02 15:49:09.291 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 15:49:09.291 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:44372/api/Patient - 200 null application/json; charset=utf-8 2.7305ms
+2025-04-02 16:01:09.177 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 16:01:09.208 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-02 16:01:09.217 +01:00 [INF] Hosting environment: Development
+2025-04-02 16:01:09.217 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 16:01:09.400 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 195.4834ms
+2025-04-02 16:01:23.337 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 16:01:23.361 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-02 16:01:23.372 +01:00 [INF] Hosting environment: Development
+2025-04-02 16:01:23.373 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 16:01:23.555 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 196.8864ms
+2025-04-02 16:11:34.495 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 16:11:34.517 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-04-02 16:11:34.528 +01:00 [INF] Hosting environment: Development
+2025-04-02 16:11:34.528 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 16:11:34.700 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 185.8982ms
+2025-04-02 16:16:22.340 +01:00 [INF] Now listening on: http://localhost:5216
+2025-04-02 16:16:22.357 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 16:16:22.358 +01:00 [INF] Hosting environment: Development
+2025-04-02 16:16:22.358 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 16:16:31.897 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/Patient - null null
+2025-04-02 16:16:31.915 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-04-02 16:16:31.917 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 16:16:31.925 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patient"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientController (PANDA.Api).
+2025-04-02 16:16:31.970 +01:00 [INF] Retrieving all patients
+2025-04-02 16:16:32.239 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-02 16:16:32.272 +01:00 [INF] Retrieved 3 patients
+2025-04-02 16:16:32.275 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.PatientDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 16:16:32.310 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api) in 382.4304ms
+2025-04-02 16:16:32.311 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 16:16:32.315 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/Patient - 200 null application/json; charset=utf-8 418.1235ms
+2025-04-02 16:16:39.878 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/Appointment - null null
+2025-04-02 16:16:39.880 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 16:16:39.883 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-02 16:16:39.893 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."Department", "a"."MissedTimestamp", "a"."PatientId", "a"."Status"
+FROM "Appointments" AS "a"
+2025-04-02 16:16:39.908 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.AppointmentDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 16:16:39.914 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api) in 30.3474ms
+2025-04-02 16:16:39.915 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 16:16:39.915 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/Appointment - 200 null application/json; charset=utf-8 38.0055ms
+2025-04-02 16:29:46.987 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/Patient - null null
+2025-04-02 16:29:46.989 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 16:29:46.990 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patient"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientController (PANDA.Api).
+2025-04-02 16:29:46.991 +01:00 [INF] Retrieving all patients
+2025-04-02 16:29:47.016 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-02 16:29:47.017 +01:00 [INF] Retrieved 3 patients
+2025-04-02 16:29:47.018 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.PatientDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 16:29:47.018 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api) in 27.684ms
+2025-04-02 16:29:47.019 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 16:29:47.020 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/Patient - 200 null application/json; charset=utf-8 32.4739ms
+2025-04-02 17:14:16.556 +01:00 [INF] Application is shutting down...
+2025-04-02 19:49:58.744 +01:00 [INF] Now listening on: http://localhost:5216
+2025-04-02 19:49:58.761 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-02 19:49:58.761 +01:00 [INF] Hosting environment: Development
+2025-04-02 19:49:58.762 +01:00 [INF] Content root path: C:\Users\simon_adm\RiderProjects\PANDA.Api\PANDA.Api
+2025-04-02 19:50:05.222 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/Patient - null null
+2025-04-02 19:50:05.239 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-04-02 19:50:05.241 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 19:50:05.249 +01:00 [INF] Route matched with {action = "GetAll", controller = "Patient"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.PatientController (PANDA.Api).
+2025-04-02 19:50:05.292 +01:00 [INF] Retrieving all patients
+2025-04-02 19:50:05.542 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."DateOfBirth", "p"."FirstName", "p"."Gender", "p"."LastName", "p"."NHSNumber", "p"."Postcode"
+FROM "Patients" AS "p"
+2025-04-02 19:50:05.575 +01:00 [INF] Retrieved 3 patients
+2025-04-02 19:50:05.578 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.PatientDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 19:50:05.613 +01:00 [INF] Executed action PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api) in 362.38ms
+2025-04-02 19:50:05.615 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.PatientController.GetAll (PANDA.Api)'
+2025-04-02 19:50:05.618 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/Patient - 200 null application/json; charset=utf-8 396.6621ms
+2025-04-02 19:50:12.783 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5216/api/Appointment - null null
+2025-04-02 19:50:12.785 +01:00 [INF] Executing endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 19:50:12.788 +01:00 [INF] Route matched with {action = "GetAll", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PANDA.Api.Controllers.AppointmentController (PANDA.Api).
+2025-04-02 19:50:12.799 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AppointmentDate", "a"."Clinician", "a"."Department", "a"."MissedTimestamp", "a"."PatientId", "a"."Status"
+FROM "Appointments" AS "a"
+2025-04-02 19:50:12.814 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[PANDA.Api.Dto.AppointmentDto, PANDA.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-02 19:50:12.821 +01:00 [INF] Executed action PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api) in 32.1009ms
+2025-04-02 19:50:12.822 +01:00 [INF] Executed endpoint 'PANDA.Api.Controllers.AppointmentController.GetAll (PANDA.Api)'
+2025-04-02 19:50:12.822 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5216/api/Appointment - 200 null application/json; charset=utf-8 39.7589ms
+2025-04-02 21:08:26.108 +01:00 [INF] Application is shutting down...

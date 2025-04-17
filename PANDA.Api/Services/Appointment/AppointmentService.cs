@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PANDA.Api.Infrastructure;
+using PANDA.Api.Models;
 using PANDA.Shared.Common;
 using PANDA.Shared.DTOs.Appointment;
 using PANDA.Shared.Enums;
@@ -21,64 +22,72 @@ public class AppointmentService : IAppointmentService
 
     public async Task<UpdateAppointmentDto> CreateAsync(CreateAppointmentDto dto)
     {
-        if (dto.PatientId == 0 || string.IsNullOrWhiteSpace(dto.PatientName))
+        if (dto.PatientId == 0 || dto.ClinicianId == 0)
         {
-            throw new ArgumentException("Invalid appointment data: patient info is required");
+            throw new ArgumentException("Invalid appointment data: patient and clinician are required.");
         }
-        
-        var clash = await _context.Appointments
-            .AnyAsync(a => a.ClinicianId == dto.ClinicianId
-                           && a.AppointmentDate == dto.AppointmentDate
-                           && a.Status != AppointmentStatus.Cancelled);
-        
+
+        var clash = await _context.Appointments.AnyAsync(a =>
+            a.ClinicianId == dto.ClinicianId &&
+            a.AppointmentDate == dto.AppointmentDate &&
+            a.Status != AppointmentStatus.Cancelled);
+
         if (clash)
         {
             Log.Warning("Double-booking attempt: Clinician {ClinicianId} at {Time}", dto.ClinicianId, dto.AppointmentDate);
             throw new InvalidOperationException("This clinician is already booked at the selected time.");
         }
-        
+
         var appointment = _mapper.Map<Models.Appointment>(dto);
-        appointment.AppointmentDate = appointment.AppointmentDate;
-        appointment.ClinicianId = dto.ClinicianId;
-        appointment.Clinician = dto.Clinician;
-        appointment.PatientName = dto.PatientName;
+        appointment.Clinician = await _context.Clinicians.FindAsync(dto.ClinicianId)
+            ?? throw new ArgumentException("Clinician not found");
+
         _context.Appointments.Add(appointment);
         await _context.SaveChangesAsync();
+
         return _mapper.Map<UpdateAppointmentDto>(appointment);
     }
 
     public async Task<UpdateAppointmentDto?> GetByIdAsync(int id)
     {
-        var appointment = await _context.Appointments.FindAsync(id);
+        var appointment = await _context.Appointments
+            .Include(a => a.Clinician)
+            .Include(a => a.Patient)
+            .FirstOrDefaultAsync(a => a.Id == id);
+
         return appointment == null ? null : _mapper.Map<UpdateAppointmentDto>(appointment);
     }
 
     public async Task<IEnumerable<AppointmentDto>> GetAllAsync()
     {
         var appointments = await _context.Appointments
+            .Include(a => a.Clinician)
+            .Include(a => a.Patient)
             .OrderBy(a => a.AppointmentDate)
             .ToListAsync();
+
         return _mapper.Map<List<AppointmentDto>>(appointments);
     }
 
     public async Task<bool> UpdateAsync(int id, UpdateAppointmentDto dto)
     {
-        if (dto.PatientId == 0 || string.IsNullOrWhiteSpace(dto.PatientName))
+        if (dto.PatientId == 0 || dto.ClinicianId == 0)
         {
-            throw new ArgumentException("Invalid appointment data: patient info is required");
+            throw new ArgumentException("Invalid appointment data: patient and clinician are required.");
         }
-        
-        var clash = await _context.Appointments
-            .AnyAsync(a => a.ClinicianId == dto.ClinicianId
-                           && a.AppointmentDate == dto.AppointmentDate
-                           && a.Status != AppointmentStatus.Cancelled);
-        
+
+        var clash = await _context.Appointments.AnyAsync(a =>
+            a.Id != id &&
+            a.ClinicianId == dto.ClinicianId &&
+            a.AppointmentDate == dto.AppointmentDate &&
+            a.Status != AppointmentStatus.Cancelled);
+
         if (clash)
         {
             Log.Warning("Double-booking attempt: Clinician {ClinicianId} at {Time}", dto.ClinicianId, dto.AppointmentDate);
             throw new InvalidOperationException("This clinician is already booked at the selected time.");
         }
-        
+
         var appointment = await _context.Appointments.FindAsync(id);
         if (appointment == null || appointment.Status == AppointmentStatus.Cancelled)
         {
@@ -87,12 +96,12 @@ public class AppointmentService : IAppointmentService
         }
 
         appointment.PatientId = dto.PatientId;
-        appointment.AppointmentDate = dto.AppointmentDate; 
+        appointment.AppointmentDate = dto.AppointmentDate;
         appointment.Status = dto.Status;
-        appointment.Clinician = dto.Clinician;
-        appointment.Department = dto.Department;
         appointment.ClinicianId = dto.ClinicianId;
-        appointment.PatientName = dto.PatientName;
+        appointment.Department = dto.Department;
+        appointment.Clinician = await _context.Clinicians.FindAsync(dto.ClinicianId)
+            ?? throw new ArgumentException("Clinician not found");
 
         await _context.SaveChangesAsync();
         return true;
@@ -122,7 +131,7 @@ public class AppointmentService : IAppointmentService
             return;
         }
 
-        if (appointment.AppointmentDate < DateTimeOffset.UtcNow)
+        if (appointment.AppointmentDate < DateTime.UtcNow)
         {
             appointment.Status = AppointmentStatus.Missed;
             appointment.MissedTimestamp = DateTime.UtcNow;

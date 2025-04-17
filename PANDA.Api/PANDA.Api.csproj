@@ -29,6 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PANDA.Domain\PANDA.Domain.csproj" />
       <ProjectReference Include="..\PANDA.Shared\PANDA.Shared.csproj" />
     </ItemGroup>
 
