@@ -12,6 +12,8 @@ public class Appointment : AuditableEntity
 
     public DateTime AppointmentDate { get; set; }
     public AppointmentStatus Status { get; set; }
+    
+    public string? Reason { get; set; }
 
     public int ClinicianId { get; set; }
     public Clinician Clinician { get; set; } = default!;
