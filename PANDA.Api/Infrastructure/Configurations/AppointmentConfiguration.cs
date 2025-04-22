@@ -15,5 +15,8 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
 
         builder.Property(a => a.Status)
             .HasConversion<int>();
+        
+        builder.Property(a => a.Reason)
+            .HasMaxLength(250);
     }
 }
