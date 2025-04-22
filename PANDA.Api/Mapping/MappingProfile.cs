@@ -58,7 +58,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Patient, opt => opt.Ignore())
             .ForMember(dest => dest.IsDeleted, opt => opt.Ignore())
             .ForMember(dest => dest.DeletedAt, opt => opt.Ignore())
-            .ForMember(dest => dest.LastModified, opt => opt.Ignore());
+            .ForMember(dest => dest.LastModified, opt => opt.Ignore())
+            .ForMember(dest => dest.Reason, opt => opt.MapFrom(src => src.Reason));
 
         CreateMap<UpdateAppointmentDto, Appointment>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())
@@ -67,7 +68,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Patient, opt => opt.Ignore())
             .ForMember(dest => dest.IsDeleted, opt => opt.Ignore())
             .ForMember(dest => dest.DeletedAt, opt => opt.Ignore())
-            .ForMember(dest => dest.LastModified, opt => opt.Ignore());
+            .ForMember(dest => dest.LastModified, opt => opt.Ignore())
+            .ForMember(dest => dest.Reason, opt => opt.MapFrom(src => src.Reason));
 
         CreateMap<Appointment, UpdateAppointmentDto>();
 
