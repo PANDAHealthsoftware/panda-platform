@@ -1,0 +1,153 @@
+2025-05-20 14:09:09.838 +01:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-05-20 14:09:09.938 +01:00 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-05-20 14:09:09.951 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-05-20 14:09:09.965 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-05-20 14:09:10.022 +01:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-05-20 14:09:10.040 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-05-20 14:09:10.230 +01:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clinicians] AS [c]
+        WHERE [c].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:09:10.253 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:09:10.274 +01:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Patients] AS [p]
+        WHERE [p].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:09:10.325 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAt], [c].[DeletedAt], [c].[Department], [c].[Email], [c].[FullName], [c].[IsActive], [c].[IsDeleted], [c].[LastModified], [c].[PhoneNumber], [c].[RegistrationNumber]
+FROM [Clinicians] AS [c]
+WHERE [c].[IsDeleted] = CAST(0 AS bit) AND [c].[FullName] = N'Dr. Chris Carter'
+2025-05-20 14:09:10.378 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAt], [c].[DeletedAt], [c].[Department], [c].[Email], [c].[FullName], [c].[IsActive], [c].[IsDeleted], [c].[LastModified], [c].[PhoneNumber], [c].[RegistrationNumber]
+FROM [Clinicians] AS [c]
+WHERE [c].[IsDeleted] = CAST(0 AS bit) AND [c].[FullName] = N'Dr. Emma Reid'
+2025-05-20 14:09:10.396 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Appointments] AS [a]
+        WHERE [a].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:09:10.652 +01:00 [INF] User profile is available. Using 'C:\Users\Simon\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-20 14:09:10.668 +01:00 [INF] Creating key {b285e197-b501-4c6a-87ac-a962e00f065c} with creation date 2025-05-20 13:09:10Z, activation date 2025-05-20 13:09:10Z, and expiration date 2025-08-18 13:09:10Z.
+2025-05-20 14:09:10.681 +01:00 [INF] Writing data to file 'C:\Users\Simon\AppData\Local\ASP.NET\DataProtection-Keys\key-b285e197-b501-4c6a-87ac-a962e00f065c.xml'.
+2025-05-20 14:09:10.801 +01:00 [INF] Now listening on: https://localhost:44372
+2025-05-20 14:09:10.802 +01:00 [INF] Now listening on: http://localhost:5000
+2025-05-20 14:09:10.805 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-20 14:09:10.806 +01:00 [INF] Hosting environment: Development
+2025-05-20 14:09:10.807 +01:00 [INF] Content root path: C:\Users\Simon\RiderProjects\panda-platform\PANDA.Api
+2025-05-20 14:11:37.699 +01:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-05-20 14:11:37.763 +01:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-05-20 14:11:37.776 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-05-20 14:11:37.789 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-05-20 14:11:37.813 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-05-20 14:11:37.828 +01:00 [INF] No migrations were applied. The database is already up to date.
+2025-05-20 14:11:37.994 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clinicians] AS [c]
+        WHERE [c].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:11:38.011 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:11:38.027 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Patients] AS [p]
+        WHERE [p].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:11:38.077 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAt], [c].[DeletedAt], [c].[Department], [c].[Email], [c].[FullName], [c].[IsActive], [c].[IsDeleted], [c].[LastModified], [c].[PhoneNumber], [c].[RegistrationNumber]
+FROM [Clinicians] AS [c]
+WHERE [c].[IsDeleted] = CAST(0 AS bit) AND [c].[FullName] = N'Dr. Chris Carter'
+2025-05-20 14:11:38.128 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[CreatedAt], [c].[DeletedAt], [c].[Department], [c].[Email], [c].[FullName], [c].[IsActive], [c].[IsDeleted], [c].[LastModified], [c].[PhoneNumber], [c].[RegistrationNumber]
+FROM [Clinicians] AS [c]
+WHERE [c].[IsDeleted] = CAST(0 AS bit) AND [c].[FullName] = N'Dr. Emma Reid'
+2025-05-20 14:11:38.142 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Appointments] AS [a]
+        WHERE [a].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-05-20 14:11:38.293 +01:00 [INF] User profile is available. Using 'C:\Users\Simon\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-20 14:11:38.403 +01:00 [INF] Now listening on: https://localhost:44372
+2025-05-20 14:11:38.403 +01:00 [INF] Now listening on: http://localhost:5000
+2025-05-20 14:11:38.406 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-20 14:11:38.407 +01:00 [INF] Hosting environment: Development
+2025-05-20 14:11:38.408 +01:00 [INF] Content root path: C:\Users\Simon\RiderProjects\panda-platform\PANDA.Api
+2025-05-20 14:11:38.508 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger - null null
+2025-05-20 14:11:38.541 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger - 301 0 null 33.9738ms
+2025-05-20 14:11:38.545 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/index.html - null null
+2025-05-20 14:11:38.641 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/index.html - 200 null text/html;charset=utf-8 95.0607ms
+2025-05-20 14:11:38.663 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/swagger-ui.css - null null
+2025-05-20 14:11:38.663 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/index.js - null null
+2025-05-20 14:11:38.663 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/swagger-ui-bundle.js - null null
+2025-05-20 14:11:38.668 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/index.js - 200 null application/javascript;charset=utf-8 4.3528ms
+2025-05-20 14:11:38.663 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/swagger-ui-standalone-preset.js - null null
+2025-05-20 14:11:38.663 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/index.css - null null
+2025-05-20 14:11:38.682 +01:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-05-20 14:11:38.684 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/index.css - 200 202 text/css 20.3431ms
+2025-05-20 14:11:38.701 +01:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-05-20 14:11:38.701 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-05-20 14:11:38.705 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/swagger-ui-standalone-preset.js - 200 229223 text/javascript 41.8018ms
+2025-05-20 14:11:38.705 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/swagger-ui.css - 200 154948 text/css 41.9329ms
+2025-05-20 14:11:38.718 +01:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-05-20 14:11:38.719 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/swagger-ui-bundle.js - 200 1466741 text/javascript 55.7038ms
+2025-05-20 14:11:38.817 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - null null
+2025-05-20 14:11:38.828 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/swagger/favicon-32x32.png - null null
+2025-05-20 14:11:38.830 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-05-20 14:11:38.831 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/favicon-32x32.png - 200 628 image/png 2.1791ms
+2025-05-20 14:11:38.954 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 136.4312ms
+2025-05-20 14:11:50.211 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointments - null null
+2025-05-20 14:11:50.948 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Clinician|Reception)
+2025-05-20 14:11:50.952 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-20 14:11:50.952 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointments - 401 0 null 741.7082ms
+2025-05-20 14:25:49.170 +01:00 [INF] Request starting HTTP/2 GET https://localhost:44372/api/Appointments - null null
+2025-05-20 14:25:49.176 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Clinician|Reception)
+2025-05-20 14:25:49.178 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-05-20 14:25:49.179 +01:00 [INF] Request finished HTTP/2 GET https://localhost:44372/api/Appointments - 401 0 null 8.7994ms
