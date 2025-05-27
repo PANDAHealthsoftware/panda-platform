@@ -86,6 +86,6 @@ public class AppointmentServiceTests
 
         // Assert
         await act.Should().ThrowAsync<ArgumentException>()
-            .WithMessage("*patient info is required*");
+            .WithMessage("Invalid appointment data: patient and clinician are required.");
     }
 }

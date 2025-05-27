@@ -31,13 +31,13 @@ public class CreateAppointmentDtoValidatorTests
         var dto = new CreateAppointmentDto
         {
             PatientId = 1,
-            AppointmentDate = DateTime.UtcNow.AddDays(1),
+            ClinicianId = 2, 
+            AppointmentDate = DateTime.UtcNow.AddHours(1),
             Status = AppointmentStatus.Scheduled,
             Department = Department.Cardiology
         };
 
         var result = _validator.TestValidate(dto);
-
         result.ShouldNotHaveAnyValidationErrors();
     }
 }
