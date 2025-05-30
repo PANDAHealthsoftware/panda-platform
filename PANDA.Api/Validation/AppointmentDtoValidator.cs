@@ -12,11 +12,6 @@ public class AppointmentDtoValidator : AbstractValidator<UpdateAppointmentDto>
         RuleFor(x => x.PatientId)
             .GreaterThan(0)
             .WithMessage(ErrorMessages.InvalidPatientId);
-        
-        RuleFor(x => x.PatientName)
-            .NotEmpty()
-            .MaximumLength(200)
-            .WithMessage(ErrorMessages.InvalidPatientId);
 
         RuleFor(x => x.AppointmentDate)
             .GreaterThan(DateTime.UtcNow)

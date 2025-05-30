@@ -84,4 +84,17 @@ public class AuthService : IAuthService
         var jwt = new JwtSecurityTokenHandler().ReadJwtToken(token);
         return jwt.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
     }
+    
+    public async Task<List<string>> GetCurrentUserRolesAsync()
+    {
+        var token = await GetTokenAsync();
+        if (string.IsNullOrEmpty(token)) return new List<string>();
+
+        var jwt = new JwtSecurityTokenHandler().ReadJwtToken(token);
+        // There may be multiple role claims
+        return jwt.Claims
+            .Where(c => c.Type == ClaimTypes.Role || c.Type == "role")
+            .Select(c => c.Value)
+            .ToList();
+    }
 }

@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inherits LayoutComponentBase
 @inject NavigationManager NavManager
 
 <RadzenNotification />
@@ -9,6 +10,17 @@
         <div class="nhs-header-inner">
             <img src="https://assets.nhs.uk/images/nhs-logo.png" alt="NHS" class="nhs-logo" />
             <h1 class="nhs-title">PANDA Clinical App</h1>
+            <div style="margin-left:auto;display:flex;align-items:center;padding-right:24px;">
+                <AuthorizeView>
+                    <Authorized>
+                        <span style="margin-right:10px;">Hello, @context.User.Identity?.Name!</span>
+                        <button class="rz-button rz-secondary" @onclick="Logout">Logout</button>
+                    </Authorized>
+                    <NotAuthorized>
+                        <button class="rz-button rz-primary" @onclick="Login">Login</button>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
         </div>
     </header>
 
@@ -30,6 +42,11 @@
 </div>
 
 @code {
+    [Inject] NavigationManager Navigation { get; set; }
+
+    private void Login() => Navigation.NavigateTo("authentication/login");
+    private void Logout() => Navigation.NavigateTo("authentication/logout");
+
     private string IsActive(string href)
         => NavManager.Uri.Contains(href, StringComparison.OrdinalIgnoreCase) ? "active" : "";
 }

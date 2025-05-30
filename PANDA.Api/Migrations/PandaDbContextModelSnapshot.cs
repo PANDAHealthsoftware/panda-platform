@@ -117,6 +117,48 @@ namespace PANDA.Api.Migrations
                     b.ToTable("Clinicians");
                 });
 
+            modelBuilder.Entity("PANDA.Api.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "System administrator",
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Reception staff",
+                            Name = "Reception"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Medical staff",
+                            Name = "Clinician"
+                        });
+                });
+
             modelBuilder.Entity("PANDA.Api.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -138,7 +180,10 @@ namespace PANDA.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -148,7 +193,24 @@ namespace PANDA.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PANDA.Api.Models.UserRole", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("PANDA.Domain.Entities.Patient", b =>
@@ -206,6 +268,34 @@ namespace PANDA.Api.Migrations
                     b.Navigation("Patient");
                 });
 
+            modelBuilder.Entity("PANDA.Api.Models.User", b =>
+                {
+                    b.HasOne("PANDA.Api.Models.Role", null)
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PANDA.Api.Models.UserRole", b =>
+                {
+                    b.HasOne("PANDA.Api.Models.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PANDA.Api.Models.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PANDA.Domain.Entities.Patient", b =>
                 {
                     b.OwnsOne("PANDA.Domain.ValueObjects.FullName", "Name", b1 =>
@@ -233,6 +323,18 @@ namespace PANDA.Api.Migrations
 
                     b.Navigation("Name")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PANDA.Api.Models.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("PANDA.Api.Models.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

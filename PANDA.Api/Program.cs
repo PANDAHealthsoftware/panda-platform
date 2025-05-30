@@ -1,8 +1,10 @@
+using System.Text;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Tokens;
 using PANDA.Api.Extensions;
 using PANDA.Api.Infrastructure;
 using Serilog;
@@ -46,9 +48,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowPANDAview", policy =>
     {
-        policy.WithOrigins("http://localhost:5000")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy.WithOrigins(
+                "http://localhost:5000", 
+                "http://localhost:5001")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
 });
 
@@ -80,8 +84,21 @@ builder.Services.AddDbContext<PandaDbContext>(options =>
 // Microsoft Identity Web integration for JWTs from Azure AD
 // Token audience and tenant config is read from appsettings.json
 // ---------------------------------------------------------
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+// builder.Services.AddAuthentication()
+//     .AddJwtBearer("PandaJwt", options =>
+//     {
+//         var config = builder.Configuration.GetSection("JwtSettings");
+//         options.TokenValidationParameters = new TokenValidationParameters
+//         {
+//             ValidateIssuer = true,
+//             ValidateAudience = true,
+//             ValidateIssuerSigningKey = true,
+//             ValidIssuer = config["Issuer"],
+//             ValidAudience = config["Audience"],
+//             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Key"] ?? string.Empty))
+//         };
+//     })
+//     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
 // Role/claim-based policy support (can be extended later)
 builder.Services.AddAuthorization();
@@ -93,9 +110,14 @@ builder.Services.AddAuthorization();
 // ---------------------------------------------------------
 // Register DI services and enable Swagger with JWT support
 // ---------------------------------------------------------
-builder.Services
-    .AddApplicationServices()
-    .AddSwaggerWithSecurity(); // custom extension to wire Swagger auth header
+
+builder.Services.AddApplicationServices();
+builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddSwaggerWithSecurity();
+
+// Register Azure AD if you want both (or comment this if not used)
+//builder.Services.AddAuthentication()
+//   .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
 #endregion
 

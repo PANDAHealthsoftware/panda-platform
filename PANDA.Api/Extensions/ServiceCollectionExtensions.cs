@@ -8,8 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PANDA.Api.Mapping;
 using PANDA.Api.Services.Appointment;
+using PANDA.Api.Services.Auth;
 using PANDA.Api.Services.Clinician;
 using PANDA.Api.Services.Patient;
+using PANDA.Api.Services.User;
 using PANDA.Api.Validation;
 using PANDA.Shared.DTOs.Patient;
 using PANDA.Shared.Security;
@@ -37,6 +39,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAppointmentService, AppointmentService>();
         services.AddScoped<IClinicianService, ClinicianService>();
         services.AddTransient<IValidator<UpdatePatientDto>, UpdatePatientDtoValidator>();
+        services.AddScoped<IJwtTokenService, JwtTokenService>();
+        services.AddScoped<IUserService, UserService>();
 
         // AutoMapper
         var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
@@ -48,8 +52,10 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration config)
     {
-        var jwtKey = config["Jwt:Key"] ?? "super-secure-signing-key-must-be-at-least-32-chars";
-        var jwtIssuer = config["Jwt:Issuer"] ?? "https://panda-api.local";
+        var jwtKey = config["JwtSettings:Key"];
+        var jwtIssuer = config["JwtSettings:Issuer"];
+        var jwtAudience = config["JwtSettings:Audience"];
+        Console.WriteLine($"JWT Setup: Issuer={jwtIssuer}, Audience={jwtAudience}, Key={jwtKey?.Substring(0,8)}...");
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -59,7 +65,7 @@ public static class ServiceCollectionExtensions
                     ValidateIssuer = true,
                     ValidIssuer = jwtIssuer,
                     ValidateAudience = true,
-                    ValidAudience = "panda-api",
+                    ValidAudience = jwtAudience,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),

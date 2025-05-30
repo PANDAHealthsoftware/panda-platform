@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,7 +18,6 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 // Root component setup
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
-var baseApiUrl = new Uri(builder.Configuration["ApiBaseUrl"] ?? "https://localhost:44372/");
 
 // ---------------------------------------------
 // DI: Application & Auth Services
@@ -46,7 +46,7 @@ builder.Services.AddHttpClient<IPatientService, PatientService>(client =>
 builder.Services.AddHttpClient<IAuthService, AuthService>(client =>
 {
     client.BaseAddress = new Uri(ApiConfig.BaseUrl);
-}).AddHttpMessageHandler<AuthTokenHandler>();
+});
 
 // ---------------------------------------------
 // Auth & State Providers
