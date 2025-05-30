@@ -82,7 +82,7 @@ public class AppointmentServiceTests
         };
 
         // Act
-        Func<Task> act = async () => await service.UpdateAsync(appointment.Id, dto);
+        Func<Task> act = async () => await service.UpdateAppointmentAsync(appointment.Id, dto);
 
         // Assert
         await act.Should().ThrowAsync<ArgumentException>()

@@ -1,7 +1,10 @@
-﻿using AutoMapper;
+﻿using System.Text.Json;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Models;
+using PANDA.Api.Services.Audit;
 using PANDA.Shared.Common;
 using PANDA.Shared.DTOs.Appointment;
 using PANDA.Shared.Enums;
@@ -13,11 +16,13 @@ public class AppointmentService : IAppointmentService
 {
     private readonly PandaDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IAuditService _auditService;
 
-    public AppointmentService(PandaDbContext context, IMapper mapper)
+    public AppointmentService(PandaDbContext context, IMapper mapper, IAuditService auditService)
     {
         _context = context;
         _mapper = mapper;
+        _auditService = auditService;
     }
 
     public async Task<UpdateAppointmentDto> CreateAsync(CreateAppointmentDto dto)
@@ -43,6 +48,9 @@ public class AppointmentService : IAppointmentService
             ?? throw new ArgumentException("Clinician not found");
 
         _context.Appointments.Add(appointment);
+        
+        await _context.Appointments.AddAsync(appointment);
+        await _auditService.LogCreateAsync(dto, appointment);
         await _context.SaveChangesAsync();
 
         return _mapper.Map<UpdateAppointmentDto>(appointment);
@@ -69,7 +77,7 @@ public class AppointmentService : IAppointmentService
         return _mapper.Map<List<AppointmentDto>>(appointments);
     }
 
-    public async Task<bool> UpdateAsync(int id, UpdateAppointmentDto dto)
+    public async Task<bool> UpdateAppointmentAsync(int id, UpdateAppointmentDto dto)
     {
         if (dto.PatientId == 0 || dto.ClinicianId == 0)
         {
@@ -95,18 +103,26 @@ public class AppointmentService : IAppointmentService
             return false;
         }
 
+        // Deep clone original for audit snapshot
+        var original = JsonConvert.DeserializeObject<Models.Appointment>(
+            JsonConvert.SerializeObject(appointment)); // deep copy for change tracking
+
+        // Apply updates
         appointment.PatientId = dto.PatientId;
         appointment.AppointmentDate = dto.AppointmentDate;
         appointment.Status = dto.Status;
         appointment.ClinicianId = dto.ClinicianId;
         appointment.Department = dto.Department;
         appointment.Clinician = await _context.Clinicians.FindAsync(dto.ClinicianId)
-            ?? throw new ArgumentException("Clinician not found");
+                                ?? throw new ArgumentException("Clinician not found");
+
+        // 🔍 Audit the changes
+        await _auditService.LogUpdateAsync(dto, original, appointment);
 
         await _context.SaveChangesAsync();
         return true;
     }
-
+    
     public async Task<bool> DeleteAsync(int id)
     {
         var appointment = await _context.Appointments.FindAsync(id);

@@ -1,10 +1,13 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using PANDA.Api.Helpers;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Models;
+using PANDA.Api.Services.Audit;
 using PANDA.Domain.Enums;
 using PANDA.Shared.DTOs.User;
 
@@ -14,11 +17,13 @@ public class UserService : IUserService
 {
     private readonly PandaDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IAuditService _auditService;
 
-    public UserService(PandaDbContext context, IMapper mapper)
+    public UserService(PandaDbContext context, IMapper mapper, IAuditService auditService)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _auditService = auditService;
     }
 
     public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
@@ -43,6 +48,7 @@ public class UserService : IUserService
         user.LastModified = DateTime.UtcNow;
 
         _context.Users.Add(user);
+        await _auditService.LogCreateAsync(dto, user);
         await _context.SaveChangesAsync();
 
         // Return with role names
@@ -63,6 +69,10 @@ public class UserService : IUserService
         if (user == null || user.IsDeleted)
             return false;
 
+        // Deep clone original for audit snapshot
+        var original = JsonConvert.DeserializeObject<Models.User>(
+            JsonConvert.SerializeObject(user)); // deep copy for change tracking
+        
         user.Username = dto.Username;
         user.Status = dto.Status;
         user.LastModified = DateTime.UtcNow;
@@ -71,7 +81,9 @@ public class UserService : IUserService
         user.UserRoles.Clear();
         foreach (var roleId in dto.RoleIds)
             user.UserRoles.Add(new UserRole { UserId = user.Id, RoleId = roleId });
-
+        
+        // 🔍 Audit the changes
+        await _auditService.LogUpdateAsync(dto, original, user);
         await _context.SaveChangesAsync();
         return true;
     }
