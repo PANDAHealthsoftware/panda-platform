@@ -262,3 +262,44 @@ html, body {
 body, .rz-dialog, .rz-dialog-content {
     overflow: visible !important;
 }
+.dashboard-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1.25rem;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0078D4; /* NHS Blue */
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.dashboard-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.15s ease-in-out;
+}
+
+.dashboard-card-link:hover {
+    transform: scale(1.02);
+}
+
+.dashboard-card-link .dashboard-card {
+    cursor: pointer;
+}

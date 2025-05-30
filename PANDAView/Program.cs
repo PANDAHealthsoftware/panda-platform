@@ -12,6 +12,7 @@ using PANDAView.Services.Patient;
 using ProtectedLocalStore;
 using Radzen;
 using PANDAView.Constants;
+using PANDAView.Services.User;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -38,6 +39,11 @@ builder.Services.AddHttpClient<IClinicianService, ClinicianService>(client =>
 }).AddHttpMessageHandler<AuthTokenHandler>();
 
 builder.Services.AddHttpClient<IPatientService, PatientService>(client =>
+{
+    client.BaseAddress = new Uri(ApiConfig.BaseUrl);
+}).AddHttpMessageHandler<AuthTokenHandler>();
+
+builder.Services.AddHttpClient<IUserService, UserService>(client =>
 {
     client.BaseAddress = new Uri(ApiConfig.BaseUrl);
 }).AddHttpMessageHandler<AuthTokenHandler>();

@@ -133,7 +133,7 @@ public class AppointmentsController : ControllerBase
 
         try
         {
-            var result = await _appointmentService.UpdateAsync(id, dto);
+            var result = await _appointmentService.UpdateAppointmentAsync(id, dto);
             if (!result)
             {
                 Log.Warning(LogMessages.AppointmentNotFound, id);

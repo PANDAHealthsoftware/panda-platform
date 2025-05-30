@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PANDA.Api.Mapping;
 using PANDA.Api.Services.Appointment;
+using PANDA.Api.Services.Audit;
 using PANDA.Api.Services.Auth;
 using PANDA.Api.Services.Clinician;
 using PANDA.Api.Services.Patient;
@@ -41,6 +42,9 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IValidator<UpdatePatientDto>, UpdatePatientDtoValidator>();
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuditService, AuditService>();
+        services.AddHttpContextAccessor();
+        
 
         // AutoMapper
         var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());

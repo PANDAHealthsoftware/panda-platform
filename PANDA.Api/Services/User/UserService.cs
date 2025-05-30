@@ -1,10 +1,13 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using PANDA.Api.Helpers;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Models;
+using PANDA.Api.Services.Audit;
 using PANDA.Domain.Enums;
 using PANDA.Shared.DTOs.User;
 
@@ -14,21 +17,93 @@ public class UserService : IUserService
 {
     private readonly PandaDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IAuditService _auditService;
 
-    public UserService(PandaDbContext context, IMapper mapper)
+    public UserService(PandaDbContext context, IMapper mapper, IAuditService auditService)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _auditService = auditService;
     }
 
-    public async Task<IEnumerable<UserDto>> GetAllAsync()
+    public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
     {
         var allUsers = await _context.Users.ToListAsync();
 
         return _mapper.Map<List<UserDto>>(allUsers);
     }
+    
+    // CREATE USER
+    public async Task<UserDto> CreateUserAsync(CreateUserDto dto)
+    {
+        // Username must be unique!
+        if (await _context.Users.AnyAsync(u => u.Username == dto.Username))
+            throw new InvalidOperationException("Username already exists.");
 
-    public async Task<UserDto?> GetByIdAsync(int id)
+        // Hash password
+        var user = _mapper.Map<Models.User>(dto);
+        user.PasswordHash = PasswordHelper.HashPassword(dto.Password);
+        user.UserRoles = dto.RoleIds.Select(roleId => new UserRole { RoleId = roleId }).ToList();
+        user.Status = dto.Status;
+        user.LastModified = DateTime.UtcNow;
+
+        _context.Users.Add(user);
+        await _auditService.LogCreateAsync(dto, user);
+        await _context.SaveChangesAsync();
+
+        // Return with role names
+        user = await _context.Users
+            .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)
+            .FirstAsync(u => u.Id == user.Id);
+
+        return _mapper.Map<UserDto>(user);
+    }
+
+    // UPDATE USER
+    public async Task<bool> UpdateUserAsync(UpdateUserDto dto)
+    {
+        var user = await _context.Users
+            .Include(u => u.UserRoles)
+            .FirstOrDefaultAsync(u => u.Id == dto.Id);
+
+        if (user == null || user.IsDeleted)
+            return false;
+
+        // Deep clone original for audit snapshot
+        var original = JsonConvert.DeserializeObject<Models.User>(
+            JsonConvert.SerializeObject(user)); // deep copy for change tracking
+        
+        user.Username = dto.Username;
+        user.Status = dto.Status;
+        user.LastModified = DateTime.UtcNow;
+
+        // Update roles (remove old, add new)
+        user.UserRoles.Clear();
+        foreach (var roleId in dto.RoleIds)
+            user.UserRoles.Add(new UserRole { UserId = user.Id, RoleId = roleId });
+        
+        // Audit the changes
+        await _auditService.LogUpdateAsync(dto, original, user);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    // SOFT DELETE USER
+    public async Task<bool> DeleteUserAsync(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null || user.IsDeleted)
+            return false;
+
+        user.IsDeleted = true;
+        user.DeletedAt = DateTime.UtcNow;
+        user.LastModified = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<UserDto?> GetUserByIdAsync(int id)
     {
         var user = await _context.Users.FindAsync(id);
         return user == null ? null : _mapper.Map<UserDto>(user);
