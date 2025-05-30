@@ -1,0 +1,53 @@
+﻿@page "/admin"
+@using PANDAView.Services.Appointment
+@using PANDAView.Services.Clinician
+@using PANDAView.Services.User
+@using PANDAView.Components
+@inject IUserService UserService
+@inject IClinicianService ClinicianService
+@inject IAppointmentService AppointmentService
+
+<h3 class="text-xl font-semibold mb-4">PANDA Admin Dashboard</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="dashboard-grid">
+        <NavLink href="/admin/users" class="dashboard-card-link">
+            <DashboardCard Title="Total Users" Value="@_userCount" Icon="fas fa-users"/>
+        </NavLink>
+        <NavLink href="/admin/users" class="dashboard-card-link">
+        <DashboardCard Title="Clinicians" Value="@_clinicianCount" Icon="fas fa-user-md"/>
+        </NavLink>
+        <NavLink href="/admin/users" class="dashboard-card-link">
+        <DashboardCard Title="Appointments" Value="@_appointmentCount" Icon="fas fa-calendar-check"/>
+        </NavLink>
+    </div>
+    
+    <h4 class="text-sm font-semibold mt-6">Recent Admin Actions</h4>
+    <ul class="text-sm text-gray-600 list-disc pl-5">
+        <li>User “claire.jones” created Clinician “Dr. Patel”</li>
+        <li>Deleted Appointment for John Smith</li>
+    </ul>
+}
+
+@code {
+    int _userCount, _clinicianCount, _appointmentCount;
+    bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var users = await UserService.GetAllUsersAsync();
+        var clinicians = await ClinicianService.GetCliniciansAsync();
+        var appointments = await AppointmentService.GetAppointmentsAsync();
+
+        _userCount = users?.Count() ?? 0;
+        _clinicianCount = clinicians?.Count() ?? 0;
+        _appointmentCount = appointments?.Count() ?? 0;
+
+        isLoading = false;
+    }
+}

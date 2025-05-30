@@ -41,6 +41,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IValidator<UpdatePatientDto>, UpdatePatientDtoValidator>();
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<IUserService, UserService>();
+        
 
         // AutoMapper
         var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());

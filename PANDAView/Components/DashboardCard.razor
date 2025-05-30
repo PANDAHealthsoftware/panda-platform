@@ -1,0 +1,11 @@
+﻿<div class="dashboard-card">
+    <i class="@Icon" style="font-size: 1.5rem; color: #0078D4;"></i>
+    <div class="card-title mt-2">@Title</div>
+    <div class="card-value">@Value</div>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public int Value { get; set; }
+    [Parameter] public string Icon { get; set; } = "";
+}

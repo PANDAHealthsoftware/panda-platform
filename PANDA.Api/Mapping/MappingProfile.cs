@@ -6,6 +6,7 @@ using PANDA.Shared.DTOs;
 using PANDA.Shared.DTOs.Appointment;
 using PANDA.Shared.DTOs.Clinician;
 using PANDA.Shared.DTOs.Patient;
+using PANDA.Shared.DTOs.User;
 
 namespace PANDA.Api.Mapping;
 
@@ -96,5 +97,49 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.IsDeleted, opt => opt.Ignore())
             .ForMember(dest => dest.DeletedAt, opt => opt.Ignore())
             .ForMember(dest => dest.LastModified, opt => opt.Ignore());
+        
+         // ---------------------------
+        // User → UserDto
+        // ---------------------------
+        CreateMap<User, UserDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
+            .ForMember(dest => dest.Role, opt => opt.MapFrom(src =>
+                src.UserRoles.Select(ur => ur.Role.Name).FirstOrDefault() ?? string.Empty))
+            .ForMember(dest => dest.Roles, opt => opt.MapFrom(src =>
+                src.UserRoles.Select(ur => ur.Role.Name).ToList()))
+            .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
+            .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => src.IsDeleted))
+            .ForMember(dest => dest.DeletedAt, opt => opt.MapFrom(src => src.DeletedAt))
+            .ForMember(dest => dest.LastModified, opt => opt.MapFrom(src => src.LastModified))
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+
+        // ---------------------------
+        // CreateUserDto → User
+        // ---------------------------
+        CreateMap<CreateUserDto, User>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
+            .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()) // set in service
+            .ForMember(dest => dest.UserRoles, opt => opt.Ignore())    // set in service
+            .ForMember(dest => dest.RoleId, opt => opt.Ignore())       // ← Fixes the error
+            .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => src.IsDeleted))
+            .ForMember(dest => dest.DeletedAt, opt => opt.MapFrom(src => src.DeletedAt))
+            .ForMember(dest => dest.LastModified, opt => opt.MapFrom(_ => DateTime.UtcNow))
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+
+        // ---------------------------
+        // UpdateUserDto → User
+        // ---------------------------
+        CreateMap<UpdateUserDto, User>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
+            .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()) // not updated here
+            .ForMember(dest => dest.UserRoles, opt => opt.Ignore())    // set in service
+            .ForMember(dest => dest.RoleId, opt => opt.Ignore())       // ← Fixes the error
+            .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => src.IsDeleted))
+            .ForMember(dest => dest.DeletedAt, opt => opt.Ignore())    // only updated on delete
+            .ForMember(dest => dest.LastModified, opt => opt.MapFrom(_ => DateTime.UtcNow))
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
     }
 }
