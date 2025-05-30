@@ -82,7 +82,7 @@ public class UserService : IUserService
         foreach (var roleId in dto.RoleIds)
             user.UserRoles.Add(new UserRole { UserId = user.Id, RoleId = roleId });
         
-        // 🔍 Audit the changes
+        // Audit the changes
         await _auditService.LogUpdateAsync(dto, original, user);
         await _context.SaveChangesAsync();
         return true;
