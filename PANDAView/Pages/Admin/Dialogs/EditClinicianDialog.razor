@@ -1,0 +1,124 @@
+﻿@using PANDA.Shared.DTOs.Clinician
+@using PANDAView.Helpers
+@using PANDAView.Services.Clinician
+@inject IClinicianService ClinicianService
+@inject DialogService DialogService
+@inject NotificationService NotificationService
+
+<EditForm Model="@Clinician" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    @if (_serverErrors.Count > 0)
+    {
+        <ul class="nhsuk-error-summary__list">
+            @foreach (var error in _serverErrors.SelectMany(e => e.Value))
+            {
+                <li>@error</li>
+            }
+        </ul>
+    }
+
+    <div class="nhs-panel">
+        <h2 class="nhs-heading">@(_isNew ? "Add Clinician" : "Edit Clinician")</h2>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Full Name</label>
+            <input class="nhs-input" @bind="Clinician.FullName" />
+            <ValidationMessage For="@(() => Clinician.FullName)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Email</label>
+            <input class="nhs-input" @bind="Clinician.Email" type="email" />
+            <ValidationMessage For="@(() => Clinician.Email)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Phone Number</label>
+            <input class="nhs-input" @bind="Clinician.PhoneNumber" type="tel" />
+            <ValidationMessage For="@(() => Clinician.PhoneNumber)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Department</label>
+            <select class="nhs-input" @bind="Clinician.Department">
+                <option value="">-- Select --</option>
+                @foreach (var department in Enum.GetValues(typeof(PANDA.Shared.Enums.Department)))
+                {
+                    <option value="@department">@department.ToString()</option>
+                }
+            </select>
+            <ValidationMessage For="@(() => Clinician.Department)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">Registration Number</label>
+            <input class="nhs-input" @bind="Clinician.RegistrationNumber" />
+            <ValidationMessage For="@(() => Clinician.RegistrationNumber)" />
+        </div>
+
+        <div class="nhs-form-group">
+            <label class="nhs-label">
+                <input type="checkbox" @bind="Clinician.IsActive" /> Active
+            </label>
+        </div>
+
+        <div class="dialog-buttons">
+            <button type="submit" class="nhs-btn-primary">@(_isNew ? "Create" : "Save")</button>
+            <button type="button" class="nhs-btn-secondary" @onclick="() => DialogService.Close()">Cancel</button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] public ClinicianDto? ClinicianParam { get; set; }
+
+    private ClinicianDto Clinician = new();
+    private Dictionary<string, string[]> _serverErrors = new();
+    private bool _isNew => Clinician.Id == 0;
+
+    protected override void OnInitialized()
+    {
+        Clinician = ClinicianParam != null
+            ? new ClinicianDto
+            {
+                Id = ClinicianParam.Id,
+                FullName = ClinicianParam.FullName,
+                Email = ClinicianParam.Email,
+                PhoneNumber = ClinicianParam.PhoneNumber,
+                Department = ClinicianParam.Department,
+                RegistrationNumber = ClinicianParam.RegistrationNumber,
+                IsActive = ClinicianParam.IsActive
+            }
+            : new ClinicianDto { IsActive = true };
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        _serverErrors.Clear();
+        try
+        {
+            if (_isNew)
+            {
+                await ClinicianService.AddClinicianAsync(Clinician.ToCreateDto());
+                NotificationService.Notify(NotificationSeverity.Success, "Clinician created");
+                DialogService.Close(Clinician);
+            }
+            else
+            {
+                await ClinicianService.UpdateClinicianAsync(Clinician.Id, Clinician.ToUpdateDto());
+                NotificationService.Notify(NotificationSeverity.Success, "Clinician updated");
+                DialogService.Close(Clinician);
+            }
+        }
+        catch (ApiValidationException ex)
+        {
+            _serverErrors = ex.Errors;
+        }
+        catch (Exception ex)
+        {
+            NotificationService.Notify(NotificationSeverity.Error, "Failed", ex.Message);
+        }
+    }
+}
