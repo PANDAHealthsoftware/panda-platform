@@ -11,6 +11,9 @@ public class PandaDbContext : DbContext
     public DbSet<Appointment> Appointments => Set<Appointment>();
     public DbSet<Clinician> Clinicians => Set<Clinician>();
     public DbSet<User> Users => Set<User>();
+    public DbSet<Role> Roles => Set<Role>();
+    public DbSet<UserRole> UserRoles => Set<UserRole>();
+    
 
     private static readonly ValueConverter<DateTime, string> DateTimeToIsoConverter =
         new(v => v.ToString("o"), v => DateTime.Parse(v));
@@ -23,6 +26,8 @@ public class PandaDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(PandaDbContext).Assembly);
+        modelBuilder.Entity<UserRole>()
+            .HasQueryFilter(ur => ur.User != null && !ur.User.IsDeleted);
         base.OnModelCreating(modelBuilder);
     }
 }

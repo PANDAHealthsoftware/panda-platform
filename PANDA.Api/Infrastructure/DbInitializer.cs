@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PANDA.Api.Helpers;
 using PANDA.Api.Models;
 using PANDA.Domain.Entities;
 using PANDA.Domain.Enums;
@@ -44,6 +45,34 @@ public static class DbInitializer
             context.Clinicians.AddRange(drCarter, drReid);
             await context.SaveChangesAsync();
         }
+        
+        //Seed UserRoles
+
+        if (!context.UserRoles.Any())
+        {
+            context.AddRange(
+                new UserRole
+                {
+                    UserId = 6,
+                    RoleId = 1
+                    
+                }, new UserRole
+                {
+                    UserId = 6,
+                    RoleId = 2
+                },
+                new UserRole
+                {
+                    UserId = 7,
+                    RoleId = 2
+                },
+                new UserRole
+                {
+                    UserId = 8,
+                    RoleId = 3
+                });
+            await context.SaveChangesAsync();
+        }
 
         // Seed Users
         if (!context.Users.Any())
@@ -52,20 +81,26 @@ public static class DbInitializer
                 new User
                 {
                     Username = "admin",
-                    PasswordHash = "admin123",
-                    Role = "Admin"
+                    PasswordHash = PasswordHelper.HashPassword("admin123"),
+                    RoleId = (int)RoleType.Admin, // Admin
+                    Status = "Active",
+                    IsDeleted = false
                 },
                 new User
                 {
                     Username = "reception",
-                    PasswordHash = "reception123",
-                    Role = "Reception"
+                    PasswordHash = PasswordHelper.HashPassword("reception123"),
+                    RoleId = (int)RoleType.Reception, // Reception
+                    Status = "Active",
+                    IsDeleted = false
                 },
                 new User
                 {
                     Username = "drchris",
-                    PasswordHash = "clinician123",
-                    Role = "Clinician"
+                    PasswordHash = PasswordHelper.HashPassword("clinician123"),
+                    RoleId = (int)RoleType.Clinician, // Clinician
+                    Status = "Active",
+                    IsDeleted = false
                 }
             );
             await context.SaveChangesAsync();

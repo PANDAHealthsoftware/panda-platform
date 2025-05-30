@@ -76,7 +76,7 @@ public class AppointmentServiceTests
         {
             PatientId = patient.Id,
             AppointmentDate = DateTime.UtcNow.AddDays(2),
-            Clinician = "Dr. Updated", // If using ClinicianId now, adjust accordingly
+            ClinicianId = 1, // If using ClinicianId now, adjust accordingly
             Department = Department.Neurology,
             Status = AppointmentStatus.Scheduled
         };
