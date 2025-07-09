@@ -24,6 +24,53 @@ public class AppointmentService : IAppointmentService
         _mapper = mapper;
         _auditService = auditService;
     }
+    
+    public async Task<List<AppointmentDto>> GetAppointmentsForTodayAsync(int userId)
+    {
+        // Lookup: is this user a patient?
+        var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == userId);
+
+        // Or a clinician?
+        var clinician = await _context.Clinicians.FirstOrDefaultAsync(c => c.UserId == userId);
+
+        if (patient == null && clinician == null)
+            return new List<AppointmentDto>();
+
+        var today = DateTime.Today;
+        var tomorrow = today.AddDays(1);
+
+        IQueryable<Models.Appointment> query = _context.Appointments
+            .Include(a => a.Clinician)
+            .Include(a => a.Patient)
+            .Where(a => a.AppointmentDate >= today && a.AppointmentDate < tomorrow);
+
+        if (patient != null)
+            query = query.Where(a => a.PatientId == patient.Id);
+        else if (clinician != null)
+            query = query.Where(a => a.ClinicianId == clinician.Id);
+
+        var results = await query.ToListAsync();
+        
+        return _mapper.Map<List<AppointmentDto>>(results);
+    }
+    
+    public async Task<List<AppointmentDto>> GetAppointmentsInRangeAsync(int userId, DateTime start, DateTime end)
+    {
+        return await _context.Appointments
+            .AsNoTracking()
+            .Where(a =>
+                a.ClinicianId == userId &&
+                a.AppointmentDate >= start &&
+                a.AppointmentDate < end)
+            .Select(a => new AppointmentDto
+            {
+                Id = a.Id,
+                AppointmentDate = a.AppointmentDate,
+                ClinicianFullName = a.Clinician.FullName
+            })
+            .OrderBy(a => a.AppointmentDate)
+            .ToListAsync();
+    }
 
     public async Task<UpdateAppointmentDto> CreateAsync(CreateAppointmentDto dto)
     {
@@ -154,5 +201,15 @@ public class AppointmentService : IAppointmentService
             await _context.SaveChangesAsync();
             Log.Information(LogMessages.AppointmentMarkedMissed, appointmentId);
         }
+    }
+    
+    public async Task<bool> IsPatientAsync(int userId)
+    {
+        return await _context.Patients.AnyAsync(p => p.UserId == userId);
+    }
+
+    public async Task<bool> IsClinicianAsync(int userId)
+    {
+        return await _context.Clinicians.AnyAsync(c => c.UserId == userId);
     }
 }

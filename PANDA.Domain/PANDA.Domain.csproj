@@ -10,4 +10,8 @@
       <ProjectReference Include="..\PANDA.Shared\PANDA.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Entities\Extensions\" />
+    </ItemGroup>
+
 </Project>

@@ -1,8 +1,10 @@
 ﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using NSubstitute;
 using PANDA.Api.Infrastructure;
 using PANDA.Api.Models;
 using PANDA.Api.Services.Appointment;
+using PANDA.Api.Services.Audit;
 using PANDA.Api.Tests.TestUtilities;
 using PANDA.Domain.Entities;
 using PANDA.Domain.Enums;
@@ -15,6 +17,7 @@ namespace PANDA.Api.Tests.Services;
 public class AppointmentServiceTests
 {
     private readonly DbContextOptions<PandaDbContext> _options;
+    private IAuditService _auditService;
 
     public AppointmentServiceTests()
     {
@@ -29,7 +32,8 @@ public class AppointmentServiceTests
     {
         // Arrange
         await using var context = new PandaDbContext(_options);
-        var service = new AppointmentService(context, MapperFactory.Create());
+        _auditService = Substitute.For<IAuditService>();
+        var service = new AppointmentService(context, MapperFactory.Create(), _auditService);
 
         // Seed valid patient
         var patient = new Patient(

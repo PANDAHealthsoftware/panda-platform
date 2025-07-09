@@ -25,9 +25,15 @@ public class AuthController : ControllerBase
         var user = await _userService.ValidateCredentialsAsync(login.Username, login.Password);
         if (user == null)
             return Unauthorized();
+
         
-        var userRoles = await _userService.GetUserRolesCollectionByUserIdAsync(user.Id);
-        var token = _jwtTokenService.GenerateToken(user, userRoles);
+        var role = await _userService.GetUserRoleEnumAsync(user.Id);
+
+        if (role == null)
+            return Unauthorized();
+
+        // ✅ Generate token using single role
+        var token = _jwtTokenService.GenerateToken(user, role.Value);
 
         return Ok(new { accessToken = token });
     }

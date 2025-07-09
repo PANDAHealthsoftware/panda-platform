@@ -12,7 +12,6 @@ public class PandaDbContext : DbContext
     public DbSet<Clinician> Clinicians => Set<Clinician>();
     public DbSet<User> Users => Set<User>();
     public DbSet<Role> Roles => Set<Role>();
-    public DbSet<UserRole> UserRoles => Set<UserRole>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
     
 
@@ -27,8 +26,7 @@ public class PandaDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(PandaDbContext).Assembly);
-        modelBuilder.Entity<UserRole>()
-            .HasQueryFilter(ur => ur.User != null && !ur.User.IsDeleted);
+        
         base.OnModelCreating(modelBuilder);
     }
 }

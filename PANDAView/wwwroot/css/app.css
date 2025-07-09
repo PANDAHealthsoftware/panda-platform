@@ -1,90 +1,78 @@
-/* === NHS Shell Layout === */
+/* === NHS Base === */
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Frutiger W01", Frutiger, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    color: #212b32;
+    background: #f0f4f5;
 }
 
+/* NHS container for max-width */
+.nhs-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Shell */
 .nhs-shell {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    background-color: #f8f8f8;
+    min-height: 100vh;
+    background: #f0f4f5;
 }
 
 /* === Header === */
 .nhs-header {
     background-color: #005eb8;
-    padding: 1rem;
+    padding: 1rem 0;
     color: white;
-    width: 100%;
     flex-shrink: 0;
 }
 
 .nhs-header-inner {
     display: flex;
     align-items: center;
-    gap: 1rem;
-}
-
-.nhs-appointments-header {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
 }
 
 .nhs-logo {
     height: 40px;
-    width: auto;
 }
 
 .nhs-title {
     font-size: 1.5rem;
-    margin: 0;
+    margin-left: 1rem;
 }
 
-/* === Tabs Navigation === */
+.nhs-user-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* === Nav === */
 .nhs-nav {
     background: #f0f4f5;
     border-bottom: 1px solid #d8dde0;
-    padding: 0;
 }
 
 .nhs-tabs {
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 0 1rem;
+    padding: 0;
     gap: 1rem;
 }
 
-.nhs-tabs li {
-    margin: 0;
-    padding: 0;
-}
-
 .nhs-tab {
-    display: inline-block;
     padding: 1rem 1.25rem;
     text-decoration: none;
     font-weight: bold;
     color: #005eb8;
     border-bottom: 4px solid transparent;
-    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
-
-.nhs-tab:hover {
-    background-color: #e0edf4;
-    border-color: #0072ce;
-}
-
-.nhs-tab-active {
-    border-bottom: 4px solid #005eb8;
-    background-color: #ffffff;
-    color: #0b0c0c;
+    transition: border-color 0.2s, background 0.2s;
 }
 
 .nhs-tab:hover {
@@ -92,214 +80,146 @@ html, body {
     border-color: #0072ce;
 }
 
-/* === Main Content === */
+.nhs-tab-active {
+    border-bottom: 4px solid #005eb8;
+    color: #0b0c0c;
+    background: #fff;
+}
+
+/* === Content === */
 .nhs-content {
     flex: 1;
-    padding: 2rem;
+    padding: 2rem 0;
     background: white;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 /* === Footer === */
 .nhs-footer {
-    background-color: #eaeaea;
+    background: #eaeaea;
     text-align: center;
-    padding: 1rem;
     font-size: 0.9rem;
     color: #4c4c4c;
-    width: 100%;
-    flex-shrink: 0;
+    padding: 1rem 0;
 }
 
-/* === Notifications / Messages === */
-.nhs-loading {
-    font-size: 1.2rem;
-    color: #005eb8;
-    padding: 2rem;
-}
-
-.nhs-error {
-    font-size: 1.1rem;
-    color: #d5281b;
-    padding: 2rem;
-}
-
-.nhs-info {
-    font-size: 1.1rem;
-    color: #0b0c0c;
-    padding: 2rem;
-}
-
-/* === Panel / Forms === */
-.patient-select-row {
-    display: flex;
-    gap: 0.5rem;
-    align-items: flex-end;
-}
-
-.nhs-panel {
-    padding: 2rem;
-    background: white;
-    border-left: 4px solid #005eb8;
-    font-family: Arial, sans-serif;
-}
-
-.nhs-heading {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.nhs-label {
-    display: block;
+/* === Buttons === */
+.nhs-button {
+    display: inline-block;
     font-weight: bold;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nhs-button-blue {
+    background: #0072ce;
+    color: #fff;
+}
+
+.nhs-button-blue:hover {
+    background: #004f84;
+}
+
+.nhs-button-grey {
+    background: #425563;
+    color: #fff;
+}
+
+.nhs-button-grey:hover {
+    background: #212b32;
+}
+
+/* === Login Panel === */
+.nhs-login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.nhs-login-container {
+    max-width: 400px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .nhs-form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .nhs-input {
-    width: 100% !important;
-    padding: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
     font-size: 1rem;
-    border: 2px solid #aeb7bd;
+    border: 2px solid #005eb8;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-/* === Buttons === */
-.nhs-btn-primary {
-    background-color: #007f3b !important;
-    color: white !important;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-}
-
-.nhs-btn-secondary {
-    background-color: #f3f2f1 !important;
-    color: #0b0c0c !important;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border: 1px solid #b1b4b6;
-}
-
-/* === Radzen Overrides === */
-.rz-scheduler-appointment {
-    position: relative;
-    z-index: 2;
-    pointer-events: auto;
-}
-
-.rz-input,
-.rz-dropdown,
-.rz-calendar {
-    width: 100% !important;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-.rz-dialog {
-    max-width: 600px;
-    width: 95vw;
-}
-
-.rz-dialog .rz-dialog-content {
-    max-height: 75vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 1.5rem;
-    position: relative;
-}
-
-.rz-datepicker-popup,
-.rz-dropdown-panel {
-    z-index: 1050 !important;
-    position: absolute !important;
-    max-height: 80vh;
-    overflow-y: auto;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    bottom: auto !important;
-}
-
-.rz-dialog label {
-    display: block;
+.nhs-error {
+    color: #d5281b;
     margin-top: 1rem;
-    font-weight: 600;
 }
 
-.rz-dialog .dialog-buttons {
+/* === Chatbot === */
+.chatbot-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #005eb8;
+    color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
     display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-/* === DatePicker Refinement === */
-.rz-datepicker {
-    border: 2px solid #aeb7bd !important;
-    border-radius: 4px !important;
-    padding: 0.25rem 0.5rem;
-    font-size: 1rem;
-    box-shadow: none;
-    width: 100%;
-    background-color: white;
-}
-
-.rz-datepicker .rz-inputtext {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 0;
-    font-size: 1rem;
-}
-
-/* === Misc Fixes === */
-body, .rz-dialog, .rz-dialog-content {
-    overflow: visible !important;
-}
-.dashboard-card {
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 1.25rem;
-    text-align: center;
-    border: 1px solid #eee;
-}
-
-.card-title {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 0.25rem;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.card-value {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #0078D4; /* NHS Blue */
-}
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-.dashboard-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: transform 0.15s ease-in-out;
-}
-
-.dashboard-card-link:hover {
-    transform: scale(1.02);
-}
-
-.dashboard-card-link .dashboard-card {
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+.chatbot-popup {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.chatbot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.chatbot-close {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.chatbot-input {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 8px;
+}
+
+.chatbot-reply {
+    margin-top: 8px;
+    background: #f4f4f4;
+    padding: 8px;
+    border-radius: 4px;
 }

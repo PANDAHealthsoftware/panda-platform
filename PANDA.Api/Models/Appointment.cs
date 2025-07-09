@@ -15,7 +15,7 @@ public class Appointment : AuditableEntity
     
     public string? Reason { get; set; }
 
-    public int ClinicianId { get; set; }
+    public int? ClinicianId { get; set; }
     public Clinician Clinician { get; set; } = default!;
 
     public Department Department { get; set; }

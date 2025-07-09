@@ -3,7 +3,7 @@ using PANDA.Shared.Enums;
 
 namespace PANDA.Api.Models;
 
-public class Clinician: AuditableEntity
+public class Clinician : AuditableEntity
 {
     public int Id { get; set; }
 
@@ -19,4 +19,8 @@ public class Clinician: AuditableEntity
     public string? RegistrationNumber { get; set; } // e.g. GMC/NMC number
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    // ✅ Needed for secure login mapping
+    public int? UserId { get; set; }
+    public User? User { get; set; }
 }

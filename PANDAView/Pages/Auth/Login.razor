@@ -1,15 +1,54 @@
 ﻿@page "/login"
 @inherits LoginBase
 
-<h3>Login</h3>
+<div class="nhs-login-container">
+    <nav class="nhs-breadcrumbs">
+        <a href="/">Home</a> &gt; <a href="#">NHS services</a> &gt; Online services
+    </nav>
 
-<EditForm Model="Credentials" OnValidSubmit="HandleLogin">
-    <InputText @bind-Value="Credentials.Username" />
-    <InputText @bind-Value="Credentials.Password" type="password" />
-    <button type="submit" disabled="@IsLoading">Login</button>
-</EditForm>
+    <h1>NHS login</h1>
 
-@if (!string.IsNullOrEmpty(ErrorMessage))
-{
-    <p class="text-danger">@ErrorMessage</p>
-}
+    <p>
+        NHS login allows you to access a range of health and care websites
+        and apps with one set of login details.
+    </p>
+
+    <h2>Where you can use NHS login</h2>
+
+    <p>You can use NHS login to access many health and care websites, apps and services.</p>
+
+    <ul>
+        <li>health and wellbeing services</li>
+        <li>maternity and child health services</li>
+        <li>online pharmacies</li>
+        <li>online and video consultation services</li>
+        <li>patient access services</li>
+    </ul>
+
+    <div class="nhs-login-panel">
+        <h3>Access your NHS account</h3>
+
+        <EditForm Model="Credentials" OnValidSubmit="HandleLogin">
+            <div class="nhs-form-group">
+                <label>Username</label>
+                <InputText @bind-Value="Credentials.Username" class="nhs-input" />
+            </div>
+            <div class="nhs-form-group">
+                <label>Password</label>
+                <InputText @bind-Value="Credentials.Password" type="password" class="nhs-input" />
+            </div>
+
+            <button type="submit" class="nhs-button nhs-button-blue" disabled="@IsLoading">Log in</button>
+            <button type="button" class="nhs-button nhs-button-grey">Create an account</button>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            <p class="nhs-error">@ErrorMessage</p>
+        }
+    </div>
+
+    <p class="nhs-more-info">
+        <a href="#">Find out more about the services you can access with NHS login</a>
+    </p>
+</div>

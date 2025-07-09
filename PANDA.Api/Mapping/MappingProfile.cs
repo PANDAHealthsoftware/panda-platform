@@ -32,6 +32,8 @@ public class MappingProfile : Profile
             ))
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForMember(dest => dest.Name, opt => opt.Ignore())
+            .ForMember(dest => dest.UserId, opt => opt.Ignore()) // ✅ NEW
+            .ForMember(dest => dest.User, opt => opt.Ignore())   // ✅ NEW
             .ForMember(dest => dest.IsDeleted, opt => opt.Ignore())
             .ForMember(dest => dest.DeletedAt, opt => opt.Ignore())
             .ForMember(dest => dest.LastModified, opt => opt.Ignore());
@@ -86,6 +88,8 @@ public class MappingProfile : Profile
 
         CreateMap<CreateClinicianDto, Clinician>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.UserId, opt => opt.Ignore()) // ✅ NEW
+            .ForMember(dest => dest.User, opt => opt.Ignore())   // ✅ NEW
             .ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true))
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow))
             .ForMember(dest => dest.IsDeleted, opt => opt.Ignore())
@@ -93,6 +97,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.LastModified, opt => opt.Ignore());
 
         CreateMap<UpdateClinicianDto, Clinician>()
+            .ForMember(dest => dest.UserId, opt => opt.Ignore()) // ✅ NEW
+            .ForMember(dest => dest.User, opt => opt.Ignore())   // ✅ NEW
             .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
             .ForMember(dest => dest.IsDeleted, opt => opt.Ignore())
             .ForMember(dest => dest.DeletedAt, opt => opt.Ignore())
@@ -104,15 +110,13 @@ public class MappingProfile : Profile
         CreateMap<User, UserDto>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
-            .ForMember(dest => dest.Role, opt => opt.MapFrom(src =>
-                src.UserRoles.Select(ur => ur.Role.Name).FirstOrDefault() ?? string.Empty))
-            .ForMember(dest => dest.Roles, opt => opt.MapFrom(src =>
-                src.UserRoles.Select(ur => ur.Role.Name).ToList()))
-            .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
+            .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.Name)) // ✅ single role
             .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => src.IsDeleted))
             .ForMember(dest => dest.DeletedAt, opt => opt.MapFrom(src => src.DeletedAt))
             .ForMember(dest => dest.LastModified, opt => opt.MapFrom(src => src.LastModified))
-            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            .ForMember(dest => dest.IsStaff, opt => opt.MapFrom(src => src.IsStaff))
+            .ForMember(dest => dest.Role, opt => opt.Ignore());
 
         // ---------------------------
         // CreateUserDto → User
@@ -121,12 +125,13 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
             .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()) // set in service
-            .ForMember(dest => dest.UserRoles, opt => opt.Ignore())    // set in service
-            .ForMember(dest => dest.RoleId, opt => opt.Ignore())       // ← Fixes the error
+            .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.RoleId)) // ✅ one FK!
             .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => src.IsDeleted))
             .ForMember(dest => dest.DeletedAt, opt => opt.MapFrom(src => src.DeletedAt))
             .ForMember(dest => dest.LastModified, opt => opt.MapFrom(_ => DateTime.UtcNow))
-            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            .ForMember(dest => dest.IsStaff, opt => opt.MapFrom(src => src.IsStaff))
+            .ForMember(dest => dest.Role, opt => opt.Ignore());
 
         // ---------------------------
         // UpdateUserDto → User
@@ -135,11 +140,12 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username))
             .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()) // not updated here
-            .ForMember(dest => dest.UserRoles, opt => opt.Ignore())    // set in service
-            .ForMember(dest => dest.RoleId, opt => opt.Ignore())       // ← Fixes the error
+            .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.RoleId)) // ✅ correct!
             .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => src.IsDeleted))
             .ForMember(dest => dest.DeletedAt, opt => opt.Ignore())    // only updated on delete
             .ForMember(dest => dest.LastModified, opt => opt.MapFrom(_ => DateTime.UtcNow))
-            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            .ForMember(dest => dest.IsStaff, opt => opt.MapFrom(src => src.IsStaff))
+            .ForMember(dest => dest.Role, opt => opt.Ignore());
     }
 }

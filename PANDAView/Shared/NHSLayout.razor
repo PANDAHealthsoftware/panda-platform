@@ -1,23 +1,27 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
+@using PANDAView.Pages.Chat
+@using PANDAView.Services.Chat
 @inherits LayoutComponentBase
 @inject NavigationManager NavManager
+@inject HttpClient Http
+@inject IChatbotService ChatbotService
 
 <RadzenNotification />
 <RadzenDialog />
 
 <div class="nhs-shell">
     <header class="nhs-header">
-        <div class="nhs-header-inner">
+        <div class="nhs-container nhs-header-inner">
             <img src="https://assets.nhs.uk/images/nhs-logo.png" alt="NHS" class="nhs-logo" />
             <h1 class="nhs-title">PANDA Clinical App</h1>
-            <div style="margin-left:auto;display:flex;align-items:center;padding-right:24px;">
+            <div class="nhs-user-info">
                 <AuthorizeView>
                     <Authorized>
-                        <span style="margin-right:10px;">Hello, @context.User.Identity?.Name!</span>
-                        <button class="rz-button rz-secondary" @onclick="Logout">Logout</button>
+                        <span>Hello, @context.User.Identity?.Name!</span>
+                        <button class="nhs-button nhs-button-grey" @onclick="Logout">Logout</button>
                     </Authorized>
                     <NotAuthorized>
-                        <button class="rz-button rz-primary" @onclick="Login">Login</button>
+                        <button class="nhs-button nhs-button-blue" @onclick="Login">Login</button>
                     </NotAuthorized>
                 </AuthorizeView>
             </div>
@@ -25,28 +29,69 @@
     </header>
 
     <nav class="nhs-nav">
-        <ul class="nhs-tabs">
-            <li><NavLink href="/appointments" class="nhs-tab" activeClass="nhs-tab-active">Appointments</NavLink></li>
-            <li><NavLink href="/patients" class="nhs-tab" activeClass="nhs-tab-active">Patients</NavLink></li>
-            <li><NavLink href="/admin" class="nhs-tab" activeClass="nhs-tab-active">Admin</NavLink></li>
-        </ul>
+        <div class="nhs-container">
+            <ul class="nhs-tabs">
+                <li><NavLink href="/appointments" class="nhs-tab" activeClass="nhs-tab-active">Appointments</NavLink></li>
+                <li><NavLink href="/patients" class="nhs-tab" activeClass="nhs-tab-active">Patients</NavLink></li>
+                <li><NavLink href="/admin" class="nhs-tab" activeClass="nhs-tab-active">Admin</NavLink></li>
+            </ul>
+        </div>
     </nav>
 
-    <main class="nhs-content">
+    <main class="nhs-content nhs-container">
         @Body
     </main>
 
+    <!-- Floating Chatbot Widget -->
+    <div class="chatbot-fab" @onclick="ToggleChat">💬</div>
+
+    @if (showChat)
+    {
+        <div class="chatbot-popup">
+            <div class="chatbot-header">
+                <strong>PANDA AI Assistant</strong>
+                <button class="chatbot-close" @onclick="ToggleChat">✖</button>
+            </div>
+            <textarea class="chatbot-input" @bind="userMessage" placeholder="Type your message..."></textarea>
+            <button class="nhs-button nhs-button-blue" @onclick="SendMessage">Send</button>
+            @if (!string.IsNullOrWhiteSpace(botReply))
+            {
+                <div class="chatbot-reply">
+                    <strong>Bot:</strong> @botReply
+                </div>
+            }
+        </div>
+    }
+
     <footer class="nhs-footer">
-        &copy; @DateTime.Now.Year NHS Foundation Trust
+        <div class="nhs-container">
+            &copy; @DateTime.Now.Year NHS Foundation Trust
+        </div>
     </footer>
 </div>
 
 @code {
-    [Inject] NavigationManager Navigation { get; set; }
+    private void Login() => NavManager.NavigateTo("authentication/login");
+    private void Logout() => NavManager.NavigateTo("authentication/logout");
 
-    private void Login() => Navigation.NavigateTo("authentication/login");
-    private void Logout() => Navigation.NavigateTo("authentication/logout");
+    private bool showChat = false;
+    private string userMessage = string.Empty;
+    private string botReply = string.Empty;
 
-    private string IsActive(string href)
-        => NavManager.Uri.Contains(href, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+    private void ToggleChat() => showChat = !showChat;
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrWhiteSpace(userMessage)) return;
+
+        try
+        {
+            botReply = await ChatbotService.SendMessageAsync(userMessage);
+            userMessage = string.Empty;
+        }
+        catch
+        {
+            botReply = "Error connecting to the server.";
+        }
+    }
 }

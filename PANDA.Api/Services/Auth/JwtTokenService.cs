@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using PANDA.Api.Models;
+using PANDA.Domain.Enums;
 
 namespace PANDA.Api.Services.Auth;
 
@@ -15,17 +15,16 @@ public class JwtTokenService : IJwtTokenService
         _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
     }
     
-    public string GenerateToken(Models.User user, IEnumerable<Role> roles)
+    public string GenerateToken(Models.User user, RoleType role)
     {
         ArgumentNullException.ThrowIfNull(user);
-        
+
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Role, role.ToString())  // ✅ single role claim
         };
-        // Add roles
-        claims.AddRange(from r in roles where !string.IsNullOrEmpty(r.Name) select new Claim(ClaimTypes.Role, r.Name));
 
         var key = _configuration["JwtSettings:Key"];
         if (string.IsNullOrEmpty(key))

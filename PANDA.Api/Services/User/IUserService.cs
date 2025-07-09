@@ -12,7 +12,6 @@ public interface IUserService
     Task<bool> DeleteUserAsync(int id);
     Task<UserDto?> GetUserByIdAsync(int id);
     Task<RoleType?> GetUserRoleEnumAsync(int id);
-    Task<Models.User?> ValidateCredentialsAsync(string username, string password);
-    Task<List<Role>> GetUserRolesCollectionByUserIdAsync(int id);
     Task<IEnumerable<Role>> GetUserRolesByUserIdAsync(int id);
+    Task<Models.User?> ValidateCredentialsAsync(string username, string password);
 }

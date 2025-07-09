@@ -4,5 +4,6 @@ public enum RoleType
 {
     Admin = 1,
     Reception = 2,
-    Clinician = 3
+    Clinician = 3,
+    Patient = 4
 }

@@ -11,6 +11,7 @@ using PANDA.Api.Services.Appointment;
 using PANDA.Api.Services.Audit;
 using PANDA.Api.Services.Auth;
 using PANDA.Api.Services.Clinician;
+using PANDA.Api.Services.OpenAi;
 using PANDA.Api.Services.Patient;
 using PANDA.Api.Services.User;
 using PANDA.Api.Validation;
@@ -43,8 +44,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuditService, AuditService>();
+        services.AddScoped<IOpenAiService, OpenAiService>();
         services.AddHttpContextAccessor();
-        
+        services.AddHttpClient();
 
         // AutoMapper
         var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());

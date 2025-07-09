@@ -12,6 +12,8 @@ using PANDAView.Services.Patient;
 using ProtectedLocalStore;
 using Radzen;
 using PANDAView.Constants;
+using PANDAView.Pages.Chat;
+using PANDAView.Services.Chat;
 using PANDAView.Services.User;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -53,6 +55,11 @@ builder.Services.AddHttpClient<IAuthService, AuthService>(client =>
 {
     client.BaseAddress = new Uri(ApiConfig.BaseUrl);
 });
+
+builder.Services.AddHttpClient<IChatbotService, ChatbotService>(client =>
+{
+    client.BaseAddress = new Uri(ApiConfig.BaseUrl);
+}).AddHttpMessageHandler<AuthTokenHandler>();
 
 // ---------------------------------------------
 // Auth & State Providers

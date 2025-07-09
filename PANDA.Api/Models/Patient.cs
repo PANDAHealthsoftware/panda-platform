@@ -1,4 +1,5 @@
-﻿using PANDA.Domain.Enums;
+﻿using PANDA.Api.Models;
+using PANDA.Domain.Enums;
 using PANDA.Domain.ValueObjects;
 
 namespace PANDA.Domain.Entities;
@@ -12,6 +13,9 @@ public class Patient : AuditableEntity
     public Gender? Gender { get; private set; }
     public string NHSNumber { get; private set; } = default!;
     public string Postcode { get; private set; } = default!;
+
+    public int? UserId { get; private set; }
+    public User? User { get; private set; }
 
     // Required by EF Core
     private Patient() { }
@@ -32,5 +36,10 @@ public class Patient : AuditableEntity
         Gender = gender;
         NHSNumber = nhsNumber;
         Postcode = postcode;
+    }
+
+    public void LinkToUser(int userId)
+    {
+        UserId = userId;
     }
 }

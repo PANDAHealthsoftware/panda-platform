@@ -49,6 +49,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowPANDAview", policy =>
     {
         policy.WithOrigins(
+                "https://localhost:7165",
                 "http://localhost:5000", 
                 "http://localhost:5001")
             .AllowAnyHeader()
